@@ -26,6 +26,13 @@ const Projects: React.FC = () => {
       if (error) throw error;
 
       if (data) {
+        // Helper to ensure paths are absolute
+        const ensureAbsolutePath = (path: string) => {
+          if (!path) return '';
+          if (path.startsWith('http') || path.startsWith('/')) return path;
+          return `/${path}`;
+        };
+
         // Map database snake_case to frontend camelCase
         const mappedProjects: Project[] = data.map((p: any) => ({
           id: p.id,
@@ -33,13 +40,13 @@ const Projects: React.FC = () => {
           category: p.category as ProjectCategory,
           description: p.description,
           fullDescription: p.full_description,
-          image: p.image_url,
+          image: ensureAbsolutePath(p.image_url),
           raised: p.raised_amount,
           goal: p.goal_amount,
           status: p.status,
           beneficiaries: p.beneficiaries_count,
           year: p.year,
-          gallery: p.gallery,
+          gallery: (p.gallery || []).map(ensureAbsolutePath),
           objectives: p.impact_data?.objectives || []
         }));
         setProjects(mappedProjects);

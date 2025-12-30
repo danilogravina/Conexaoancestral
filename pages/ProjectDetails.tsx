@@ -34,19 +34,25 @@ const ProjectDetails: React.FC = () => {
       if (error) throw error;
 
       if (data) {
+        const ensureAbsolutePath = (path: string) => {
+          if (!path) return '';
+          if (path.startsWith('http') || path.startsWith('/')) return path;
+          return `/${path}`;
+        };
+
         const mappedProject: Project = {
           id: data.id,
           title: data.title,
           category: data.category as any,
           description: data.description,
           fullDescription: data.full_description,
-          image: data.image_url,
+          image: ensureAbsolutePath(data.image_url),
           raised: data.raised_amount,
           goal: data.goal_amount,
           status: data.status,
           beneficiaries: data.beneficiaries_count,
           year: data.year,
-          gallery: data.gallery || [data.image_url],
+          gallery: (data.gallery || [data.image_url]).map(ensureAbsolutePath),
           objectives: data.impact_data?.objectives || []
         };
         setProject(mappedProject);
@@ -150,7 +156,7 @@ const ProjectDetails: React.FC = () => {
   }
 
   const gallery = project.gallery || [project.image];
-  const videoThumbnail = "assets/img/video-thumbnail.jpg";
+  const videoThumbnail = "/assets/img/video-thumbnail.jpg";
 
   return (
     <div className="flex flex-col flex-grow">
@@ -330,8 +336,8 @@ const ProjectDetails: React.FC = () => {
               <h2 className="text-gray-900 dark:text-white h2-standard mb-10">Vozes da Comunidade</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {[
-                  { initial: "M", name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "assets/img/donor-avatar-1.jpg" },
-                  { initial: "J", name: "João Tukano", role: "Líder Comunitário", quote: "O projeto nos deu ferramentas para defender nossa terra e garantir nosso futuro.", avatar: "assets/img/donor-avatar-2.jpg" }
+                  { initial: "M", name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "/assets/img/donor-avatar-1.jpg" },
+                  { initial: "J", name: "João Tukano", role: "Líder Comunitário", quote: "O projeto nos deu ferramentas para defender nossa terra e garantir nosso futuro.", avatar: "/assets/img/donor-avatar-2.jpg" }
                 ].map((testimonial, i) => (
                   <div key={i} className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl shadow-sm relative">
                     <span className="material-icons-round text-primary/20 text-6xl absolute top-4 right-4 rotate-12">format_quote</span>
@@ -473,7 +479,7 @@ const ProjectDetails: React.FC = () => {
                   </p>
                   <div className="flex justify-center -space-x-3 overflow-hidden">
                     {[1, 2, 3].map((_, i) => (
-                      <img key={i} className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-surface-dark bg-gray-300" src={`assets/img/donor-avatar-${i + 1}.jpg`} alt="Doador" />
+                      <img key={i} className="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-surface-dark bg-gray-300" src={`/assets/img/donor-avatar-${i + 1}.jpg`} alt="Doador" />
                     ))}
                     <div className="h-8 w-8 rounded-full ring-2 ring-white dark:ring-surface-dark bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-500">+42</div>
                   </div>
