@@ -1,34 +1,82 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { projectsData } from './Projects';
 import { blogPosts } from './Blog';
-import { Project, BlogPost } from '../types';
+import { Project, BlogPost, ProjectCategory } from '../types';
+import { supabase } from '../lib/supabase';
 
 const SearchResults: React.FC = () => {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('q') || '';
     const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (!query) return;
-        const lowerQuery = query.toLowerCase();
+        const performSearch = async () => {
+            if (!query) {
+                setIsLoading(false);
+                return;
+            }
 
-        const projects = projectsData.filter(p =>
-            p.title.toLowerCase().includes(lowerQuery) ||
-            p.description.toLowerCase().includes(lowerQuery) ||
-            p.category.toLowerCase().includes(lowerQuery)
-        );
+            setIsLoading(true);
+            const lowerQuery = query.toLowerCase();
 
-        const posts = blogPosts.filter(p =>
-            p.title.toLowerCase().includes(lowerQuery) ||
-            p.excerpt.toLowerCase().includes(lowerQuery) ||
-            p.category.toLowerCase().includes(lowerQuery)
-        );
+            try {
+                // Fetch projects from Supabase and filter them
+                const { data: projectsData, error } = await supabase
+                    .from('projects')
+                    .select('*');
 
-        setFilteredProjects(projects);
-        setFilteredPosts(posts);
+                if (error) throw error;
+
+                const mappedProjects: Project[] = (projectsData || []).map((p: any) => ({
+                    id: p.id,
+                    title: p.title,
+                    category: p.category as ProjectCategory,
+                    description: p.description,
+                    fullDescription: p.full_description,
+                    image: p.image_url,
+                    raised: p.raised_amount,
+                    goal: p.goal_amount,
+                    status: p.status,
+                    beneficiaries: p.beneficiaries_count,
+                    year: p.year,
+                    gallery: p.gallery,
+                    objectives: p.impact_data?.objectives || []
+                }));
+
+                const projects = mappedProjects.filter(p =>
+                    p.title.toLowerCase().includes(lowerQuery) ||
+                    p.description.toLowerCase().includes(lowerQuery) ||
+                    p.category.toLowerCase().includes(lowerQuery)
+                );
+
+                const posts = blogPosts.filter(p =>
+                    p.title.toLowerCase().includes(lowerQuery) ||
+                    p.excerpt.toLowerCase().includes(lowerQuery) ||
+                    p.category.toLowerCase().includes(lowerQuery)
+                );
+
+                setFilteredProjects(projects);
+                setFilteredPosts(posts);
+            } catch (error) {
+                console.error('Erro na busca:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        performSearch();
     }, [query]);
+
+    if (isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
+                <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin mb-4"></div>
+                <h2 className="text-xl font-medium text-text-main-light dark:text-white mb-2">Buscando na floresta...</h2>
+            </div>
+        );
+    }
 
     if (!query) {
         return (
