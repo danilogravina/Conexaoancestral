@@ -11,10 +11,10 @@ export const blogPosts: BlogPost[] = [
         category: "Meio Ambiente",
         date: "14 Out, 2023",
         readTime: "8 min",
-        image: "assets/img/blog-guardioes-tech.jpg",
+        image: "/assets/img/blog-guardioes-tech.jpg",
         author: {
             name: "Mariana Txucarramãe",
-            avatar: "assets/img/author-mariana.jpg"
+            avatar: "/assets/img/author-mariana.jpg"
         },
         featured: true
     },
@@ -26,10 +26,10 @@ export const blogPosts: BlogPost[] = [
         category: "Educação",
         date: "12 Out, 2023",
         readTime: "5 min",
-        image: "assets/img/blog-escola-yanomami.jpg",
+        image: "/assets/img/blog-escola-yanomami.jpg",
         author: {
             name: "João Silva",
-            avatar: "assets/img/author-joao.jpg"
+            avatar: "/assets/img/author-joao.jpg"
         }
     },
     {
@@ -40,10 +40,10 @@ export const blogPosts: BlogPost[] = [
         category: "Cultura",
         date: "08 Out, 2023",
         readTime: "12 min",
-        image: "assets/img/blog-ritual-chuva.jpg",
+        image: "/assets/img/blog-ritual-chuva.jpg",
         author: {
             name: "Ana Terra",
-            avatar: "assets/img/author-ana.jpg"
+            avatar: "/assets/img/author-ana.jpg"
         }
     },
     {
@@ -54,10 +54,10 @@ export const blogPosts: BlogPost[] = [
         category: "Sustentabilidade",
         date: "01 Out, 2023",
         readTime: "6 min",
-        image: "assets/img/blog-arte-tecer.jpg",
+        image: "/assets/img/blog-arte-tecer.jpg",
         author: {
             name: "Clara Luz",
-            avatar: "assets/img/author-clara.jpg"
+            avatar: "/assets/img/author-clara.jpg"
         }
     },
     {
@@ -68,10 +68,10 @@ export const blogPosts: BlogPost[] = [
         category: "Saúde",
         date: "25 Set, 2023",
         readTime: "7 min",
-        image: "assets/img/blog-plantas-medicinais.jpg",
+        image: "/assets/img/blog-plantas-medicinais.jpg",
         author: {
             name: "Dr. André",
-            avatar: "assets/img/author-andre.jpg"
+            avatar: "/assets/img/author-andre.jpg"
         }
     }
 ];
@@ -133,7 +133,7 @@ const Blog: React.FC = () => {
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
                     <img
-                        src="assets/img/blog-hero-bg.jpg"
+                        src="/assets/img/blog-hero-bg.jpg"
                         alt="Blog Conexão Ancestral"
                         className="w-full h-full object-cover transition-transform duration-1000"
                     />
@@ -295,7 +295,7 @@ const Blog: React.FC = () => {
                 {/* Background Image Layer */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="assets/img/banner-blog-cta.jpg"
+                        src="/assets/img/banner-blog-cta.jpg"
                         alt="Fundo Newsletter"
                         className="w-full h-full object-cover"
                     />
