@@ -11,7 +11,7 @@ const About: React.FC = () => {
                     <div className="absolute inset-0 z-0">
                         <div className="absolute inset-0 bg-black/40 z-10"></div>
                         <img
-                            src="assets/img/about-hero-bg.jpg"
+                            src="/assets/img/about-hero-bg.jpg"
                             alt="Sobre a Conexão Ancestral"
                             className="w-full h-full object-cover transition-transform duration-1000"
                         />
@@ -91,7 +91,7 @@ const About: React.FC = () => {
                             {/* Large Main Image */}
                             <div className="col-span-8 h-full rounded-3xl overflow-hidden shadow-2xl relative group animate-float-story">
                                 <img
-                                    src="assets/img/about-story-main.jpg"
+                                    src="/assets/img/about-story-main.jpg"
                                     alt="Comunidade Indígena"
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
@@ -101,14 +101,14 @@ const About: React.FC = () => {
                             <div className="col-span-4 flex flex-col gap-4">
                                 <div className="h-1/2 rounded-2xl overflow-hidden shadow-xl group animate-drift-story" style={{ animationDelay: '1s' }}>
                                     <img
-                                        src="assets/img/about-story-side-1.jpg"
+                                        src="/assets/img/about-story-side-1.jpg"
                                         alt="Reflorestamento"
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                 </div>
                                 <div className="h-1/2 rounded-2xl overflow-hidden shadow-xl group animate-drift-story" style={{ animationDelay: '3s' }}>
                                     <img
-                                        src="assets/img/about-story-side-2.jpg"
+                                        src="/assets/img/about-story-side-2.jpg"
                                         alt="Tecnologia na Floresta"
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
@@ -118,7 +118,7 @@ const About: React.FC = () => {
                             <div className="absolute -bottom-12 -left-12 size-48 bg-white dark:bg-background-dark p-2 rounded-3xl shadow-2xl hidden sm:block border border-black/5 dark:border-white/5 rotate-3 animate-pulse-soft z-20">
                                 <div className="w-full h-full rounded-xl overflow-hidden">
                                     <img
-                                        src="assets/img/about-story-accent.jpg"
+                                        src="/assets/img/about-story-accent.jpg"
                                         alt="Detalhe Natureza"
                                         className="w-full h-full object-cover"
                                     />
@@ -237,7 +237,7 @@ const About: React.FC = () => {
                     {/* Background Image Layer */}
                     <div className="absolute inset-0 z-0">
                         <img
-                            src="assets/img/banner-about-cta.jpg"
+                            src="/assets/img/banner-about-cta.jpg"
                             alt="Fundo Institucional"
                             className="w-full h-full object-cover"
                         />

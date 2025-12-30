@@ -180,7 +180,7 @@ const Home: React.FC = () => {
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat will-change-transform"
           style={{
-            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%), url("assets/img/home-hero-parallax.jpg")',
+            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%), url("/assets/img/home-hero-parallax.jpg")',
             transform: `translateY(${scrollY * 0.5}px)` // Moves at half speed of scroll
           }}
         ></div>
@@ -247,7 +247,7 @@ const Home: React.FC = () => {
             <div className="rounded-3xl overflow-hidden shadow-2xl h-[450px] md:h-[550px] border border-stone-200 dark:border-stone-800 relative">
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
-                style={{ backgroundImage: 'url("assets/img/home-roots.jpg")' }}
+                style={{ backgroundImage: 'url("/assets/img/home-roots.jpg")' }}
               ></div>
               <div className="absolute inset-0 bg-gradient-to-t from-deep-earth/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-primary/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -328,7 +328,7 @@ const Home: React.FC = () => {
                 <div
                   className="absolute -top-8 -right-8 w-48 h-48 opacity-[0.06] group-hover:opacity-[0.12] transition-opacity duration-700 pointer-events-none rotate-12 grayscale invert"
                   style={{
-                    backgroundImage: 'url("assets/img/leaf-pattern-bg.png")',
+                    backgroundImage: 'url("/assets/img/leaf-pattern-bg.png")',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                   }}
@@ -377,7 +377,7 @@ const Home: React.FC = () => {
             <div className="rounded-3xl overflow-hidden shadow-2xl h-[450px] md:h-[550px] border border-stone-200 dark:border-stone-800 relative">
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
-                style={{ backgroundImage: 'url("assets/img/home-values.png")' }}
+                style={{ backgroundImage: 'url("/assets/img/home-values.png")' }}
               ></div>
               <div className="absolute inset-0 bg-gradient-to-t from-deep-earth/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-primary/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -443,7 +443,7 @@ const Home: React.FC = () => {
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <img
-            src="assets/img/banner-projects-cta.jpg"
+            src="/assets/img/banner-projects-cta.jpg"
             alt="Fundo Projetos"
             className="w-full h-full object-cover"
           />
@@ -517,7 +517,7 @@ const Home: React.FC = () => {
                   className="flex-shrink-0 opacity-20 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 px-12"
                 >
                   <img
-                    src={`assets/img/partners/${partner.logo}`}
+                    src={`/assets/img/partners/${partner.logo}`}
                     alt="Partner Logo"
                     className="h-24 md:h-36 w-auto object-contain"
                   />
