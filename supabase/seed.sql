@@ -24,7 +24,7 @@ insert into projects (title, category, description, full_description, image_url,
   120,
   2024,
   '{"objectives": ["Construção de 4 novas salas de aula bioclimáticas.", "Fornecimento de material didático bilíngue.", "Alimentação diária nutritiva."]}',
-  '{"/assets/img/project-details-gallery-1.jpg", "/assets/img/project-details-gallery-2.jpg"}'
+  '{"/assets/img/project-details-gallery-1.jpg", "/assets/img/project-details-gallery-2.jpg", "/assets/img/project-details-gallery-3.jpg", "/assets/img/project-details-gallery-4.jpg", "/assets/img/project-details-gallery-5.jpg", "/assets/img/project-details-gallery-6.jpg", "/assets/img/project-details-gallery-7.jpg"}'
 ),
 (
   'Agrofloresta Comunitária', 

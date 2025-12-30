@@ -40,19 +40,29 @@ const ProjectDetails: React.FC = () => {
           return `/${path}`;
         };
 
+        const galleryData = data.gallery;
+        const mainImage = ensureAbsolutePath(data.image_url);
+
+        let gallery: string[] = [];
+        if (Array.isArray(galleryData) && galleryData.length > 0) {
+          gallery = galleryData.map(ensureAbsolutePath);
+        } else {
+          gallery = [mainImage];
+        }
+
         const mappedProject: Project = {
           id: data.id,
           title: data.title,
           category: data.category as any,
           description: data.description,
           fullDescription: data.full_description,
-          image: ensureAbsolutePath(data.image_url),
+          image: mainImage,
           raised: data.raised_amount,
           goal: data.goal_amount,
           status: data.status,
           beneficiaries: data.beneficiaries_count,
           year: data.year,
-          gallery: (data.gallery || [data.image_url]).map(ensureAbsolutePath),
+          gallery: gallery,
           objectives: data.impact_data?.objectives || []
         };
         setProject(mappedProject);
@@ -155,7 +165,7 @@ const ProjectDetails: React.FC = () => {
     );
   }
 
-  const gallery = project.gallery || [project.image];
+  const gallery = project.gallery && project.gallery.length > 0 ? project.gallery : [project.image];
   const videoThumbnail = "/assets/img/projects-hero-bg.jpg"; // Using a valid fallback image
 
   return (
