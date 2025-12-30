@@ -1,0 +1,35 @@
+/* Using standard CSS to ensure reliability with the project's CDN setup */
+.h1-standard {
+    font-size: 2.25rem;
+    /* 36px mobile */
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .h1-standard {
+        font-size: 3rem;
+        /* 48px desktop - refined for single line fit */
+    }
+}
+
+.h2-standard {
+    font-size: 1.75rem;
+    /* 28px mobile */
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .h2-standard {
+        font-size: 2.5rem;
+        /* 40px desktop */
+    }
+}
+
+/* Custom Scroll Reveal Classes already defined in index.html, 
+   but keeping a reference here for consistency if needed */
