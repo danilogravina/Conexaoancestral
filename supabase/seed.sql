@@ -58,7 +58,6 @@ insert into projects (title, category, description, full_description, image_url,
 -- 3. Inserir Estatísticas Iniciais
 insert into impact_stats (label, value, icon, suffix) values
 ('Famílias Apoiadas', 500, 'groups', '+'),
-('Árvores Plantadas', 10000, 'nature', 'k'),
 ('Aldeias Impactadas', 32, 'location_on', ''),
 ('Projetos Concluídos', 15, 'task_alt', '')
-on conflict (label) do do update set value = excluded.value;
+on conflict (label) do update set value = excluded.value;

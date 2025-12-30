@@ -90,7 +90,8 @@ const Home: React.FC = () => {
     try {
       const { data, error } = await supabase
         .from('impact_stats')
-        .select('*');
+        .select('*')
+        .neq('label', 'Árvores Plantadas');
 
       if (error) throw error;
       if (data) setStats(data);
@@ -98,8 +99,8 @@ const Home: React.FC = () => {
       console.error('Erro ao buscar estatísticas:', error);
       // Fallback a dados padrão se falhar
       setStats([
-        { label: "Hectares Reflorestados", value: 50000, suffix: "+", icon: "landscape" },
         { label: "Famílias Apoiadas", value: 1200, suffix: "", icon: "family_restroom" },
+        { label: "Aldeias Impactadas", value: 32, suffix: "", icon: "location_on" },
         { label: "Projetos Ativos", value: 15, suffix: "", icon: "psychology_alt" }
       ]);
     }

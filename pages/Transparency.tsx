@@ -118,7 +118,7 @@ const ImpactNumbers: React.FC = () => {
   const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
-    <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
+    <div ref={ref} className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4">
       <div className="flex flex-col gap-2 rounded-xl p-6 border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#1a2e22] shadow-sm transition-transform hover:-translate-y-1">
         <div className="p-2 bg-primary/10 rounded-full w-fit mb-2">
           <span className="material-symbols-outlined text-primary text-[32px]">diversity_1</span>
@@ -126,15 +126,6 @@ const ImpactNumbers: React.FC = () => {
         <p className="text-text-main-light dark:text-gray-300 text-xs md:text-sm font-bold leading-normal uppercase tracking-[0.2em]">Famílias Atendidas</p>
         <p className="text-text-main-light dark:text-white tracking-tight text-3xl md:text-4xl font-black leading-tight">
           <AnimatedCounter value={1200} trigger={inView} suffix="+" />
-        </p>
-      </div>
-      <div className="flex flex-col gap-2 rounded-xl p-6 border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#1a2e22] shadow-sm transition-transform hover:-translate-y-1">
-        <div className="p-2 bg-primary/10 rounded-full w-fit mb-2">
-          <span className="material-symbols-outlined text-primary text-[32px]">forest</span>
-        </div>
-        <p className="text-text-main-light dark:text-gray-300 text-sm font-medium leading-normal uppercase tracking-wide">Árvores Plantadas</p>
-        <p className="text-text-main-light dark:text-white tracking-tight text-3xl font-black leading-tight">
-          <AnimatedCounter value={50000} trigger={inView} />
         </p>
       </div>
       <div className="flex flex-col gap-2 rounded-xl p-6 border border-[#cfe7d7] dark:border-[#2a4a35] bg-white dark:bg-[#1a2e22] shadow-sm transition-transform hover:-translate-y-1">
@@ -285,7 +276,7 @@ const Transparency: React.FC = () => {
     },
     {
       question: "Posso direcionar minha doação para um projeto específico?",
-      answer: "Sim! Ao realizar sua doação, você pode escolher entre o \"Fundo Geral\", que nos permite alocar recursos onde são mais necessários, ou fundos específicos como \"Plantio de Árvores\" ou \"Água Potável para Aldeias\"."
+      answer: "Sim! Ao realizar sua doação, você pode escolher entre o \"Fundo Geral\", que nos permite alocar recursos onde são mais necessários, ou fundos específicos como \"Saúde Indígena\" ou \"Segurança Alimentar\"."
     },
     {
       question: "Qual a porcentagem retida para taxas administrativas?",
