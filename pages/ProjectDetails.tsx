@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { projectsData } from './Projects';
+import { Project } from '../types';
+import { supabase } from '../lib/supabase';
 
 const ProjectDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [project, setProject] = useState<Project | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [donationAmount, setDonationAmount] = useState<string>('');
-
-  // Find the project based on the ID from the URL
-  const project = useMemo(() => {
-    return projectsData.find(p => p.id === Number(id));
-  }, [id]);
 
   // Gallery Logic
   const [activeImage, setActiveImage] = useState<string>('');
@@ -19,16 +17,51 @@ const ProjectDetails: React.FC = () => {
   const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
-    if (project) {
-      setActiveImage(project.image);
-    } else {
-      // Small delay to allow for data loading if it were async, then redirect if not found
-      const timer = setTimeout(() => {
-        if (!project) navigate('/projetos');
-      }, 100);
-      return () => clearTimeout(timer);
+    if (id) {
+      fetchProject(id);
     }
-  }, [project, navigate]);
+  }, [id]);
+
+  const fetchProject = async (projectId: string) => {
+    try {
+      setIsLoading(true);
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .eq('id', projectId)
+        .single();
+
+      if (error) throw error;
+
+      if (data) {
+        const mappedProject: Project = {
+          id: data.id,
+          title: data.title,
+          category: data.category as any,
+          description: data.description,
+          fullDescription: data.full_description,
+          image: data.image_url,
+          raised: data.raised_amount,
+          goal: data.goal_amount,
+          status: data.status,
+          beneficiaries: data.beneficiaries_count,
+          year: data.year,
+          gallery: data.gallery || [data.image_url],
+          objectives: data.impact_data?.objectives || []
+        };
+        setProject(mappedProject);
+        setActiveImage(mappedProject.image);
+      } else {
+        navigate('/projetos');
+      }
+    } catch (error) {
+      console.error('Erro ao buscar detalhes do projeto:', error);
+      navigate('/projetos');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   const handleAmountClick = (amount: string) => {
     setDonationAmount(amount);

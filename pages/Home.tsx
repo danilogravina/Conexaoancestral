@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 const StatCard: React.FC<{ icon: string; label: string; value: number; suffix?: string; delay?: number }> = ({ icon, label, value, suffix = "", delay = 0 }) => {
   const [count, setCount] = useState(0);
@@ -39,7 +40,7 @@ const StatCard: React.FC<{ icon: string; label: string; value: number; suffix?: 
   }, [value, delay, label]);
 
   return (
-    <div id={`stat-card-${label.replace(/\s+/g, '-')}`} className="group relative flex flex-col items-center gap-2 rounded-3xl p-8 bg-primary shadow-2xl shadow-primary/30 border border-white/10 hover:scale-[1.03] transition-all duration-500 overflow-hidden cursor-default">
+    <div id={`stat-card-${label.replace(/\s+/g, '-')}`} className="group relative flex flex-col items-center gap-2 rounded-3xl p-8 bg-primary shadow-2xl shadow-primary/30 border border-white/10 hover:scale-[1.03] transition-all duration-500 overflow-hidden cursor-default min-h-[220px] justify-center">
       {/* Background Graphic (Animated Line) */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 200 100" preserveAspectRatio="none">
@@ -79,6 +80,30 @@ const StatCard: React.FC<{ icon: string; label: string; value: number; suffix?: 
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [stats, setStats] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('impact_stats')
+        .select('*');
+
+      if (error) throw error;
+      if (data) setStats(data);
+    } catch (error) {
+      console.error('Erro ao buscar estatísticas:', error);
+      // Fallback a dados padrão se falhar
+      setStats([
+        { label: "Hectares Reflorestados", value: 50000, suffix: "+", icon: "landscape" },
+        { label: "Famílias Apoiadas", value: 1200, suffix: "", icon: "family_restroom" },
+        { label: "Projetos Ativos", value: 15, suffix: "", icon: "psychology_alt" }
+      ]);
+    }
+  };
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -192,28 +217,27 @@ const Home: React.FC = () => {
       <section className="px-4 py-20 md:py-24 bg-background-light dark:bg-background-dark overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StatCard
-              icon="landscape"
-              label="Hectares Reflorestados"
-              value={50000}
-              suffix="+"
-              delay={0}
-            />
-            <StatCard
-              icon="family_restroom"
-              label="Famílias Apoiadas"
-              value={1200}
-              delay={100}
-            />
-            <StatCard
-              icon="psychology_alt"
-              label="Projetos Ativos"
-              value={15}
-              delay={200}
-            />
+            {stats.length > 0 ? (
+              stats.map((stat, idx) => (
+                <StatCard
+                  key={idx}
+                  icon={stat.icon}
+                  label={stat.label}
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  delay={idx * 100}
+                />
+              ))
+            ) : (
+              // Skeleton loading while fetching
+              [1, 2, 3].map(i => (
+                <div key={i} className="h-56 rounded-3xl bg-primary/20 animate-pulse"></div>
+              ))
+            )}
           </div>
         </div>
       </section>
+
 
       <section className="px-4 py-20 md:py-24">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">

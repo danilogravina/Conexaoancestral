@@ -1,26 +1,52 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '../components/Logo';
+import { supabase } from '../lib/supabase';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
 
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
       navigate('/minha-conta');
-    }, 1000);
+    } catch (err: any) {
+      setError(err.message || 'Erro ao fazer login. Verifique suas credenciais.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleForgotPassword = (e: React.MouseEvent) => {
+  const handleForgotPassword = async (e: React.MouseEvent) => {
     e.preventDefault();
-    alert("Um link de recuperação foi enviado para o seu e-mail.");
+    if (!email) {
+      alert("Por favor, digite seu e-mail primeiro.");
+      return;
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email);
+    if (error) {
+      alert("Erro ao enviar link de recuperação.");
+    } else {
+      alert("Se o e-mail estiver cadastrado, um link de recuperação foi enviado.");
+    }
   };
+
 
   return (
     <div className="flex flex-1 w-full min-h-screen bg-background-light dark:bg-background-dark">
@@ -40,6 +66,13 @@ const Login: React.FC = () => {
             </p>
           </div>
 
+          {error && (
+            <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm font-medium flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
+              <span className="material-symbols-outlined text-lg">error</span>
+              {error}
+            </div>
+          )}
+
           <form className="flex flex-col gap-5" onSubmit={handleLogin}>
             <label className="flex flex-col w-full">
               <p className="text-text-main-light dark:text-white text-base font-medium leading-normal pb-2">E-mail</p>
@@ -47,6 +80,8 @@ const Login: React.FC = () => {
                 className="w-full h-14 px-4 rounded-xl border border-stone-200 bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-stone-400 dark:bg-surface-dark dark:border-white/10 dark:text-white"
                 placeholder="seu@email.com"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </label>
@@ -61,6 +96,8 @@ const Login: React.FC = () => {
                   className="w-full h-14 px-4 pr-12 rounded-xl border border-stone-200 bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-stone-400 dark:bg-surface-dark dark:border-white/10 dark:text-white"
                   placeholder="••••••••"
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <button

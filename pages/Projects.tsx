@@ -1,148 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Project, ProjectCategory } from '../types';
-
-export const projectsData: Project[] = [
-  {
-    id: 1,
-    category: ProjectCategory.EDUCATION,
-    title: "Escola Viva da Floresta",
-    description: "Construção de espaços de aprendizado que integram o currículo tradicional com os saberes ancestrais para 120 crianças.",
-    fullDescription: "A Escola Viva da Floresta é uma iniciativa vital para preservar a cultura indígena enquanto fornece educação formal de qualidade. Localizada no coração da Amazônia, a escola atende três comunidades ribeirinhas que, historicamente, precisavam viajar horas de barco para acessar o ensino básico.\n\nNosso objetivo não é apenas ensinar matemática e português, mas criar um currículo híbrido onde os anciões da comunidade ensinam botânica, história oral e artesanato, garantindo a identidade cultural fortalecida, não apagada.",
-    objectives: [
-      "Construção de 4 novas salas de aula bioclimáticas.",
-      "Fornecimento de material didático bilíngue (Português e Língua Nativa).",
-      "Alimentação diária nutritiva com produtos da agricultura familiar local."
-    ],
-    gallery: [
-      "assets/img/project-details-gallery-1.jpg",
-      "assets/img/project-details-gallery-2.jpg",
-      "assets/img/project-details-gallery-3.jpg",
-      "assets/img/project-details-gallery-4.jpg",
-      "assets/img/project-details-gallery-5.jpg",
-      "assets/img/project-details-gallery-6.jpg",
-      "assets/img/project-details-gallery-7.jpg"
-    ],
-    image: "assets/img/project-details-gallery-1.jpg",
-    raised: 45000,
-    goal: 60000,
-    status: "Em Andamento"
-  },
-  {
-    id: 2,
-    category: ProjectCategory.SUSTAINABILITY,
-    title: "Agrofloresta Comunitária",
-    description: "Implementação de sistemas agroflorestais produtivos que recuperam o solo e geram renda para 50 famílias locais.",
-    fullDescription: "O projeto de Agrofloresta Comunitária foca na regeneração de áreas degradadas e na criação de sistemas produtivos biodiversos. Trabalhamos lado a lado com as famílias locais para implementar técnicas que imitam o funcionamento natural da floresta, garantindo segurança alimentar e geração de renda sustentável.",
-    objectives: [
-      "Plantio de 5.000 mudas de árvores nativas e frutíferas.",
-      "Capacitação de 50 famílias em técnicas de manejo agroflorestal.",
-      "Criação de uma cooperativa para comercialização dos produtos colhidos."
-    ],
-    gallery: [
-      "assets/img/project-agrofloresta.jpg",
-      "assets/img/project-details-gallery-2.jpg",
-      "assets/img/project-details-gallery-3.jpg"
-    ],
-    image: "assets/img/project-agrofloresta.jpg",
-    raised: 12500,
-    goal: 30000,
-    status: "Em Andamento"
-  },
-  {
-    id: 3,
-    category: ProjectCategory.HEALTH,
-    title: "Água Limpa para Todos",
-    description: "Instalação de poços artesianos e sistemas de filtragem para garantir acesso à água potável em áreas remotas.",
-    fullDescription: "O acesso à água potável é um direito fundamental, mas ainda é um desafio em muitas aldeias isoladas. Este projeto instala sistemas de captação e purificação de água, reduzindo drasticamente a incidência de doenças de veiculação hídrica e melhorando a qualidade de vida de centenas de pessoas.",
-    objectives: [
-      "Instalação de 5 poços artesanais com bombas movidas a energia solar.",
-      "Distribuição de filtros de cerâmica para 200 famílias.",
-      "Treinamento comunitário sobre saneamento básico e higiene."
-    ],
-    gallery: [
-      "assets/img/project-agua-limpa.jpg",
-      "assets/img/project-details-gallery-4.jpg",
-      "assets/img/project-details-gallery-5.jpg"
-    ],
-    image: "assets/img/project-agua-limpa.jpg",
-    raised: 78000,
-    goal: 80000,
-    status: "Quase Lá"
-  },
-  {
-    id: 4,
-    category: ProjectCategory.CULTURE,
-    title: "Artesanato Ancestral",
-    description: "Projeto finalizado que capacitou 40 mulheres na produção e comercialização de artesanato tradicional.",
-    fullDescription: "Este projeto celebrou a maestria das artesãs indígenas, fornecendo apoio logístico e estratégico para que seus produtos alcancem mercados maiores sem perder a essência cultural. Foi um sucesso absoluto, empoderando dezenas de mulheres e garantindo que técnicas milenares continuem vivas.",
-    objectives: [
-      "Criação de um catálogo digital de produtos artesanais.",
-      "Workshop de precificação e gestão financeira para as artesãs.",
-      "Participação em 3 feiras nacionais de artesanato."
-    ],
-    gallery: [
-      "assets/img/project-artesanato.jpg",
-      "assets/img/project-details-gallery-6.jpg",
-      "assets/img/project-details-gallery-7.jpg"
-    ],
-    image: "assets/img/project-artesanato.jpg",
-    raised: 0,
-    goal: 0,
-    status: "Concluído",
-    beneficiaries: 40,
-    year: 2023
-  },
-  {
-    id: 5,
-    category: ProjectCategory.SUSTAINABILITY,
-    title: "Energia Solar na Aldeia",
-    description: "Instalação de painéis solares na casa comunitária da Aldeia Yawanawa, trazendo luz limpa e internet.",
-    fullDescription: "A energia solar transformou a dinâmica da Aldeia Yawanawa. Agora, a casa comunitária pode funcionar à noite para reuniões, estudos e comunicação via internet, tudo de forma limpa e silenciosa, respeitando o ambiente da floresta.",
-    objectives: [
-      "Instalação de um sistema fotovoltaico de 5kW.",
-      "Implementação de ponto de internet via satélite.",
-      "Manutenção preventiva do sistema solar por 2 anos."
-    ],
-    gallery: [
-      "assets/img/project-energia-solar.jpg",
-      "assets/img/project-details-gallery-1.jpg"
-    ],
-    image: "assets/img/project-energia-solar.jpg",
-    raised: 0,
-    goal: 0,
-    status: "Concluído",
-    year: 2022,
-    power: "5kW"
-  },
-  {
-    id: 6,
-    category: ProjectCategory.HEALTH,
-    title: "Barco da Saúde",
-    description: "Unidade móvel fluvial para levar atendimento médico e odontológico às comunidades ribeirinhas mais isoladas.",
-    fullDescription: "O Barco da Saúde é o nosso projeto mais ambicioso na área da saúde. Ele funcionará como uma clínica flutuante, levando especialistas, vacinas e medicamentos básicos até as portas das comunidades que não têm acesso a hospitais.",
-    objectives: [
-      "Aquisição e adaptação de uma embarcação de médio porte.",
-      "Equipamento de um consultório odontológico e um clínico.",
-      "Formação de equipe multidisciplinar fixa para viagens mensais."
-    ],
-    gallery: [
-      "assets/img/project-barco-saude.jpg",
-      "assets/img/project-details-gallery-3.jpg"
-    ],
-    image: "assets/img/project-barco-saude.jpg",
-    raised: 5000,
-    goal: 150000,
-    status: "Novo"
-  }
-];
+import { supabase } from '../lib/supabase';
 
 const Projects: React.FC = () => {
   const [searchParams] = useSearchParams();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'Todos'>('Todos');
   const [selectedStatus, setSelectedStatus] = useState<'Todos' | 'Ativos' | 'Concluídos'>('Todos');
   const [visibleCount, setVisibleCount] = useState(6);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      setIsLoading(true);
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*');
+
+      if (error) throw error;
+
+      if (data) {
+        // Map database snake_case to frontend camelCase
+        const mappedProjects: Project[] = data.map((p: any) => ({
+          id: p.id,
+          title: p.title,
+          category: p.category as ProjectCategory,
+          description: p.description,
+          fullDescription: p.full_description,
+          image: p.image_url,
+          raised: p.raised_amount,
+          goal: p.goal_amount,
+          status: p.status,
+          beneficiaries: p.beneficiaries_count,
+          year: p.year,
+          gallery: p.gallery,
+          objectives: p.impact_data?.objectives || []
+        }));
+        setProjects(mappedProjects);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar projetos:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   useEffect(() => {
     const category = searchParams.get('category');
@@ -170,7 +78,7 @@ const Projects: React.FC = () => {
     setVisibleCount(6);
   };
 
-  const filteredProjects = projectsData
+  const filteredProjects = projects
     .filter(p => {
       const categoryMatch = selectedCategory === 'Todos' || p.category === selectedCategory;
       const statusMatch = selectedStatus === 'Todos' ||
@@ -205,6 +113,26 @@ const Projects: React.FC = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (isLoading && projects.length === 0) {
+    return (
+      <div className="flex flex-col w-full bg-background-light dark:bg-background-dark min-h-screen">
+        <div className="w-full flex-1 flex justify-center py-12 md:py-20">
+          <div className="flex flex-col max-w-[960px] flex-1 px-4 lg:px-0">
+            <div className="flex animate-pulse flex-col gap-8">
+              <div className="h-64 w-full rounded-2xl bg-gray-200 dark:bg-gray-800"></div>
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="h-96 rounded-2xl bg-gray-200 dark:bg-gray-800"></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div className="flex flex-col w-full bg-background-light dark:bg-background-dark min-h-screen">
