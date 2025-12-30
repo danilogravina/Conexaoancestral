@@ -156,7 +156,7 @@ const ProjectDetails: React.FC = () => {
   }
 
   const gallery = project.gallery || [project.image];
-  const videoThumbnail = "/assets/img/video-thumbnail.jpg";
+  const videoThumbnail = "/assets/img/projects-hero-bg.jpg"; // Using a valid fallback image
 
   return (
     <div className="flex flex-col flex-grow">
@@ -336,8 +336,8 @@ const ProjectDetails: React.FC = () => {
               <h2 className="text-gray-900 dark:text-white h2-standard mb-10">Vozes da Comunidade</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {[
-                  { initial: "M", name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "/assets/img/donor-avatar-1.jpg" },
-                  { initial: "J", name: "João Tukano", role: "Líder Comunitário", quote: "O projeto nos deu ferramentas para defender nossa terra e garantir nosso futuro.", avatar: "/assets/img/donor-avatar-2.jpg" }
+                  { initial: "M", name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "/assets/img/team-mariana.jpg" },
+                  { initial: "J", name: "João Tukano", role: "Líder Comunitário", quote: "O projeto nos deu ferramentas para defender nossa terra e garantir nosso futuro.", avatar: "/assets/img/team-joao.jpg" }
                 ].map((testimonial, i) => (
                   <div key={i} className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl shadow-sm relative">
                     <span className="material-icons-round text-primary/20 text-6xl absolute top-4 right-4 rotate-12">format_quote</span>
