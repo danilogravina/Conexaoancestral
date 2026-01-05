@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
   return (
     <>
       <section className="w-full bg-[#eef6f1] dark:bg-[#152e1e] py-12 md:py-20 px-6 relative overflow-hidden">
-        <div className="absolute right-0 top-0 h-full w-1/3 opacity-10 pointer-events-none" style={{ backgroundImage: "url('assets/img/contact-hero-pattern.png')", backgroundSize: 'cover', mixBlendMode: 'multiply' }}></div>
+        <div className="absolute right-0 top-0 h-full w-1/3 opacity-10 pointer-events-none" style={{ backgroundImage: "url('/assets/img/contact-hero-pattern.png')", backgroundSize: 'cover', mixBlendMode: 'multiply' }}></div>
         <div className="max-w-[1200px] mx-auto relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="max-w-xl">
             <span className="inline-block px-3 py-1 mb-6 text-xs md:text-sm font-bold tracking-[0.2em] text-primary uppercase bg-primary/10 rounded-full dark:text-primary dark:bg-primary/20">Fale Conosco</span>
@@ -100,7 +100,7 @@ const Contact: React.FC = () => {
             </p>
           </div>
           <div className="hidden md:block w-64 h-64 rounded-full overflow-hidden border-8 border-white dark:border-white/10 shadow-xl shrink-0">
-            <img className="w-full h-full object-cover" src="assets/img/contact-hands-plant.jpg" alt="Hands holding green plant sprout" />
+            <img className="w-full h-full object-cover" src="/assets/img/contact-hands-plant.jpg" alt="Hands holding green plant sprout" />
           </div>
         </div>
       </section>
@@ -242,7 +242,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
             <div className="bg-white dark:bg-[#1a3324] rounded-2xl shadow-sm border border-stone-200 dark:border-white/10 overflow-hidden h-64 relative group cursor-pointer">
-              <img className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" src="assets/img/contact-map-preview.jpg" alt="Map view" />
+              <img className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" src="/assets/img/contact-map-preview.jpg" alt="Map view" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 pointer-events-none">
                 <div className="flex items-center gap-2 text-white">
                   <span className="material-symbols-outlined text-primary">map</span>

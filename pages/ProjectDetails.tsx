@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Project } from '../types';
 import { supabase } from '../lib/supabase';
+import { ensureAbsolutePath } from '../lib/utils';
 
 const ProjectDetails: React.FC = () => {
   const { id } = useParams();
@@ -34,12 +35,6 @@ const ProjectDetails: React.FC = () => {
       if (error) throw error;
 
       if (data) {
-        const ensureAbsolutePath = (path: string) => {
-          if (!path) return '';
-          if (path.startsWith('http') || path.startsWith('/')) return path;
-          return `/${path}`;
-        };
-
         const galleryData = data.gallery;
         const mainImage = ensureAbsolutePath(data.image_url);
 

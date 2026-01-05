@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
-import ProjectDetails from './pages/ProjectDetails';
-import Blog from './pages/Blog';
-import Article from './pages/Article';
-import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import UserDonations from './pages/UserDonations';
-import Settings from './pages/Settings';
-import Transparency from './pages/Transparency';
-import About from './pages/About';
-import SearchResults from './pages/SearchResults';
+
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home'));
+const Projects = lazy(() => import('./pages/Projects'));
+const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
+const Blog = lazy(() => import('./pages/Blog'));
+const Article = lazy(() => import('./pages/Article'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Profile = lazy(() => import('./pages/Profile'));
+const UserDonations = lazy(() => import('./pages/UserDonations'));
+const Settings = lazy(() => import('./pages/Settings'));
+const Transparency = lazy(() => import('./pages/Transparency'));
+const About = lazy(() => import('./pages/About'));
+const SearchResults = lazy(() => import('./pages/SearchResults'));
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -62,24 +65,30 @@ const AppContent: React.FC = () => {
       <ScrollToTop />
       <Header toggleTheme={toggleTheme} />
       <main className="flex-grow flex flex-col">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projetos" element={<Projects />} />
-          <Route path="/projetos/:id" element={<ProjectDetails />} />
-          <Route path="/quem-somos" element={<About />} />
-          <Route path="/transparencia" element={<Transparency />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<Article />} />
-          <Route path="/contato" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Register />} />
-          <Route path="/minha-conta" element={<Dashboard />} />
-          <Route path="/minha-conta/perfil" element={<Profile />} />
-          <Route path="/minha-conta/doacoes" element={<UserDonations />} />
-          <Route path="/minha-conta/configuracoes" element={<Settings />} />
-          <Route path="/busca" element={<SearchResults />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <Suspense fallback={
+          <div className="flex-grow flex items-center justify-center min-h-[50vh]">
+            <div className="w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projetos" element={<Projects />} />
+            <Route path="/projetos/:id" element={<ProjectDetails />} />
+            <Route path="/quem-somos" element={<About />} />
+            <Route path="/transparencia" element={<Transparency />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<Article />} />
+            <Route path="/contato" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Register />} />
+            <Route path="/minha-conta" element={<Dashboard />} />
+            <Route path="/minha-conta/perfil" element={<Profile />} />
+            <Route path="/minha-conta/doacoes" element={<UserDonations />} />
+            <Route path="/minha-conta/configuracoes" element={<Settings />} />
+            <Route path="/busca" element={<SearchResults />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>

@@ -208,10 +208,10 @@ const About: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {[
-                        { name: 'Julia Lopes', role: 'Diretora Executiva', img: 'assets/img/team-ana.jpg' },
-                        { name: 'Rudson', role: 'Coordenador de Campo', img: 'assets/img/team-carlos.jpg' },
-                        { name: 'Daniel Freiman', role: 'Líder de Tecnologia', img: 'assets/img/team-joao.jpg' },
-                        { name: 'Cyntia Lopes', role: 'Gerente de Impacto', img: 'assets/img/team-mariana.jpg' },
+                        { name: 'Julia Lopes', role: 'Diretora Executiva', img: '/assets/img/team-ana.jpg' },
+                        { name: 'Rudson', role: 'Coordenador de Campo', img: '/assets/img/team-carlos.jpg' },
+                        { name: 'Daniel Freiman', role: 'Líder de Tecnologia', img: '/assets/img/team-joao.jpg' },
+                        { name: 'Cyntia Lopes', role: 'Gerente de Impacto', img: '/assets/img/team-mariana.jpg' },
                     ].map((member, idx) => (
                         <div key={idx} className="group flex flex-col gap-4">
                             <div className="aspect-[3/4] rounded-[2rem] overflow-hidden shadow-xl relative">

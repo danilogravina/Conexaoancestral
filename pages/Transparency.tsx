@@ -290,7 +290,7 @@ const Transparency: React.FC = () => {
       <section className="relative overflow-hidden w-full">
         <div
           className="flex min-h-[400px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-center justify-center p-8 relative overflow-hidden group shadow-xl"
-          style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%), url("assets/img/transparency-hero-bg.jpg")' }}
+          style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%), url("/assets/img/transparency-hero-bg.jpg")' }}
         >
           <div className="flex flex-col gap-6 text-center z-10 max-w-[800px] px-4">
             <h1 className="text-white h1-standard drop-shadow-lg">
@@ -413,7 +413,7 @@ const Transparency: React.FC = () => {
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <img
-            src="assets/img/banner-transparency-cta.jpg"
+            src="/assets/img/banner-transparency-cta.jpg"
             alt="Fundo Transparência"
             className="w-full h-full object-cover"
           />

@@ -44,11 +44,10 @@ const Register: React.FC = () => {
                 const { error: profileError } = await supabase
                     .from('profiles')
                     .insert([
-                        { id: data.user.id, full_name: fullName, avatar_url: 'assets/img/user-avatar-default.jpg' }
+                        { id: data.user.id, full_name: fullName, avatar_url: '/assets/img/user-avatar-default.jpg' }
                     ]);
 
                 // We ignore profileError if it exists (e.g. if trigger already created it)
-                console.log('Profile setup result:', profileError ? 'Trigger handled it or error' : 'Manually created');
             }
 
             alert('Cadastro realizado com sucesso! Verifique seu e-mail para confirmar a conta.');
@@ -65,7 +64,7 @@ const Register: React.FC = () => {
         <div className="flex flex-col lg:flex-row w-full min-h-screen bg-background-light dark:bg-background-dark">
             {/* Left Side: Image */}
             <div className="relative w-full lg:w-5/12 xl:w-1/2 h-64 lg:h-auto overflow-hidden bg-surface-dark order-first">
-                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url("assets/img/register-side-bg.jpg")' }}>
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url("/assets/img/register-side-bg.jpg")' }}>
                     <div className="absolute inset-0 bg-black/20 lg:bg-black/10"></div>
                 </div>
                 <div className="absolute bottom-0 left-0 p-8 lg:p-12 text-white z-10 hidden lg:block">

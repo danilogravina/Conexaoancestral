@@ -273,7 +273,7 @@ const Dashboard: React.FC = () => {
                         <div className="flex flex-col gap-4">
                             <h2 className="text-xl font-bold text-text-main-light dark:text-white">Impacto Real</h2>
                             <div className="bg-white dark:bg-surface-dark rounded-2xl border border-stone-100 dark:border-white/10 shadow-sm overflow-hidden flex flex-col h-full">
-                                <div className="h-48 bg-cover bg-center relative" style={{ backgroundImage: 'url("assets/img/dashboard-news-planting.jpg")' }}>
+                                <div className="h-48 bg-cover bg-center relative" style={{ backgroundImage: 'url("/assets/img/dashboard-news-planting.jpg")' }}>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                                         <span className="bg-primary text-[#0d1b12] text-xs font-bold px-2 py-1 rounded mb-1">Novidade</span>
                                     </div>

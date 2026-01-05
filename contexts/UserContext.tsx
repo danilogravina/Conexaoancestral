@@ -89,7 +89,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     id: userId,
                     fullName: profile.full_name || 'Usuário',
                     email: email,
-                    avatar: profile.avatar_url || 'assets/img/user-avatar-default.jpg',
+                    avatar: profile.avatar_url || '/assets/img/user-avatar-default.jpg',
                     since: new Date(profile.created_at).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long' }),
                     cpf: profile.cpf || '',
                     phone: profile.phone || '',

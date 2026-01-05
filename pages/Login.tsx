@@ -144,7 +144,7 @@ const Login: React.FC = () => {
       <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] relative bg-surface-dark overflow-hidden">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[20s] hover:scale-105"
-          style={{ backgroundImage: 'url("assets/img/login-hero-bg.jpg")' }}
+          style={{ backgroundImage: 'url("/assets/img/login-hero-bg.jpg")' }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full p-16 xl:p-24 flex flex-col justify-end z-20">
@@ -155,9 +155,9 @@ const Login: React.FC = () => {
           <div className="flex items-center gap-4 text-white/90">
             <div className="flex -space-x-3">
               {[
-                "assets/img/guardian-avatar-1.jpg",
-                "assets/img/guardian-avatar-2.jpg",
-                "assets/img/guardian-avatar-3.jpg"
+                "/assets/img/donor-avatar-1.jpg",
+                "/assets/img/donor-avatar-2.jpg",
+                "/assets/img/donor-avatar-3.jpg"
               ].map((src, i) => (
                 <div key={i} className="size-10 rounded-full border-2 border-primary bg-stone-300 bg-cover bg-center" style={{ backgroundImage: `url("${src}")` }}></div>
               ))}
