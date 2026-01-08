@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
 
 const StatCard: React.FC<{ icon: string; label: string; value: number | string; description?: string; suffix?: string; delay?: number }> = ({ icon, label, value, description = "", suffix = "", delay = 0 }) => {
   const [count, setCount] = useState<number | string>(typeof value === 'number' ? 0 : value);
@@ -98,31 +96,6 @@ const Home: React.FC = () => {
     { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
     { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
   ]);
-
-  useEffect(() => {
-    // Statics pillars enabled
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('impact_stats')
-        .select('*')
-        .neq('label', 'Árvores Plantadas');
-
-      if (error) throw error;
-      if (data && data.length > 0) {
-        setStats(data);
-      }
-    } catch (error) {
-      console.error('Erro ao buscar estatísticas:', error);
-      setStats([
-        { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "diversity_2" },
-        { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
-        { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
-      ]);
-    }
-  };
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -232,7 +205,6 @@ const Home: React.FC = () => {
           <h2 className="text-[#0d1b12] dark:text-white h2-standard mb-6">Nossa Missão</h2>
           <p className="text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
             Empoderar e promover a autonomia dos povos indígenas e comunidades tradicionais, fortalecendo sua autonomia cultural, social, ambiental e econômica.
-
           </p>
         </div>
       </section>
