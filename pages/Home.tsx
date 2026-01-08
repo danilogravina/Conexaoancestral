@@ -188,11 +188,11 @@ const Home: React.FC = () => {
 
         {/* Content Layer */}
         <div className="max-w-4xl px-4 text-center z-10 relative pt-64">
-          <h1 className="text-white h1-standard mb-6 drop-shadow-lg">
-            Conexão Ancestral: <span className="text-white">Tecendo o Futuro</span> com os Povos da Floresta
+          <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
+            Conexão Ancestral
           </h1>
-          <h2 className="text-white text-lg md:text-xl font-light leading-normal max-w-2xl mx-auto drop-shadow-md mb-10">
-            Empoderar e promover a autonomia dos povos indígenas e comunidades tradicionais, fortalecendo sua autonomia cultural, social, ambiental e econômica.
+          <h2 className="text-white text-2xl md:text-4xl font-bold leading-tight max-w-3xl mx-auto drop-shadow-md mb-12">
+            Tecendo o Futuro com os Povos da Floresta
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/projetos" className="h-14 px-10 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
