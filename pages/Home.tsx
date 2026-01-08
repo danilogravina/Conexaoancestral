@@ -195,26 +195,31 @@ const Home: React.FC = () => {
   return (
     <>
       <section className="relative h-[80vh] min-h-[600px] overflow-hidden flex items-center justify-center bg-background-dark">
-        {/* Video Background Layer */}
+        {/* Layer 0: Fallback Image Background */}
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat will-change-transform z-0"
+          style={{
+            backgroundImage: 'url("/assets/img/home-hero-parallax.jpg")',
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}
+        ></div>
+
+        {/* Layer 1: Video Background (Only if enabled) */}
         {VIDEO_HERO_ENABLED && (
-          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-1">
             <iframe
-              className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-60"
+              className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-70 scale-110"
               src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
             ></iframe>
           </div>
         )}
 
-        {/* Parallax Background Layer (Fallback and Overlay) */}
+        {/* Layer 2: Gradient Overlay (Always on top of media) */}
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat will-change-transform z-0"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, ${VIDEO_HERO_ENABLED ? '0.4' : '0.15'}) 0%, rgba(0, 0, 0, ${VIDEO_HERO_ENABLED ? '0.6' : '0.35'}) 100%), url("/assets/img/home-hero-parallax.jpg")`,
-            transform: `translateY(${scrollY * 0.5}px)` // Moves at half speed of scroll
-          }}
+          className="absolute inset-0 z-2 bg-gradient-to-b from-black/30 via-black/20 to-black/60"
+          style={{ pointerEvents: 'none' }}
         ></div>
 
         {/* Content Layer */}
