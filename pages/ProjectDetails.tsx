@@ -117,6 +117,16 @@ O projeto está estruturado para oferecer um espaço adequado para a prática de
 Além da missão espiritual, o Yuvanapanamaritiru é um pilar de sustentabilidade e autonomia. A construção de um poço artesiano garantirá água potável para o Centro e toda a comunidade. A criação de um viveiro para plantas medicinais em risco de extinção, juntamente com o plantio de Kawá (folha) e Mariri (cipó) nas proximidades, assegura o suprimento permanente da Ayahuasca, medicina primordial para o despertar espiritual, e promove a segurança alimentar com o cultivo de alimentos orgânicos e diversificados. O projeto também gera trabalho e renda para os membros da aldeia envolvidos em sua manutenção, reforçando a auto sustentabilidade buscada pelo povo Shawãdawa, na defesa inegociável de nossos direitos culturais e religiosos.`;
         }
 
+        if (mappedProject.title === 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu') {
+          mappedProject.fullDescription = `Este projeto tem como objetivo fortalecer e valorizar a cultura do povo Huni Kuin, autodenominado “gente verdadeira”, promovendo a preservação de seus saberes ancestrais, de sua língua, espiritualidade e expressões culturais. Em um contexto de constantes pressões externas, a iniciativa reafirma a identidade, a autonomia e a resistência cultural profundamente enraizadas na floresta amazônica.
+
+O foco central do projeto é a construção e manutenção de um Centro Cerimonial de Cultura, concebido como um espaço vivo de reunião, ensino e celebração. O Centro será dedicado à preservação da língua Hãtxa Kuin, ao fortalecimento das medicinas tradicionais, à realização de cerimônias, aos cantos sagrados e à valorização das artes Huni Kuin, como o kenê, a tecelagem e a cerâmica.
+
+Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de autodeterminação, onde a própria comunidade conduz a gestão de seu patrimônio cultural. Ao fortalecer a cultura, o projeto também promove sustentabilidade, geração de renda e continuidade do modo de vida tradicional, garantindo que o legado do povo Huni Kuin siga vivo para as futuras gerações.`;
+          mappedProject.image = '/assets/img/project-huni-kuin.png';
+          mappedProject.gallery = ['/assets/img/project-huni-kuin.png'];
+        }
+
         setProject(mappedProject);
         setActiveImage(mappedProject.image);
       } else {

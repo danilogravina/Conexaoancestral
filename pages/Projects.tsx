@@ -59,28 +59,34 @@ const Projects: React.FC = () => {
           return projectData;
         });
 
-        // Add the new synthetic Huni Kuin project
-        const huniKuinProject: Project = {
-          id: 'huni-kuin-rio-breu',
-          title: 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu',
-          category: 'Cultura',
-          description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
-          fullDescription: '',
-          image: '/assets/img/project-huni-kuin.png',
-          raised: 0,
-          goal: 50000, // Arbitrary goal for now
-          status: 'Em Planejamento',
-          beneficiaries: 0,
-          year: 2025,
-          gallery: ['/assets/img/project-huni-kuin.png'],
-          objectives: [
-            'Construção do Centro Cerimonial',
-            'Santuário para medicinas tradicionais',
-            'Espaço de transmissão de saberes ancestrais'
-          ]
-        };
+        // Add the new synthetic Huni Kuin project ONLY if it doesn't already exist from the database
+        const huniKuinTitle = 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu';
+        const projectExists = mappedProjects.some(p => p.title === huniKuinTitle);
 
-        setProjects([...mappedProjects, huniKuinProject]);
+        if (!projectExists) {
+          const huniKuinProject: Project = {
+            id: 'huni-kuin-rio-breu',
+            title: huniKuinTitle,
+            category: 'Cultura',
+            description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
+            fullDescription: '',
+            image: '/assets/img/project-huni-kuin.png',
+            raised: 0,
+            goal: 50000, // Arbitrary goal for now
+            status: 'Em Planejamento',
+            beneficiaries: 0,
+            year: 2025,
+            gallery: ['/assets/img/project-huni-kuin.png'],
+            objectives: [
+              'Construção do Centro Cerimonial',
+              'Santuário para medicinas tradicionais',
+              'Espaço de transmissão de saberes ancestrais'
+            ]
+          };
+          setProjects([...mappedProjects, huniKuinProject]);
+        } else {
+          setProjects(mappedProjects);
+        }
       }
     } catch (error) {
       console.error('Erro ao buscar projetos:', error);
