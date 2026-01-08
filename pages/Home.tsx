@@ -348,7 +348,7 @@ const Home: React.FC = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="reveal-on-scroll group relative flex flex-col gap-6 p-8 rounded-[3rem] bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/15 hover:border-white/40 hover:-translate-y-4 transition-all duration-500 overflow-hidden shadow-2xl shadow-primary-dark/40"
+                className="reveal-on-scroll group relative flex flex-col items-center gap-6 p-8 rounded-[3rem] bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/15 hover:border-white/40 hover:-translate-y-4 transition-all duration-500 overflow-hidden shadow-2xl shadow-primary-dark/40"
                 style={{ transitionDelay: item.delay }}
               >
                 {/* Organic Leaf Pattern Accent - Subtly Faded */}
@@ -368,20 +368,21 @@ const Home: React.FC = () => {
                   <span className="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform">{item.icon}</span>
                 </div>
 
-                <div className="relative z-10 space-y-4">
+                <div className="relative z-10 space-y-4 text-center">
                   <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{item.title}</h3>
                   <p className="text-white/70 leading-relaxed font-light text-lg">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className="relative z-10 pt-8 mt-auto border-t border-white/10 group-hover:border-white/20 transition-all">
-                  <div className="flex items-center gap-2 mb-4">
+                <div className="relative z-10 pt-8 mt-auto border-t border-white/10 group-hover:border-white/20 transition-all flex flex-col items-center">
+                  <div className="flex items-center gap-2 mb-4 justify-center">
                     <div className="w-8 h-[1px] bg-[#a5d6a7]"></div>
                     <p className="text-xs font-black uppercase tracking-[0.2em] text-[#a5d6a7]">Resultado</p>
+                    <div className="w-8 h-[1px] bg-[#a5d6a7]"></div>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 p-1 rounded-lg bg-[#a5d6a7]/20 text-[#a5d6a7] group-hover:bg-[#a5d6a7] group-hover:text-white transition-colors duration-500">
+                  <div className="flex flex-col items-center gap-4 text-center">
+                    <div className="p-1 rounded-lg bg-[#a5d6a7]/20 text-[#a5d6a7] group-hover:bg-[#a5d6a7] group-hover:text-white transition-colors duration-500">
                       <span className="material-symbols-outlined text-xl">verified</span>
                     </div>
                     <p className="text-sm font-medium text-white/90 leading-relaxed italic">
