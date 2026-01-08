@@ -85,10 +85,14 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [stats, setStats] = useState<any[]>([]);
+  const [stats, setStats] = useState<any[]>([
+    { label: "Cultura", value: "Saberes Ancestrais", suffix: "", icon: "diversity_2" },
+    { label: "Território", value: "Autonomia e Proteção", suffix: "", icon: "forest" },
+    { label: "Futuro", value: "Sustentabilidade Viva", suffix: "", icon: "eco" }
+  ]);
 
   useEffect(() => {
-    fetchStats();
+    // fetchStats(); // Desativado temporariamente para exibir pilares qualitativos fixos
   }, []);
 
   const fetchStats = async () => {
