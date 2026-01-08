@@ -51,6 +51,11 @@ const Projects: React.FC = () => {
             projectData.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
           }
 
+          if (projectData.title === 'Agrofloresta Comunitária') {
+            projectData.title = 'Projeto Aldeia Sagrada - Construção do Centro yuvanapanamaritiru de Cura, cultura e formação dos Guardiões shawãdawa panamaritiru';
+            projectData.description = 'Projeto de fortalecimento cultural e espiritual do povo Shawãdawa, por meio da criação do Centro Yuvanapanamaritiru, dedicado à cura tradicional, à transmissão de saberes ancestrais e à formação de guardiões da cultura.';
+          }
+
           return projectData;
         });
         setProjects(mappedProjects);

@@ -74,6 +74,11 @@ Para que a nova aldeia possa se consolidar de forma digna e sustentável, o proj
 Mais do que uma solução de infraestrutura, o projeto representa um investimento no futuro do povo Katukina, fortalecendo a autonomia comunitária e contribuindo para a preservação cultural e ambiental da Terra Indígena Campinas/Katukina.`;
         }
 
+        if (mappedProject.title === 'Agrofloresta Comunitária') {
+          mappedProject.title = 'Projeto Aldeia Sagrada - Construção do Centro yuvanapanamaritiru de Cura, cultura e formação dos Guardiões shawãdawa panamaritiru';
+          mappedProject.description = 'Projeto de fortalecimento cultural e espiritual do povo Shawãdawa, por meio da criação do Centro Yuvanapanamaritiru, dedicado à cura tradicional, à transmissão de saberes ancestrais e à formação de guardiões da cultura.';
+        }
+
         setProject(mappedProject);
         setActiveImage(mappedProject.image);
       } else {

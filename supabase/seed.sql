@@ -27,9 +27,9 @@ insert into projects (title, category, description, full_description, image_url,
   '{"/assets/img/project-details-gallery-1.jpg", "/assets/img/project-details-gallery-2.jpg", "/assets/img/project-details-gallery-3.jpg", "/assets/img/project-details-gallery-4.jpg", "/assets/img/project-details-gallery-5.jpg", "/assets/img/project-details-gallery-6.jpg", "/assets/img/project-details-gallery-7.jpg"}'
 ),
 (
-  'Agrofloresta Comunitária', 
+  'Projeto Aldeia Sagrada - Construção do Centro yuvanapanamaritiru de Cura, cultura e formação dos Guardiões shawãdawa panamaritiru', 
   'Sustentabilidade', 
-  'Implementação de sistemas agroflorestais produtivos que recuperam o solo e geram renda para 50 famílias locais.',
+  'Projeto de fortalecimento cultural e espiritual do povo Shawãdawa, por meio da criação do Centro Yuvanapanamaritiru, dedicado à cura tradicional, à transmissão de saberes ancestrais e à formação de guardiões da cultura.',
   'O projeto de Agrofloresta Comunitária foca na regeneração de áreas degradadas e na criação de sistemas produtivos biodiversos.',
   '/assets/img/project-agrofloresta.jpg',
   30000, 
