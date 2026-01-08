@@ -326,7 +326,7 @@ const Home: React.FC = () => {
             {[
               {
                 title: "Segurança Hídrica e Infraestrutura Sustentável",
-                desc: "Implantação de soluções de acesso à água potável e infraestrutura básica com uso de tecnologias sustentáveis, fortalecendo a saúde, a autonomia e o bem viver das comunidades indígenas.Fortalecimento das capacidades econômicas locais através de programas de capacitação, mentoria e acesso a mercados justos.",
+                desc: "Implantação de soluções de acesso à água potável e infraestrutura básica com uso de tecnologias sustentáveis, fortalecendo a saúde, a autonomia e o bem viver das comunidades indígenas.",
                 impact: "Comunidades com acesso seguro e contínuo à água potável, promovendo melhorias significativas na saúde, na autonomia e na qualidade de vida.",
                 icon: "handshake",
                 delay: "0s"

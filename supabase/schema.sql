@@ -73,6 +73,7 @@ create table impact_stats (
   id uuid default gen_random_uuid() primary key,
   label text not null unique,
   value text not null,
+  description text,
   icon text,
   suffix text
 );
