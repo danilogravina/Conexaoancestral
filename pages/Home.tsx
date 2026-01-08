@@ -189,7 +189,7 @@ const Home: React.FC = () => {
         {/* Content Layer */}
         <div className="max-w-4xl px-4 text-center z-10 relative pt-64">
           <h1 className="text-white h1-standard mb-6 drop-shadow-lg">
-            Protegendo o <span className="text-white">Coração</span> do Mundo
+            Conexão Ancestral: <span className="text-white">Tecendo o Futuro</span> com os Povos da Floresta
           </h1>
           <h2 className="text-white text-lg md:text-xl font-light leading-normal max-w-2xl mx-auto drop-shadow-md mb-10">
             Empoderar e promover a autonomia dos povos indígenas e comunidades tradicionais, fortalecendo sua autonomia cultural, social, ambiental e econômica.
@@ -210,7 +210,8 @@ const Home: React.FC = () => {
           <span className="material-symbols-outlined text-4xl text-primary mb-4">diversity_2</span>
           <h2 className="text-[#0d1b12] dark:text-white h2-standard mb-6">Nossa Missão</h2>
           <p className="text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
-            Atuamos por meio da preservação dos saberes ancestrais, promoção cultural e desenvolvimento de projetos sustentáveis, fomentando o desenvolvimento social, econômico e ambiental de forma integrada e contínua.
+            Empoderar e promover a autonomia dos povos indígenas e comunidades tradicionais, fortalecendo sua autonomia cultural, social, ambiental e econômica.
+
           </p>
         </div>
       </section>
