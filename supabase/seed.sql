@@ -13,9 +13,9 @@ on conflict (name) do nothing;
 -- 2. Inserir Projetos Iniciais
 insert into projects (title, category, description, full_description, image_url, goal_amount, raised_amount, status, beneficiaries_count, year, impact_data, gallery) values
 (
-  'Escola Viva da Floresta', 
+  'Sistema Sustentável de Captação e Distribuição de Água na T.I. Campinas/Katukina', 
   'Educação', 
-  'Construção de espaços de aprendizado que integram o currículo tradicional com os saberes ancestrais para 120 crianças.',
+  'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.',
   'A Escola Viva da Floresta é uma iniciativa vital para preservar a cultura indígena enquanto fornece educação formal de qualidade. Localizada no coração da Amazônia, a escola atende três comunidades ribeirinhas.',
   '/assets/img/project-details-gallery-1.jpg',
   60000, 

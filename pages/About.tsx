@@ -27,7 +27,7 @@ const About: React.FC = () => {
                             Quem Somos
                         </h1>
                         <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl font-light drop-shadow-md">
-                            Uma ponte entre a tecnologia moderna e a sabedoria milenar da floresta, lutando pela preservação da vida.
+                            Somos uma organização dedicada a fortalecer a autonomia dos povos tradicionais por meio da valorização da cultura, dos saberes ancestrais e da sustentabilidade.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 pt-4">
                             <Link to="/transparencia" className="flex h-12 items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white hover:brightness-110 transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5">
@@ -67,13 +67,19 @@ const About: React.FC = () => {
                             <h2 className="h2-standard text-text-main-light dark:text-white mb-6">Nossa História</h2>
                             <div className="flex flex-col gap-6 text-text-secondary-light dark:text-text-secondary-dark text-lg font-light leading-relaxed">
                                 <p>
-                                    A <span className="text-primary font-bold">Conexão Ancestral</span> nasceu em 2015, não em um escritório, mas no coração da Floresta Amazônica. Durante uma expedição técnica para documentar o impacto do desmatamento, nossos fundadores perceberam que a tecnologia, muitas vezes vista como inimiga da natureza, poderia ser sua maior aliada.
+                                    A <span className="text-primary font-bold">Conexão Ancestral – Povos da Floresta</span> é uma organização da sociedade civil fundada em 2025 a partir do encontro entre pessoas comprometidas com a preservação da Amazônia e o fortalecimento dos povos indígenas.
                                 </p>
                                 <p>
-                                    O que começou como um pequeno projeto para instalar rádios comunitários e energia solar em aldeias isoladas evoluiu para uma organização robusta, unindo engenheiros, ambientalistas e líderes indígenas em um objetivo comum: proteger o futuro através da sabedoria do passado.
+                                    Nossa história nasce do convívio direto com comunidades indígenas do Acre, e do reconhecimento de que seus saberes ancestrais, suas culturas e seus territórios são fundamentais para a proteção da floresta e da vida no planeta.
                                 </p>
                                 <p>
-                                    Hoje, somos uma ponte. Uma ponte que garante que o grito de socorro da floresta seja ouvido globalmente em tempo real, e que a cultura de quem nela habita seja valorizada e preservada através do empoderamento digital e econômico.
+                                    Acreditamos que os povos indígenas são protagonistas de suas próprias histórias e guardiões de conhecimentos milenares sobre o cuidado com a natureza. Por isso, atuamos como um braço de apoio, desenvolvendo projetos em diálogo com as comunidades, respeitando sua autonomia, suas tradições e seus modos de vida.
+                                </p>
+                                <p>
+                                    A Conexão Ancestral trabalha para fortalecer a autodeterminação indígena, apoiar a preservação cultural, promover a segurança alimentar, melhorar as condições de vida nas aldeias e contribuir para a defesa dos territórios tradicionais.
+                                </p>
+                                <p>
+                                    Mais do que uma ONG, somos uma ponte entre a floresta e a sociedade, amplificando as vozes que há séculos cuidam da Amazônia.
                                 </p>
                             </div>
                         </div>
@@ -200,7 +206,7 @@ const About: React.FC = () => {
             <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <span className="text-primary text-xs font-black tracking-widest uppercase mb-4 block">QUEM FAZ ACONTECER</span>
-                    <h2 className="h2-standard text-text-main-light dark:text-white">Nossa Equipe</h2>
+                    <h2 className="h2-standard text-text-main-light dark:text-white">Diretoria Executiva</h2>
                     <p className="max-w-2xl mx-auto mt-4 text-text-secondary-light dark:text-text-secondary-dark text-lg font-light">
                         Conheça as pessoas apaixonadas que dedicam suas vidas à missão da Conexão Ancestral.
                     </p>
@@ -208,10 +214,10 @@ const About: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {[
-                        { name: 'Julia Lopes', role: 'Diretora Executiva', img: '/assets/img/team-ana.jpg' },
-                        { name: 'Rudson', role: 'Coordenador de Campo', img: '/assets/img/team-carlos.jpg' },
-                        { name: 'Daniel Freiman', role: 'Líder de Tecnologia', img: '/assets/img/team-joao.jpg' },
-                        { name: 'Cyntia Lopes', role: 'Gerente de Impacto', img: '/assets/img/team-mariana.jpg' },
+                        { name: 'Frans Pagnier', role: 'Presidente', img: '/assets/img/team-ana.jpg' },
+                        { name: 'Cyntia Lopes', role: 'Vice Presidente', img: '/assets/img/team-carlos.jpg' },
+                        { name: 'Rudisson Bezerra', role: 'Secretário', img: '/assets/img/team-joao.jpg' },
+                        { name: 'Júlia Lopes', role: 'Tesoureira', img: '/assets/img/team-mariana.jpg' },
                     ].map((member, idx) => (
                         <div key={idx} className="group flex flex-col gap-4">
                             <div className="aspect-[3/4] rounded-[2rem] overflow-hidden shadow-xl relative">

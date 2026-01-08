@@ -60,6 +60,13 @@ const ProjectDetails: React.FC = () => {
           gallery: gallery,
           objectives: data.impact_data?.objectives || []
         };
+
+        // Override for the specific project identified by user
+        if (mappedProject.title === 'Escola Viva da Floresta') {
+          mappedProject.title = 'Sistema Sustentável de Captação e Distribuição de Água na T.I. Campinas/Katukina';
+          mappedProject.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
+        }
+
         setProject(mappedProject);
         setActiveImage(mappedProject.image);
       } else {
