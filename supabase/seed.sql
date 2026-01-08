@@ -37,7 +37,7 @@ insert into projects (title, category, description, full_description, image_url,
   'Em Andamento',
   50,
   2024,
-  '{"objectives": ["Plantio de 5.000 mudas.", "Capacitação de 50 famílias.", "Criação de uma cooperativa."]}',
+  '{"objectives": ["Construção do Kupixawa", "Viveiro medicinal", "Poço artesiano comunitário", "Autonomia Shawãdawa"]}',
   '{"/assets/img/project-agrofloresta.jpg", "/assets/img/project-details-gallery-2.jpg", "/assets/img/project-details-gallery-5.jpg", "/assets/img/project-details-gallery-3.jpg"}'
 ),
 (

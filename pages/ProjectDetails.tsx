@@ -105,6 +105,12 @@ Diante desse cenário, cerca de 12 famílias Katukina decidiram criar uma nova a
 Para que a nova aldeia possa se consolidar de forma digna e sustentável, o projeto prevê a implantação de um sistema de abastecimento de água potável, por meio da perfuração de um poço artesiano e da instalação de um sistema de bombeamento movido a energia solar fotovoltaica. A proposta busca reduzir a dependência de rios e igarapés, diminuir riscos de contaminação e garantir melhores condições de saúde e bem-estar para a comunidade.
 
 Mais do que uma solução de infraestrutura, o projeto representa um investimento no futuro do povo Katukina, fortalecendo a autonomia comunitária e contribuindo para a preservação cultural e ambiental da Terra Indígena Campinas/Katukina.`;
+          mappedProject.objectives = [
+            'Perfuração de poço artesiano',
+            'Instalação de sistema de energia solar fotovoltaica',
+            'Abastecimento de água potável para a nova aldeia',
+            'Melhora nas condições de saúde e saneamento'
+          ];
         }
 
         if (mappedProject.title === 'Agrofloresta Comunitária') {
@@ -115,6 +121,12 @@ Mais do que uma solução de infraestrutura, o projeto representa um investiment
 O projeto está estruturado para oferecer um espaço adequado para a prática de curas tradicionais e o acolhimento de pessoas que buscam tratamento físico, emocional e espiritual. Isso se concretiza através da construção do Kupixawa para rituais sagrados como o Mariri e a Caiçumada; de uma Pousada para receber pacientes e alunos que necessitam de dietas especiais e isolamento para concentração profunda; de uma Casa de Cura dedicada ao preparo e armazenamento de medicinas de poder como Ayahuasca, Rapé e Sananga; e de uma Casa de Banhos Curativos com ervas tradicionais.
 
 Além da missão espiritual, o Yuvanapanamaritiru é um pilar de sustentabilidade e autonomia. A construção de um poço artesiano garantirá água potável para o Centro e toda a comunidade. A criação de um viveiro para plantas medicinais em risco de extinção, juntamente com o plantio de Kawá (folha) e Mariri (cipó) nas proximidades, assegura o suprimento permanente da Ayahuasca, medicina primordial para o despertar espiritual, e promove a segurança alimentar com o cultivo de alimentos orgânicos e diversificados. O projeto também gera trabalho e renda para os membros da aldeia envolvidos em sua manutenção, reforçando a auto sustentabilidade buscada pelo povo Shawãdawa, na defesa inegociável de nossos direitos culturais e religiosos.`;
+          mappedProject.objectives = [
+            'Construção do Kupixawa e Pousada de cura',
+            'Implementação de viveiro para plantas medicinais',
+            'Instalação de poço artesiano para a comunidade',
+            'Fortalecimento da autonomia cultural e espiritual'
+          ];
         }
 
         if (mappedProject.title === 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu') {
