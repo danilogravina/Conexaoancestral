@@ -29,11 +29,6 @@ const About: React.FC = () => {
                         <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl font-light drop-shadow-md">
                             Somos uma organização dedicada a fortalecer a autonomia dos povos tradicionais por meio da valorização da cultura, dos saberes ancestrais e da sustentabilidade.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-4 pt-4">
-                            <Link to="/transparencia" className="flex h-12 items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white hover:brightness-110 transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5">
-                                Transparência
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </section>
