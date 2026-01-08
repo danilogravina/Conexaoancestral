@@ -58,7 +58,29 @@ const Projects: React.FC = () => {
 
           return projectData;
         });
-        setProjects(mappedProjects);
+
+        // Add the new synthetic Huni Kuin project
+        const huniKuinProject: Project = {
+          id: 'huni-kuin-rio-breu',
+          title: 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu',
+          category: 'Cultura',
+          description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
+          fullDescription: '',
+          image: '/assets/img/project-huni-kuin.png',
+          raised: 0,
+          goal: 50000, // Arbitrary goal for now
+          status: 'Em Planejamento',
+          beneficiaries: 0,
+          year: 2025,
+          gallery: ['/assets/img/project-huni-kuin.png'],
+          objectives: [
+            'Construção do Centro Cerimonial',
+            'Santuário para medicinas tradicionais',
+            'Espaço de transmissão de saberes ancestrais'
+          ]
+        };
+
+        setProjects([...mappedProjects, huniKuinProject]);
       }
     } catch (error) {
       console.error('Erro ao buscar projetos:', error);
