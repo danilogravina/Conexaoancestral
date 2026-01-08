@@ -191,7 +191,7 @@ const Home: React.FC = () => {
           <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
             Conexão Ancestral
           </h1>
-          <h2 className="text-white text-2xl md:text-4xl font-bold leading-tight max-w-3xl mx-auto drop-shadow-md mb-12">
+          <h2 className="text-white text-2xl md:text-4xl font-light leading-tight max-w-3xl mx-auto drop-shadow-md mb-12">
             Tecendo o Futuro com os Povos da Floresta
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
