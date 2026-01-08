@@ -276,10 +276,7 @@ const Home: React.FC = () => {
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
               É dessas raízes profundas que nasce nossa missão: caminhar junto, fortalecer laços e proteger a vida que pulsa na floresta.
             </p>
-            <Link to="/blog/guardioes-da-floresta" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary/80 transition-colors mt-2">
-              Ler nossa história completa
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </Link>
+
           </div>
         </div>
       </section>
@@ -308,7 +305,7 @@ const Home: React.FC = () => {
               {
                 title: "Segurança Hídrica e Infraestrutura Sustentável",
                 desc: "Implantação de soluções de acesso à água potável e infraestrutura básica com uso de tecnologias sustentáveis, fortalecendo a saúde, a autonomia e o bem viver das comunidades indígenas.Fortalecimento das capacidades econômicas locais através de programas de capacitação, mentoria e acesso a mercados justos.",
-                impact: "15 negócios tradicionais e cooperativas fortalecidos, gerando autonomia financeira e valorização do comércio justo.",
+                impact: "Comunidades com acesso seguro e contínuo à água potável, promovendo melhorias significativas na saúde, na autonomia e na qualidade de vida.",
                 icon: "handshake",
                 delay: "0s"
               },
