@@ -72,7 +72,7 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
           <span className="material-symbols-outlined text-4xl text-white">{icon}</span>
         </div>
         <p className="text-white/80 text-sm font-bold uppercase tracking-[0.2em] mb-1">{label}</p>
-        <p className="text-white text-3xl md:text-4xl lg:text-5xl font-black tabular-nums tracking-tighter text-center px-2">
+        <p className="text-white text-2xl md:text-2xl lg:text-3xl font-black tracking-tight text-center px-4 leading-tight">
           {typeof count === 'number' ? count.toLocaleString('pt-BR') : count}{suffix}
         </p>
       </div>
