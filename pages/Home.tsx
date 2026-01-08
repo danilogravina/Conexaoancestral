@@ -207,11 +207,11 @@ const Home: React.FC = () => {
           </div>
         )}
 
-        {/* Layer 2: Subtle Overlay (Lighter shadow) */}
-        <div
+        {/* Layer 2: Subtle Overlay - Removed as requested */}
+        {/* <div
           className="absolute inset-0 z-2 bg-gradient-to-b from-black/10 via-transparent to-black/40"
           style={{ pointerEvents: 'none' }}
-        ></div>
+        ></div> */}
 
         {/* Content Layer - Perfectly Centered */}
         <div className="max-w-4xl px-4 text-center z-10 relative">
