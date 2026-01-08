@@ -27,7 +27,7 @@ insert into projects (title, category, description, full_description, image_url,
   '{"/assets/img/project-details-gallery-1.jpg", "/assets/img/project-details-gallery-2.jpg", "/assets/img/project-details-gallery-3.jpg", "/assets/img/project-details-gallery-4.jpg", "/assets/img/project-details-gallery-5.jpg", "/assets/img/project-details-gallery-6.jpg", "/assets/img/project-details-gallery-7.jpg"}'
 ),
 (
-  'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru de Cura, cultura e formação dos Guardiões shawãdawa panamaritiru', 
+  'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru de Cura, cultura e formação dos Guardiões Shawãdawa Panamaritiru', 
   'Sustentabilidade', 
   'Projeto de fortalecimento cultural e espiritual do povo Shawãdawa, por meio da criação do Centro Yuvanapanamaritiru, dedicado à cura tradicional, à transmissão de saberes ancestrais e à formação de guardiões da cultura.',
   'O Centro Yuvanapanamaritiru é a materialização de um sonho de resistência e fortalecimento cultural do povo Shawãdawa (Arara), que habita o Alto Rio Juruá, no Acre. Após uma história marcada pela luta contra a opressão e o massacre durante os ciclos extrativistas, nossa comunidade, composta por aproximadamente 1.600 indígenas em um território de 876 hectares, organiza-se para garantir a continuidade de seu knowledge ancestral. O Centro, cujo nome significa ''Centro de Cura, Cultura e Formação dos Guardiões'', nasce do compromisso espiritual transmitido por nossos anciãos e Pajés, visando ser um santuário para a preservação da medicina tradicional e a transmissão desse saber milenar às futuras gerações. O projeto está estruturado para oferecer um espaço adequado para a prática de curas tradicionais e o acolhimento de pessoas que buscam tratamento físico, emocional e espiritual. Isso se concretiza através da construção do Kupixawa para rituais sagrados como o Mariri e a Caiçumada; de uma Pousada para receber pacientes e alunos que necessitam de dietas especiais e isolamento para concentração profunda; de uma Casa de Cura dedicada ao preparo e armazenamento de medicinas de poder como Ayahuasca, Rapé e Sananga; e de uma Casa de Banhos Curativos com ervas tradicionais. Além da missão espiritual, o Yuvanapanamaritiru é um pilar de sustentabilidade e autonomia. A construção de um poço artesiano garantirá água potável para o Centro e toda a comunidade. A criação de um viveiro para plantas medicinais em risco de extinção, juntamente com o plantio de Kawá (folha) e Mariri (cipó) nas proximidades, assegura o suprimento permanente da Ayahuasca, medicina primordial para o despertar espiritual, e promove a segurança alimentar com o cultivo de alimentos orgânicos e diversificados. O projeto também gera trabalho e renda para os membros da aldeia envolvidos em sua manutenção, reforçando a auto sustentabilidade buscada pelo povo Shawãdawa, na defesa inegociável de nossos direitos culturais e religiosos.',
@@ -69,9 +69,9 @@ insert into projects (title, category, description, full_description, image_url,
   '{"/assets/img/project-huni-kuin.png"}'
 );
 
--- 3. Inserir Estatísticas Iniciais
+-- 3. Inserir Pilares de Impacto (Substituindo estatísticas numéricas)
 insert into impact_stats (label, value, icon, suffix) values
-('Famílias Apoiadas', 500, 'groups', '+'),
-('Aldeias Impactadas', 32, 'location_on', ''),
-('Projetos Concluídos', 15, 'task_alt', '')
+('Cultura', 'Saberes Ancestrais', 'diversity_2', ''),
+('Território', 'Autonomia e Proteção', 'forest', ''),
+('Futuro', 'Sustentabilidade Viva', 'eco', '')
 on conflict (label) do update set value = excluded.value;

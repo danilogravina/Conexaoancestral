@@ -72,7 +72,7 @@ create table donations (
 create table impact_stats (
   id uuid default gen_random_uuid() primary key,
   label text not null unique,
-  value integer not null,
+  value text not null,
   icon text,
   suffix text
 );

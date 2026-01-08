@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
-const StatCard: React.FC<{ icon: string; label: string; value: number; suffix?: string; delay?: number }> = ({ icon, label, value, suffix = "", delay = 0 }) => {
-  const [count, setCount] = useState(0);
+const StatCard: React.FC<{ icon: string; label: string; value: number | string; suffix?: string; delay?: number }> = ({ icon, label, value, suffix = "", delay = 0 }) => {
+  const [count, setCount] = useState<number | string>(typeof value === 'number' ? 0 : value);
 
   useEffect(() => {
+    if (typeof value !== 'number') {
+      setCount(value);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           let start = 0;
-          const end = value;
+          const end = value as number;
           const duration = 800;
           const increment = end / (duration / 16);
 
@@ -67,8 +72,8 @@ const StatCard: React.FC<{ icon: string; label: string; value: number; suffix?: 
           <span className="material-symbols-outlined text-4xl text-white">{icon}</span>
         </div>
         <p className="text-white/80 text-sm font-bold uppercase tracking-[0.2em] mb-1">{label}</p>
-        <p className="text-white text-5xl font-black tabular-nums tracking-tighter">
-          {count.toLocaleString('pt-BR')}{suffix}
+        <p className="text-white text-3xl md:text-4xl lg:text-5xl font-black tabular-nums tracking-tighter text-center px-2">
+          {typeof count === 'number' ? count.toLocaleString('pt-BR') : count}{suffix}
         </p>
       </div>
 
@@ -94,14 +99,15 @@ const Home: React.FC = () => {
         .neq('label', 'Árvores Plantadas');
 
       if (error) throw error;
-      if (data) setStats(data);
+      if (data && data.length > 0) {
+        setStats(data);
+      }
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
-      // Fallback a dados padrão se falhar
       setStats([
-        { label: "Famílias Apoiadas", value: 1200, suffix: "", icon: "family_restroom" },
-        { label: "Aldeias Impactadas", value: 32, suffix: "", icon: "location_on" },
-        { label: "Projetos Ativos", value: 15, suffix: "", icon: "psychology_alt" }
+        { label: "Cultura", value: "Saberes Ancestrais", suffix: "", icon: "diversity_2" },
+        { label: "Território", value: "Autonomia e Proteção", suffix: "", icon: "forest" },
+        { label: "Futuro", value: "Sustentabilidade Viva", suffix: "", icon: "eco" }
       ]);
     }
   };

@@ -122,7 +122,7 @@ Mais do que uma solução de infraestrutura, o projeto representa um investiment
         }
 
         if (mappedProject.title === 'Agrofloresta Comunitária') {
-          mappedProject.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru de Cura, cultura e formação dos Guardiões shawãdawa panamaritiru';
+          mappedProject.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru de Cura, cultura e formação dos Guardiões Shawãdawa Panamaritiru';
           mappedProject.description = 'Projeto de fortalecimento cultural e espiritual do povo Shawãdawa, por meio da criação do Centro Yuvanapanamaritiru, dedicado à cura tradicional, à transmissão de saberes ancestrais e à formação de guardiões da cultura.';
           mappedProject.fullDescription = `O Centro Yuvanapanamaritiru é a materialização de um sonho de resistência e fortalecimento cultural do povo Shawãdawa (Arara), que habita o Alto Rio Juruá, no Acre. Após uma história marcada pela luta contra a opressão e o massacre durante os ciclos extrativistas, nossa comunidade, composta por aproximadamente 1.600 indígenas em um território de 876 hectares, organiza-se para garantir a continuidade de seu conhecimento ancestral. O Centro, cujo nome significa 'Centro de Cura, Cultura e Formação dos Guardiões', nasce do compromisso espiritual transmitido por nossos anciãos e Pajés, visando ser um santuário para a preservação da medicina tradicional e a transmissão desse saber milenar às futuras gerações.
 
