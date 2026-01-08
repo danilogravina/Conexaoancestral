@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const StatCard: React.FC<{ icon: string; label: string; value: number | string; description?: string; suffix?: string; delay?: number }> = ({ icon, label, value, description = "", suffix = "", delay = 0 }) => {
