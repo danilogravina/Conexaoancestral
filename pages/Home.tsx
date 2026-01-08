@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
-const StatCard: React.FC<{ icon: string; label: string; value: number | string; suffix?: string; delay?: number }> = ({ icon, label, value, suffix = "", delay = 0 }) => {
+const StatCard: React.FC<{ icon: string; label: string; value: number | string; description?: string; suffix?: string; delay?: number }> = ({ icon, label, value, description = "", suffix = "", delay = 0 }) => {
   const [count, setCount] = useState<number | string>(typeof value === 'number' ? 0 : value);
 
   useEffect(() => {
@@ -72,9 +72,14 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
           <span className="material-symbols-outlined text-4xl text-white">{icon}</span>
         </div>
         <p className="text-white/80 text-sm font-bold uppercase tracking-[0.2em] mb-1">{label}</p>
-        <p className="text-white text-2xl md:text-2xl lg:text-3xl font-black tracking-tight text-center px-4 leading-tight">
+        <p className="text-white text-2xl md:text-2xl lg:text-3xl font-black tracking-tight text-center px-4 leading-tight mb-2">
           {typeof count === 'number' ? count.toLocaleString('pt-BR') : count}{suffix}
         </p>
+        {description && (
+          <p className="text-white/60 text-xs md:text-sm font-medium leading-relaxed text-center px-6 max-w-[280px]">
+            {description}
+          </p>
+        )}
       </div>
 
       {/* Modern Glow Effect */}
@@ -86,9 +91,9 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
   const [stats, setStats] = useState<any[]>([
-    { label: "Cultura", value: "Saberes Ancestrais", suffix: "", icon: "diversity_2" },
-    { label: "Território", value: "Autonomia e Proteção", suffix: "", icon: "forest" },
-    { label: "Futuro", value: "Sustentabilidade Viva", suffix: "", icon: "eco" }
+    { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "diversity_2" },
+    { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
+    { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
   ]);
 
   useEffect(() => {
@@ -109,9 +114,9 @@ const Home: React.FC = () => {
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
       setStats([
-        { label: "Cultura", value: "Saberes Ancestrais", suffix: "", icon: "diversity_2" },
-        { label: "Território", value: "Autonomia e Proteção", suffix: "", icon: "forest" },
-        { label: "Futuro", value: "Sustentabilidade Viva", suffix: "", icon: "eco" }
+        { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "diversity_2" },
+        { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
+        { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
       ]);
     }
   };
@@ -236,6 +241,7 @@ const Home: React.FC = () => {
                   icon={stat.icon}
                   label={stat.label}
                   value={stat.value}
+                  description={stat.description}
                   suffix={stat.suffix}
                   delay={idx * 100}
                 />
