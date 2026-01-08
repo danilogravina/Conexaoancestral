@@ -1,3 +1,10 @@
+export interface Testimonial {
+  name: string;
+  role: string;
+  quote: string;
+  avatar: string;
+}
+
 export interface Project {
   id: number | string;
   category: string;
@@ -13,6 +20,7 @@ export interface Project {
   fullDescription?: string;
   objectives?: string[];
   gallery?: string[];
+  testimonials?: Testimonial[];
 }
 
 export enum ProjectCategory {

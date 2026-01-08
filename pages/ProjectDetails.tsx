@@ -51,6 +51,10 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             'Preservação da língua Hãtxa Kuin',
             'Construção do Centro Cerimonial',
             'Valorização das artes tradicionais (kenê, tecelagem)'
+          ],
+          testimonials: [
+            { name: "Bixku Huni Kuin", role: "Guardião da Cultura", quote: "Nossa maloca é o lugar onde nossa língua Hãtxa Kuin volta a ecoar com força total.", avatar: "/assets/img/team-joao.jpg" },
+            { name: "Kenê Huni Kuin", role: "Tecelã e Artista", quote: "Pintar nossos grafismos no novo centro cerimonial é tecer o futuro do nosso povo.", avatar: "/assets/img/team-mariana.jpg" }
           ]
         };
         setProject(huniKuinProject);
@@ -111,6 +115,10 @@ Mais do que uma solução de infraestrutura, o projeto representa um investiment
             'Abastecimento de água potável para a nova aldeia',
             'Melhora nas condições de saúde e saneamento'
           ];
+          mappedProject.testimonials = [
+            { name: "Txai Katukina", role: "Liderança Local", quote: "Ter água limpa brotando na nossa nova aldeia é devolver a saúde e a dignidade para nossas crianças.", avatar: "/assets/img/team-joao.jpg" },
+            { name: "Maria Katukina", role: "Agente de Saúde Indígena", quote: "O poço artesiano reduziu as doenças na comunidade. É uma vitória da nossa resistência.", avatar: "/assets/img/team-mariana.jpg" }
+          ];
         }
 
         if (mappedProject.title === 'Agrofloresta Comunitária') {
@@ -126,6 +134,10 @@ Além da missão espiritual, o Yuvanapanamaritiru é um pilar de sustentabilidad
             'Implementação de viveiro para plantas medicinais',
             'Instalação de poço artesiano para a comunidade',
             'Fortalecimento da autonomia cultural e espiritual'
+          ];
+          mappedProject.testimonials = [
+            { name: "Pajé Shawãdawa", role: "Líder Espiritual", quote: "O Centro Yuvanapanamaritiru é o coração da nossa cura. Aqui guardamos o espírito da floresta.", avatar: "/assets/img/team-joao.jpg" },
+            { name: "Arara Shawã", role: "Coordenadora de Cultura", quote: "Nosso centro de cultura garante que os jovens aprendam os cantos e as medicinas dos avós.", avatar: "/assets/img/team-mariana.jpg" }
           ];
         }
 
@@ -419,10 +431,10 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             <div className="bg-primary/5 dark:bg-primary/10 rounded-3xl p-8 border border-primary/10">
               <h2 className="text-gray-900 dark:text-white h2-standard mb-10">Vozes da Comunidade</h2>
               <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  { initial: "M", name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "/assets/img/team-mariana.jpg" },
-                  { initial: "J", name: "João Tukano", role: "Líder Comunitário", quote: "O projeto nos deu ferramentas para defender nossa terra e garantir nosso futuro.", avatar: "/assets/img/team-joao.jpg" }
-                ].map((testimonial, i) => (
+                {(project.testimonials || [
+                  { name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "/assets/img/team-mariana.jpg" },
+                  { name: "João Tukano", role: "Líder Comunitário", quote: "O projeto nos deu ferramentas para defender nossa terra e garantir nosso futuro.", avatar: "/assets/img/team-joao.jpg" }
+                ]).map((testimonial, i) => (
                   <div key={i} className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl shadow-sm relative">
                     <span className="material-icons-round text-primary/20 text-6xl absolute top-4 right-4 rotate-12">format_quote</span>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark italic mb-4 relative z-10">"{testimonial.quote}"</p>
