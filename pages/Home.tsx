@@ -306,23 +306,23 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
-                title: "Etnodesenvolvimento",
-                desc: "Fortalecimento das capacidades econômicas locais através de programas de capacitação, mentoria e acesso a mercados justos.",
+                title: "Segurança Hídrica e Infraestrutura Sustentável",
+                desc: "Implantação de soluções de acesso à água potável e infraestrutura básica com uso de tecnologias sustentáveis, fortalecendo a saúde, a autonomia e o bem viver das comunidades indígenas.Fortalecimento das capacidades econômicas locais através de programas de capacitação, mentoria e acesso a mercados justos.",
                 impact: "15 negócios tradicionais e cooperativas fortalecidos, gerando autonomia financeira e valorização do comércio justo.",
                 icon: "handshake",
                 delay: "0s"
               },
               {
-                title: "Saberes Ancestrais",
-                desc: "Registro e difusão de línguas, técnicas artesanais (Kene), medicinas tradicionais e histórias orais para salvaguardar a identidade.",
-                impact: "Proteção do patrimônio imaterial, garantindo a transmissão intergeracional de línguas e medicinas tradicionais.",
+                title: "Valorização Cultural e Saberes Ancestrais",
+                desc: "Fortalecimento das culturas indígenas por meio da preservação das línguas, das práticas espirituais, das artes tradicionais e da transmissão dos conhecimentos ancestrais às novas gerações.",
+                impact: "Fortalecimento e continuidade das línguas, práticas culturais e saberes ancestrais, assegurando sua transmissão às futuras gerações.",
                 icon: "history_edu",
                 delay: "0.2s"
               },
               {
-                title: "Sustentabilidade",
-                desc: "Projetos de água potável, segurança alimentar e manejo sustentável, garantindo que a floresta permaneça em pé e produtiva.",
-                impact: "Redução de 60% em doenças hídricas e mais de 500 toneladas de alimentos produzidos via agrofloresta.",
+                title: "Autonomia Comunitária e Sustentabilidade",
+                desc: "Promoção de iniciativas que geram autonomia econômica e ambiental, integrando práticas tradicionais, cuidado com o território e desenvolvimento sustentável conduzido pelas próprias comunidades indígenas.",
+                impact: "Comunidades mais autônomas econômica e ambientalmente, com iniciativas sustentáveis conduzidas e geridas pelas próprias lideranças comunitárias.",
                 icon: "forest",
                 delay: "0.4s"
               }
@@ -410,18 +410,18 @@ const Home: React.FC = () => {
             <div className="flex flex-col gap-10">
               {[
                 {
-                  title: "Respeito à Ancestralidade",
-                  description: "Honramos os saberes milenares e as manifestações culturais que são a base da identidade de cada povo.",
+                  title: "Protagonismo Indígena",
+                  description: "Reconhecemos e fortalecemos o direito dos povos indígenas de decidir sobre seus territórios, modos de vida e futuros, atuando sempre em diálogo e respeito às suas lideranças.",
                   icon: "history"
                 },
                 {
-                  title: "Justiça Social",
-                  description: "Trabalhamos na construção de uma sociedade mais inclusiva, assegurando direitos e garantindo oportunidades.",
+                  title: "Saberes Ancestrais",
+                  description: "Valorizamos o conhecimento tradicional como patrimônio vivo, essencial para a preservação da floresta, da cultura e do equilíbrio entre humanidade e natureza.",
                   icon: "balance"
                 },
                 {
-                  title: "Soberania e Autonomia",
-                  description: "Fortalecemos a capacidade das comunidades de gerir seus próprios recursos e destinos com liberdade.",
+                  title: "Cuidado com a Vida e a Floresta",
+                  description: "Atuamos pela proteção da vida em todas as suas formas, promovendo práticas sustentáveis que respeitam os ciclos da natureza e garantem o bem viver das gerações presentes e futuras.",
                   icon: "moving"
                 }
               ].map((value, index) => (
