@@ -1,12 +1,12 @@
 export interface Project {
-  id: number;
+  id: number | string;
   category: string;
   title: string;
   description: string;
   image: string;
   raised: number;
   goal: number;
-  status: 'Em Andamento' | 'Quase Lá' | 'Concluído' | 'Novo';
+  status: 'Em Andamento' | 'Quase Lá' | 'Concluído' | 'Novo' | 'Em Planejamento';
   beneficiaries?: number;
   year?: number;
   power?: string;
