@@ -264,11 +264,17 @@ const Home: React.FC = () => {
               Uma História de Resiliência e Conexão
             </h2>
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
-              A jornada começou no Acre, coração pulsante da Amazônia, com um desejo profundo de buscar o conhecimento ancestral e a sabedoria que reside na simbiose entre o ser humano e a natureza.
+              Nossas raízes nascem do encontro com a floresta e com os povos que a protegem há milênios. Elas brotam da escuta atenta, do respeito profundo e da convivência verdadeira com os povos indígenas, guardiões de saberes ancestrais que sustentam a vida em equilíbrio com a terra.
             </p>
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
-              Não é uma viagem de turismo, mas uma peregrinação em busca da relação milenar dos povos Huni Kuin, Ashaninka e Yawanawá com a mata.
-              O que eram ações pontuais de saúde e segurança alimentar transformou-se em uma estrutura robusta e transparente: A ONG Conexão Ancestral.
+              São raízes fincadas no território, na memória e na espiritualidade. Crescem a partir das histórias contadas ao redor do fogo, dos cantos que atravessam gerações, do cuidado com as plantas, os rios e os ciclos da natureza.
+            </p>
+            <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
+              Cada passo dado junto às comunidades fortaleceu a certeza de que preservar a floresta é preservar culturas, modos de vida e futuros possíveis.
+              A Conexão Ancestral se enraíza no compromisso com a autodeterminação dos povos indígenas, no reconhecimento de seu protagonismo e na valorização de seus conhecimentos como pilares para um mundo mais justo e sustentável.
+            </p>
+            <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
+              É dessas raízes profundas que nasce nossa missão: caminhar junto, fortalecer laços e proteger a vida que pulsa na floresta.
             </p>
             <Link to="/blog/guardioes-da-floresta" className="inline-flex items-center gap-2 text-primary font-bold hover:text-primary/80 transition-colors mt-2">
               Ler nossa história completa
