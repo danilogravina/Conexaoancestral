@@ -100,7 +100,7 @@ const Home: React.FC = () => {
   ]);
 
   useEffect(() => {
-    // fetchStats(); // Desativado temporariamente para exibir pilares qualitativos fixos
+    // Statics pillars enabled
   }, []);
 
   const fetchStats = async () => {
@@ -206,12 +206,6 @@ const Home: React.FC = () => {
             ></iframe>
           </div>
         )}
-
-        {/* Layer 2: Subtle Overlay - Removed as requested */}
-        {/* <div
-          className="absolute inset-0 z-2 bg-gradient-to-b from-black/10 via-transparent to-black/40"
-          style={{ pointerEvents: 'none' }}
-        ></div> */}
 
         {/* Content Layer - Perfectly Centered */}
         <div className="max-w-4xl px-4 text-center z-10 relative">

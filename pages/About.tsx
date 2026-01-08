@@ -62,7 +62,7 @@ const About: React.FC = () => {
                             <h2 className="h2-standard text-text-main-light dark:text-white mb-6">Nossa História</h2>
                             <div className="flex flex-col gap-6 text-text-secondary-light dark:text-text-secondary-dark text-lg font-light leading-relaxed">
                                 <p>
-                                    A <span className="text-primary font-bold">Conexão Ancestral – Povos da Floresta</span> é uma organização da sociedade civil fundada em 2025 a partir do encontro entre pessoas comprometidas com a preservação da Amazônia e o fortalecimento dos povos indígenas.
+                                    A <span className="text-primary font-bold">Conexão Ancestral – Povos da Floresta</span> é uma organização da sociedade civil fundada em 2015 a partir do encontro entre pessoas comprometidas com a preservação da Amazônia e o fortalecimento dos povos indígenas.
                                 </p>
                                 <p>
                                     Nossa história nasce do convívio direto com comunidades indígenas do Acre, e do reconhecimento de que seus saberes ancestrais, suas culturas e seus territórios são fundamentais para a proteção da floresta e da vida no planeta.
