@@ -299,7 +299,7 @@ const Home: React.FC = () => {
               <div className="w-1/2 h-full bg-white animate-wave"></div>
             </div>
             <p className="text-white/80 text-xl leading-relaxed font-light">
-              Atuamos em diversas frentes para garantir a autonomia e bem-estar das comunidades, gerando resultados reais e duradouros através de uma abordagem sistêmica e respeitosa.
+              Atuamos de forma integrada para fortalecer a autonomia dos povos tradicionais, valorizando saberes ancestrais e sua cultura.
             </p>
           </div>
 
