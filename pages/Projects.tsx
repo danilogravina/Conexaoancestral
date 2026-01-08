@@ -42,7 +42,8 @@ const Projects: React.FC = () => {
             beneficiaries: p.beneficiaries_count,
             year: p.year,
             gallery: (p.gallery || []).map(ensureAbsolutePath),
-            objectives: p.impact_data?.objectives || []
+            objectives: p.impact_data?.objectives || [],
+            testimonials: p.impact_data?.testimonials || []
           };
 
           // Override for the specific project identified by user
