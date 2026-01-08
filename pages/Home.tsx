@@ -195,15 +195,6 @@ const Home: React.FC = () => {
   return (
     <>
       <section className="relative h-[80vh] min-h-[600px] overflow-hidden flex items-center justify-center bg-background-dark">
-        {/* Layer 0: Fallback Image Background */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat will-change-transform z-0"
-          style={{
-            backgroundImage: 'url("/assets/img/home-hero-parallax.jpg")',
-            transform: `translateY(${scrollY * 0.5}px)`
-          }}
-        ></div>
-
         {/* Layer 1: Video Background (Only if enabled) */}
         {VIDEO_HERO_ENABLED && (
           <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-1">
