@@ -207,14 +207,14 @@ const Home: React.FC = () => {
           </div>
         )}
 
-        {/* Layer 2: Gradient Overlay (Always on top of media) */}
+        {/* Layer 2: Subtle Overlay (Lighter shadow) */}
         <div
-          className="absolute inset-0 z-2 bg-gradient-to-b from-black/30 via-black/20 to-black/60"
+          className="absolute inset-0 z-2 bg-gradient-to-b from-black/10 via-transparent to-black/40"
           style={{ pointerEvents: 'none' }}
         ></div>
 
-        {/* Content Layer */}
-        <div className="max-w-4xl px-4 text-center z-10 relative pt-64">
+        {/* Content Layer - Perfectly Centered */}
+        <div className="max-w-4xl px-4 text-center z-10 relative">
           <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
             Conexão Ancestral
           </h1>
