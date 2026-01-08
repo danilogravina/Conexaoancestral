@@ -26,6 +26,39 @@ const ProjectDetails: React.FC = () => {
   const fetchProject = async (projectId: string) => {
     try {
       setIsLoading(true);
+
+      // Fallback for synthetic projects
+      if (projectId === 'huni-kuin-rio-breu') {
+        const huniKuinProject: Project = {
+          id: 'huni-kuin-rio-breu',
+          title: 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu',
+          category: 'Cultura',
+          description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
+          fullDescription: `Este projeto tem como objetivo fortalecer e valorizar a cultura do povo Huni Kuin, autodenominado “gente verdadeira”, promovendo a preservação de seus saberes ancestrais, de sua língua, espiritualidade e expressões culturais. Em um contexto de constantes pressões externas, a iniciativa reafirma a identidade, a autonomia e a resistência cultural profundamente enraizadas na floresta amazônica.
+
+O foco central do projeto é a construção e manutenção de um Centro Cerimonial de Cultura, concebido como um espaço vivo de reunião, ensino e celebração. O Centro será dedicado à preservação da língua Hãtxa Kuin, ao fortalecimento das medicinas tradicionais, à realização de cerimônias, aos cantos sagrados e à valorização das artes Huni Kuin, como o kenê, a tecelagem e a cerâmica.
+
+Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de autodeterminação, onde a própria comunidade conduz a gestão de seu patrimônio cultural. Ao fortalecer a cultura, o projeto também promove sustentabilidade, geração de renda e continuidade do modo de vida tradicional, garantindo que o legado do povo Huni Kuin siga vivo para as futuras gerações.`,
+          image: '/assets/img/project-huni-kuin.png',
+          raised: 0,
+          goal: 50000,
+          status: 'Em Planejamento',
+          beneficiaries: 0,
+          year: 2025,
+          gallery: ['/assets/img/project-huni-kuin.png'],
+          objectives: [
+            'Fortalecimento da identidade Huni Kuin',
+            'Preservação da língua Hãtxa Kuin',
+            'Construção do Centro Cerimonial',
+            'Valorização das artes tradicionais (kenê, tecelagem)'
+          ]
+        };
+        setProject(huniKuinProject);
+        setActiveImage(huniKuinProject.image);
+        setIsLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('projects')
         .select('*')
@@ -87,36 +120,6 @@ Além da missão espiritual, o Yuvanapanamaritiru é um pilar de sustentabilidad
         setProject(mappedProject);
         setActiveImage(mappedProject.image);
       } else {
-        // Fallback for synthetic projects
-        if (projectId === 'huni-kuin-rio-breu') {
-          const huniKuinProject: Project = {
-            id: 'huni-kuin-rio-breu',
-            title: 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu',
-            category: 'Cultura',
-            description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
-            fullDescription: `Este projeto tem como objetivo fortalecer e valorizar a cultura do povo Huni Kuin, autodenominado “gente verdadeira”, promovendo a preservação de seus saberes ancestrais, de sua língua, espiritualidade e expressões culturais. Em um contexto de constantes pressões externas, a iniciativa reafirma a identidade, a autonomia e a resistência cultural profundamente enraizadas na floresta amazônica.
-
-O foco central do projeto é a construção e manutenção de um Centro Cerimonial de Cultura, concebido como um espaço vivo de reunião, ensino e celebração. O Centro será dedicado à preservação da língua Hãtxa Kuin, ao fortalecimento das medicinas tradicionais, à realização de cerimônias, aos cantos sagrados e à valorização das artes Huni Kuin, como o kenê, a tecelagem e a cerâmica.
-
-Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de autodeterminação, onde a própria comunidade conduz a gestão de seu patrimônio cultural. Ao fortalecer a cultura, o projeto também promove sustentabilidade, geração de renda e continuidade do modo de vida tradicional, garantindo que o legado do povo Huni Kuin siga vivo para as futuras gerações.`,
-            image: '/assets/img/project-huni-kuin.png',
-            raised: 0,
-            goal: 50000,
-            status: 'Em Planejamento',
-            beneficiaries: 0,
-            year: 2025,
-            gallery: ['/assets/img/project-huni-kuin.png'],
-            objectives: [
-              'Fortalecimento da identidade Huni Kuin',
-              'Preservação da língua Hãtxa Kuin',
-              'Construção do Centro Cerimonial',
-              'Valorização das artes tradicionais (kenê, tecelagem)'
-            ]
-          };
-          setProject(huniKuinProject);
-          setActiveImage(huniKuinProject.image);
-          return;
-        }
         navigate('/projetos');
       }
     } catch (error) {
