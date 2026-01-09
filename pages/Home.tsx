@@ -205,7 +205,7 @@ const Home: React.FC = () => {
           <img
             src="/assets/img/icons/icone-missao.svg"
             alt="Ícone Nossa Missão"
-            className="w-20 h-20 md:w-28 md:h-28 object-contain mx-auto mb-6 drop-shadow-sm"
+            className="w-16 h-16 md:w-24 md:h-24 object-contain mx-auto mb-6 drop-shadow-sm"
           />
           <h2 className="text-[#0d1b12] dark:text-white h2-standard mb-6">Nossa Missão</h2>
           <p className="text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
