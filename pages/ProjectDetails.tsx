@@ -104,7 +104,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
         }
 
         if (mappedProject.title === 'Escola Viva da Floresta') {
-          mappedProject.title = 'Sistema Sustentável de Captação e Distribuição de Água na T.I. Campinas/Katukina';
+          mappedProject.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
           mappedProject.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
           mappedProject.category = ProjectCategory.WATER;
           mappedProject.fullDescription = `Este projeto impulsiona o fortalecimento cultural e territorial do povo Katukina, o "povo verdadeiro". Diante das pressões da BR-364 sobre a T.I. Campinas/Katukina, 12 famílias Katukina criaram uma nova aldeia em área preservada, reafirmando sua conexão com a floresta e saberes ancestrais. Para consolidar essa resistência, o projeto implementará um sistema de água potável com poço artesiano e energia solar fotovoltaica, reduzindo a dependência de rios e riscos de contaminação. Mais que infraestrutura, é um investimento na autonomia, saúde e preservação cultural e ambiental do povo Katukina.`;
