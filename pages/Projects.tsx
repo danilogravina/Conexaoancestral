@@ -200,7 +200,7 @@ const Projects: React.FC = () => {
         <div className="relative min-h-[400px] flex flex-col items-center justify-center text-center p-8">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black/40 z-10"></div>
-            <div className="h-full w-full bg-cover bg-center transition-transform duration-700" style={{ backgroundImage: 'url("/assets/img/projects-hero-bg.jpg?v=2")' }}>
+            <div className="h-full w-full bg-cover bg-center transition-transform duration-700" style={{ backgroundImage: 'url("/assets/img/projects-hero1-bg.jpg?v=2")' }}>
             </div>
           </div>
           <div className="relative z-20 flex flex-col items-center gap-6 max-w-3xl px-4">
