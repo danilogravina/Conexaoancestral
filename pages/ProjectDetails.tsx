@@ -97,9 +97,6 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           gallery: gallery,
           objectives: data.impact_data?.objectives || []
         };
-
-
-
         if (mappedProject.title === 'Escola Viva da Floresta') {
           mappedProject.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
           mappedProject.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
@@ -116,7 +113,6 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             { name: "Maria Katukina", role: "Agente de Saúde Indígena", quote: "O poço artesiano reduziu as doenças na comunidade. É uma vitória da nossa resistência.", avatar: "/assets/img/team-mariana.jpg" }
           ];
         }
-
         if (mappedProject.title === 'Agrofloresta Comunitária') {
           mappedProject.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru';
           mappedProject.description = 'O Centro Yuvanapanamaritiru é um santuário para a medicina tradicional, fortalecendo a cultura e a autonomia do povo Shawãdawa (Arara).';
@@ -133,9 +129,8 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             { name: "Arara Shawã", role: "Coordenadora de Cultura", quote: "Nosso centro de cultura garante que os jovens aprendam os cantos e as medicinas dos avós.", avatar: "/assets/img/team-mariana.jpg" }
           ];
         }
-
         if (mappedProject.title === 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu') {
-          mappedProject.fullDescription = `Este projeto visa fortalecer a cultura Huni Kuin, o "gente verdadeira", preservando saberes ancestrais, língua, espiritualidade e expressões culturais frente a pressões externas. O foco é a construção de um Centro Cerimonial de Cultura, um espaço vivo para a língua Hãtxa Kuin, medicinas tradicionais, cerimônias, cantos sagrados e artes Huni Kuin (kenê, tecelagem, cerâmica). Mais que uma estrutura, o Centro representa autodeterminação, gestão comunitária do patrimônio cultural, promovendo sustentabilidade, renda e a continuidade do legado Huni Kuin para futuras gerações.`;
+          mappedProject.fullDescription = `Este projeto visa fortalecer a cultura Huni Kuin, o "gente verdadeira", preservando saberes ancestrais, língua, espiritualidade e expressões culturais frente a pressões externas. O foco é a construção de um Centro Cerimonial de Cultura, um espaço vivo para a língua Hãtxa Kuin, medicinas tradicionais, cerimônias, cantos sagrados e artes Huni Kuin (kenê, tecelagem, cerâmica). Mais que uma estrutura, o Centro representa autodeterminação, gestão comunitária do patrimônio cultural, promovendo sustentabilidade, renda e a continuidade do legado Huni Kuin para futuras gerções.`;
           mappedProject.image = '/assets/img/project-huni-kuin.png';
           mappedProject.gallery = ['/assets/img/project-huni-kuin.png'];
         }

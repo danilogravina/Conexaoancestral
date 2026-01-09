@@ -45,21 +45,16 @@ const Projects: React.FC = () => {
             objectives: p.impact_data?.objectives || [],
             testimonials: p.impact_data?.testimonials || []
           };
-
-
-
           if (projectData.title === 'Escola Viva da Floresta') {
             projectData.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
             projectData.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
             projectData.category = ProjectCategory.WATER;
           }
-
           if (projectData.title === 'Agrofloresta Comunitária') {
             projectData.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru';
             projectData.description = 'O Centro Yuvanapanamaritiru é um santuário para a medicina tradicional, fortalecendo a cultura e a autonomia do povo Shawãdawa (Arara).';
             projectData.category = ProjectCategory.CULTURE;
           }
-
           return projectData;
         });
 

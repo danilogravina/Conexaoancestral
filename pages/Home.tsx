@@ -90,13 +90,22 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
 const VIDEO_HERO_ENABLED = true;
 const VIDEO_ID = "iy8wWnhyN78";
 
+const HOME_STATS = [
+  { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "diversity_2" },
+  { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
+  { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
+];
+
+const PARTNERS = [
+  { logo: "logo_eco_amazon.png", url: "https://www.medicinasagrada.com.br" },
+  { logo: "logo_ancestral_fund.png", url: "https://www.sacredconnection.co" },
+  { logo: "logo_green_roots.png", url: "https://www.hauxhauxshop.com" },
+  { logo: "logo_forest_guardians.png", url: "https://www.mayaherbs.com" },
+  { logo: "logo_ethno_voice.png", url: "https://www.shop.fourvisions.com" },
+  { logo: "logo_tribal_tech.png", url: "https://www.alafiyaenterprises.com" }
+];
+
 const Home: React.FC = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [stats, setStats] = useState<any[]>([
-    { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "diversity_2" },
-    { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
-    { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
-  ]);
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -139,14 +148,7 @@ const Home: React.FC = () => {
     return () => { document.head.removeChild(style); };
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -186,7 +188,7 @@ const Home: React.FC = () => {
           <img
             src="/assets/img/icons/logo-hero.svg"
             alt="Logo Conexão Ancestral"
-            className="w-24 md:w-36 mx-auto mb-6 drop-shadow-2xl animate-float"
+            className="w-16 md:w-24 mx-auto mb-6 drop-shadow-2xl animate-float"
           />
           <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
             Conexão Ancestral
@@ -222,24 +224,17 @@ const Home: React.FC = () => {
       <section className="px-4 py-20 md:py-24 bg-background-light dark:bg-background-dark overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.length > 0 ? (
-              stats.map((stat, idx) => (
-                <StatCard
-                  key={idx}
-                  icon={stat.icon}
-                  label={stat.label}
-                  value={stat.value}
-                  description={stat.description}
-                  suffix={stat.suffix}
-                  delay={idx * 100}
-                />
-              ))
-            ) : (
-              // Skeleton loading while fetching
-              [1, 2, 3].map(i => (
-                <div key={i} className="h-56 rounded-3xl bg-primary/20 animate-pulse"></div>
-              ))
-            )}
+            {HOME_STATS.map((stat, idx) => (
+              <StatCard
+                key={idx}
+                icon={stat.icon}
+                label={stat.label}
+                value={stat.value}
+                description={stat.description}
+                suffix={stat.suffix}
+                delay={idx * 100}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -491,28 +486,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 relative">
           <div className="overflow-hidden mask-edges py-4">
             <div className="animate-marquee flex gap-20 md:gap-32 items-center">
-              {[
-                { logo: "logo_eco_amazon.png", url: "https://www.medicinasagrada.com.br" },
-                { logo: "logo_ancestral_fund.png", url: "https://www.sacredconnection.co" },
-                { logo: "logo_green_roots.png", url: "https://www.hauxhauxshop.com" },
-                { logo: "logo_forest_guardians.png", url: "https://www.mayaherbs.com" },
-                { logo: "logo_ethno_voice.png", url: "https://www.shop.fourvisions.com" },
-                { logo: "logo_tribal_tech.png", url: "https://www.alafiyaenterprises.com" }
-              ].concat([
-                { logo: "logo_eco_amazon.png", url: "https://www.medicinasagrada.com.br" },
-                { logo: "logo_ancestral_fund.png", url: "https://www.sacredconnection.co" },
-                { logo: "logo_green_roots.png", url: "https://www.hauxhauxshop.com" },
-                { logo: "logo_forest_guardians.png", url: "https://www.mayaherbs.com" },
-                { logo: "logo_ethno_voice.png", url: "https://https://www.shop.fourvisions.com" },
-                { logo: "logo_tribal_tech.png", url: "https://www.alafiyaenterprises.com" }
-              ]).concat([
-                { logo: "logo_eco_amazon.png", url: "https://www.medicinasagrada.com.br" },
-                { logo: "logo_ancestral_fund.png", url: "https://www.sacredconnection.co" },
-                { logo: "logo_green_roots.png", url: "https://www.hauxhauxshop.com" },
-                { logo: "logo_forest_guardians.png", url: "https://www.mayaherbs.com" },
-                { logo: "logo_ethno_voice.png", url: "https://www.shop.fourvisions.com" },
-                { logo: "logo_tribal_tech.png", url: "https://www.alafiyaenterprises.com" }
-              ]).map((partner, idx) => (
+              {[...PARTNERS, ...PARTNERS, ...PARTNERS].map((partner, idx) => (
                 <a
                   key={idx}
                   href={partner.url}
