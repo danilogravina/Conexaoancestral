@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { Project } from '../types';
+import { Project, ProjectCategory } from '../types';
 import { supabase } from '../lib/supabase';
 import { ensureAbsolutePath } from '../lib/utils';
 
