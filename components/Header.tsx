@@ -24,11 +24,12 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-[#e7f3eb] dark:border-[#1e3a29] bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md shadow-sm transition-all duration-300">
-            <div className="mx-auto flex h-28 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 gap-8">
-                <div className="flex-1 flex justify-start">
+            <div className="mx-auto flex h-24 md:h-28 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+                {/* 1. Logo Section */}
+                <div className="flex-shrink-0">
                     <Link
                         to="/"
-                        className="block"
+                        className="block scale-90 md:scale-100 transition-transform"
                         onClick={(e) => {
                             if (location.pathname === '/') {
                                 e.preventDefault();
@@ -40,27 +41,28 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                     </Link>
                 </div>
 
-                <nav className="hidden lg:flex items-center gap-10">
-                    <Link to="/" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/') && location.pathname === '/' ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
-                        Início
-                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/') && location.pathname === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                    </Link>
-                    <Link to="/quem-somos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/quem-somos') ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
-                        Sobre Nós
-                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/quem-somos') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                    </Link>
-                    <Link to="/projetos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/projetos') ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
-                        Projetos
-                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/projetos') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                    </Link>
+                {/* 2. Unified Right Section (Nav + Actions) */}
+                <div className="flex items-center gap-6 lg:gap-10">
+                    {/* Desktop Navigation */}
+                    <nav className="hidden lg:flex items-center gap-8">
+                        <Link to="/" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/') && location.pathname === '/' ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
+                            Início
+                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/') && location.pathname === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                        </Link>
+                        <Link to="/quem-somos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/quem-somos') ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
+                            Sobre Nós
+                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/quem-somos') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                        </Link>
+                        <Link to="/projetos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/projetos') ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
+                            Projetos
+                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/projetos') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                        </Link>
+                    </nav>
 
-
-                </nav>
-
-                <div className="flex-1 flex justify-end">
-                    <div className="flex items-center gap-6">
+                    {/* Actions Group (Search, Icons, CTA, Mobile Toggle) */}
+                    <div className="flex items-center gap-3 sm:gap-6">
                         {/* Desktop Search Bar */}
-                        <div className="hidden lg:block relative group mr-2">
+                        <div className="hidden lg:block relative group">
                             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 group-focus-within:text-primary transition-colors text-xl">search</span>
                             <input
                                 type="text"
@@ -68,36 +70,37 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 onKeyDown={handleSearch}
-                                className="w-28 xl:w-36 pl-10 pr-4 py-2 rounded-full bg-white dark:bg-white/5 border border-gray-300 dark:border-gray-600 focus:bg-white dark:focus:bg-black/20 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-sm font-medium placeholder-gray-500 text-text-main-light dark:text-white shadow-sm hover:border-gray-400 dark:hover:border-gray-500"
+                                className="w-28 xl:w-40 pl-10 pr-4 py-2.5 rounded-full bg-stone-50 dark:bg-white/5 border border-transparent focus:bg-white dark:focus:bg-black/20 border-gray-200 dark:border-white/10 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-sm font-medium placeholder-gray-500 text-text-main-light dark:text-white"
                             />
                         </div>
 
+                        {/* Theme Toggle */}
                         <button
                             onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-main-light dark:text-text-main-dark transition-colors"
-                            aria-label="Toggle Theme"
+                            className="p-2.5 rounded-full hover:bg-stone-50 dark:hover:bg-white/10 text-text-main-light dark:text-text-main-dark transition-colors"
+                            aria-label="Alternar Tema"
                         >
-                            <span className="material-symbols-outlined dark:hidden">dark_mode</span>
-                            <span className="material-symbols-outlined hidden dark:block">light_mode</span>
+                            <span className="material-symbols-outlined dark:hidden text-[22px]">dark_mode</span>
+                            <span className="material-symbols-outlined hidden dark:block text-[22px]">light_mode</span>
                         </button>
 
-                        {/* User Profile / Login Link */}
+                        {/* Login Link */}
                         <Link
                             to="/login"
-                            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-main-light dark:text-text-main-dark transition-colors"
-                            aria-label="Login / Minha Conta"
-                            title="Login / Minha Conta"
+                            className="p-2.5 rounded-full hover:bg-stone-50 dark:hover:bg-white/10 text-text-main-light dark:text-text-main-dark transition-colors"
+                            aria-label="Minha Conta"
                         >
-                            <span className="material-symbols-outlined">person</span>
+                            <span className="material-symbols-outlined text-[26px]">person</span>
                         </Link>
 
-                        {/* Link to main projects page */}
-                        <Link to="/projetos" className="hidden sm:flex h-12 items-center justify-center rounded-xl bg-donate-red px-6 xl:px-8 text-base font-extrabold text-white shadow-lg shadow-donate-red/25 hover:bg-red-600 hover:-translate-y-0.5 hover:shadow-donate-red/40 transition-all duration-200 whitespace-nowrap">
+                        {/* CTA Button */}
+                        <Link to="/projetos" className="hidden sm:flex h-11 items-center justify-center rounded-xl bg-donate-red px-6 xl:px-8 text-sm font-extrabold text-white shadow-lg shadow-donate-red/25 hover:bg-red-600 hover:-translate-y-0.5 hover:shadow-donate-red/40 transition-all duration-200 whitespace-nowrap">
                             Doar Agora
                         </Link>
 
+                        {/* Mobile Menu Button */}
                         <button
-                            className="lg:hidden p-3 text-text-main-light dark:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-xl transition-colors"
+                            className="lg:hidden p-2 text-text-main-light dark:text-white hover:bg-stone-50 dark:hover:bg-white/10 rounded-xl transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             <span className="material-symbols-outlined text-3xl">{isMenuOpen ? 'close' : 'menu'}</span>
