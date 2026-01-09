@@ -465,12 +465,9 @@ const Home: React.FC = () => {
           <p className="mx-auto mb-10 max-w-xl text-lg md:text-xl text-white/80 font-light leading-relaxed">
             Junte-se a nós nesta missão de construir um futuro onde tradição e desenvolvimento caminham lado a lado.
           </p>
-          <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
-            <Link to="/projetos" className="h-14 px-10 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center">
+            <Link to="/projetos" className="h-14 px-12 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
               Quero Doar Mensalmente
-            </Link>
-            <Link to="/contato" className="h-14 px-10 rounded-full border-2 border-white/30 hover:bg-white/10 text-white font-bold transition-all flex items-center justify-center">
-              Ser Voluntário
             </Link>
           </div>
         </div>
@@ -481,7 +478,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <span className="w-8 h-[2px] bg-primary"></span>
-            <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Parceiros e Transparência</h2>
+            <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Parceiros</h2>
           </div>
           <Link to="/transparencia" className="text-xs font-bold uppercase tracking-wider text-stone-400 hover:text-primary transition-colors flex items-center gap-2 group">
             Relatórios de Governança

@@ -540,14 +540,10 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                         />
                       </div>
                     </div>
-
                     <div className="space-y-3 relative z-10">
                       <button onClick={handleDonate} className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
                         <span className="material-icons-round">favorite</span> Doar para este Projeto
                       </button>
-                      <Link to="/contato" className="w-full bg-transparent border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 font-medium py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm">
-                        Seja um Voluntário
-                      </Link>
                     </div>
                   </>
                 ) : (
@@ -599,7 +595,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

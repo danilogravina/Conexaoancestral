@@ -430,12 +430,9 @@ const Transparency: React.FC = () => {
             </div>
             <h2 className="text-white h2-standard mb-4">Sua confiança é a nossa força</h2>
             <p className="text-white/80 max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10">Junte-se a milhares de doadores que acreditam na transparência e no poder de regeneração da Amazônia.</p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/projetos" className="h-14 px-10 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
+              <Link to="/projetos" className="h-14 px-12 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
                 Fazer Doação
-              </Link>
-              <Link to="/contato" className="h-14 px-10 rounded-full border-2 border-white/30 hover:bg-white/10 text-white font-bold transition-all flex items-center justify-center">
-                Saiba Mais
               </Link>
             </div>
             <p className="text-xs text-white/40 mt-4 leading-relaxed tracking-wider">Conexão Ancestral - CNPJ 00.000.000/0001-00 <br /> Rua da Floresta, 123 - Manaus, AM</p>

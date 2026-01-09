@@ -248,12 +248,9 @@ const About: React.FC = () => {
                         <p className="text-white/80 text-lg md:text-xl font-light max-w-xl mb-10 leading-relaxed">
                             Sua contribuição planta árvores, empodera comunidades e protege o nosso futuro.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-6 w-full justify-center">
-                            <Link to="/projetos" className="h-14 px-10 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
+                        <div className="flex flex-col items-center justify-center">
+                            <Link to="/projetos" className="h-14 px-12 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
                                 Doar Agora
-                            </Link>
-                            <Link to="/contato" className="h-14 px-10 rounded-full border-2 border-white/30 hover:bg-white/10 text-white font-bold transition-all flex items-center justify-center">
-                                Ser Voluntário
                             </Link>
                         </div>
                     </div>
