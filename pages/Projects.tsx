@@ -52,7 +52,7 @@ const Projects: React.FC = () => {
           }
 
           if (projectData.title === 'Escola Viva da Floresta') {
-            projectData.title = 'Sistema Sustentável de Captação e Distribuição de Água na T.I. Campinas/Katukina';
+            projectData.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
             projectData.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
             projectData.category = ProjectCategory.WATER;
           }

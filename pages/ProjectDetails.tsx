@@ -107,13 +107,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           mappedProject.title = 'Sistema Sustentável de Captação e Distribuição de Água na T.I. Campinas/Katukina';
           mappedProject.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
           mappedProject.category = ProjectCategory.WATER;
-          mappedProject.fullDescription = `Este projeto nasce do movimento de fortalecimento cultural e territorial do povo Katukina, cujo nome significa “povo verdadeiro”. Ao longo dos anos, as aldeias localizadas às margens da BR-364, que atravessa a Terra Indígena Campinas/Katukina, passaram a enfrentar pressões crescentes sobre seus territórios, seus recursos naturais e seu modo de vida tradicional, gerando impactos ambientais, riscos à saúde e desafios à preservação cultural.
-
-Diante desse cenário, cerca de 12 famílias Katukina decidiram criar uma nova aldeia em uma área mais preservada do território, distante da rodovia, reafirmando seu compromisso com a floresta, com os saberes ancestrais e com uma vida em harmonia com a natureza. Esse deslocamento representa um gesto de resistência cultural, autonomia e fortalecimento da identidade indígena.
-
-Para que a nova aldeia possa se consolidar de forma digna e sustentável, o projeto prevê a implantação de um sistema de abastecimento de água potável, por meio da perfuração de um poço artesiano e da instalação de um sistema de bombeamento movido a energia solar fotovoltaica. A proposta busca reduzir a dependência de rios e igarapés, diminuir riscos de contaminação e garantir melhores condições de saúde e bem-estar para a comunidade.
-
-Mais do que uma solução de infraestrutura, o projeto representa um investimento no futuro do povo Katukina, fortalecendo a autonomia comunitária e contribuindo para a preservação cultural e ambiental da Terra Indígena Campinas/Katukina.`;
+          mappedProject.fullDescription = `Este projeto impulsiona o fortalecimento cultural e territorial do povo Katukina, o "povo verdadeiro". Diante das pressões da BR-364 sobre a T.I. Campinas/Katukina, 12 famílias Katukina criaram uma nova aldeia em área preservada, reafirmando sua conexão com a floresta e saberes ancestrais. Para consolidar essa resistência, o projeto implementará um sistema de água potável com poço artesiano e energia solar fotovoltaica, reduzindo a dependência de rios e riscos de contaminação. Mais que infraestrutura, é um investimento na autonomia, saúde e preservação cultural e ambiental do povo Katukina.`;
           mappedProject.objectives = [
             'Perfuração de poço artesiano',
             'Instalação de sistema de energia solar fotovoltaica',
@@ -144,11 +138,7 @@ Mais do que uma solução de infraestrutura, o projeto representa um investiment
         }
 
         if (mappedProject.title === 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu') {
-          mappedProject.fullDescription = `Este projeto tem como objetivo fortalecer e valorizar a cultura do povo Huni Kuin, autodenominado “gente verdadeira”, promovendo a preservação de seus saberes ancestrais, de sua língua, espiritualidade e expressões culturais. Em um contexto de constantes pressões externas, a iniciativa reafirma a identidade, a autonomia e a resistência cultural profundamente enraizadas na floresta amazônica.
-
-O foco central do projeto é a construção e manutenção de um Centro Cerimonial de Cultura, concebido como um espaço vivo de reunião, ensino e celebração. O Centro será dedicado à preservação da língua Hãtxa Kuin, ao fortalecimento das medicinas tradicionais, à realização de cerimônias, aos cantos sagrados e à valorização das artes Huni Kuin, como o kenê, a tecelagem e a cerâmica.
-
-Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de autodeterminação, onde a própria comunidade conduz a gestão de seu patrimônio cultural. Ao fortalecer a cultura, o projeto também promove sustentabilidade, geração de renda e continuidade do modo de vida tradicional, garantindo que o legado do povo Huni Kuin siga vivo para as futuras gerações.`;
+          mappedProject.fullDescription = `Este projeto visa fortalecer a cultura Huni Kuin, o "gente verdadeira", preservando saberes ancestrais, língua, espiritualidade e expressões culturais frente a pressões externas. O foco é a construção de um Centro Cerimonial de Cultura, um espaço vivo para a língua Hãtxa Kuin, medicinas tradicionais, cerimônias, cantos sagrados e artes Huni Kuin (kenê, tecelagem, cerâmica). Mais que uma estrutura, o Centro representa autodeterminação, gestão comunitária do patrimônio cultural, promovendo sustentabilidade, renda e a continuidade do legado Huni Kuin para futuras gerações.`;
           mappedProject.image = '/assets/img/project-huni-kuin.png';
           mappedProject.gallery = ['/assets/img/project-huni-kuin.png'];
         }
