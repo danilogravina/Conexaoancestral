@@ -26,7 +26,16 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
         <header className="sticky top-0 z-50 w-full border-b border-[#e7f3eb] dark:border-[#1e3a29] bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md shadow-sm transition-all duration-300">
             <div className="mx-auto flex h-28 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 gap-8">
                 <div className="flex-1 flex justify-start">
-                    <Link to="/" className="block">
+                    <Link
+                        to="/"
+                        className="block"
+                        onClick={(e) => {
+                            if (location.pathname === '/') {
+                                e.preventDefault();
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }
+                        }}
+                    >
                         <Logo />
                     </Link>
                 </div>
