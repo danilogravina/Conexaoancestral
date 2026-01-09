@@ -131,7 +131,7 @@ const About: React.FC = () => {
                     <div className="lg:w-1/3">
                         <h2 className="h2-standard text-text-main-light dark:text-white mb-6">Nossa Jornada</h2>
                         <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg font-light mb-8">
-                            De um pequeno grupo de amigos a uma organização internacional. Acompanhe nossos passos.
+                            De um pequeno grupo de pessoas a um coletivo de ação. Nossa jornada é guiada pela preservação da cultura e pela promoção da autonomia indígena. Atuamos lado a lado com comunidades tradicionais, transformando o compromisso com a ancestralidade em projetos reais de soberania e sustentabilidade.
                         </p>
                     </div>
 
