@@ -53,7 +53,7 @@ const Projects: React.FC = () => {
           }
 
           if (projectData.title === 'Agrofloresta Comunitária') {
-            projectData.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru de Cura, cultura e formação dos Guardiões Shawãdawa Panamaritiru';
+            projectData.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru';
             projectData.description = 'Projeto de fortalecimento cultural e espiritual do povo Shawãdawa, por meio da criação do Centro Yuvanapanamaritiru, dedicado à cura tradicional, à transmissão de saberes ancestrais e à formação de guardiões da cultura.';
           }
 
