@@ -183,6 +183,11 @@ const Home: React.FC = () => {
 
         {/* Content Layer - Perfectly Centered */}
         <div className="max-w-4xl px-4 text-center z-10 relative">
+          <img
+            src="/assets/img/icons/logo-hero.svg"
+            alt="Logo Conexão Ancestral"
+            className="w-32 md:w-48 mx-auto mb-8 drop-shadow-2xl animate-float"
+          />
           <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
             Conexão Ancestral
           </h1>
