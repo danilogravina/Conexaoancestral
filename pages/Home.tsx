@@ -188,7 +188,7 @@ const Home: React.FC = () => {
           <img
             src="/assets/img/icons/logo-hero.svg"
             alt="Logo Conexão Ancestral"
-            className="w-14 md:w-20 mx-auto mb-6 drop-shadow-2xl animate-float"
+            className="w-16 md:w-24 mx-auto mb-6 drop-shadow-2xl animate-float"
           />
           <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
             Conexão Ancestral

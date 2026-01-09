@@ -237,7 +237,7 @@ const About: React.FC = () => {
                             alt="Fundo Institucional"
                             className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-primary/70 dark:bg-primary/90 backdrop-blur-[1px]"></div>
+                        <div className="absolute inset-0 bg-primary/40 dark:bg-primary/60 backdrop-blur-[1px]"></div>
                     </div>
 
                     <div className="absolute top-0 right-0 -mr-20 -mt-20 size-96 bg-white/20 rounded-full blur-3xl z-0"></div>
