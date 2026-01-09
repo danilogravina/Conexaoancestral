@@ -66,34 +66,51 @@ const Projects: React.FC = () => {
           return projectData;
         });
 
-        // Add the new synthetic Huni Kuin project ONLY if it doesn't already exist from the database
-        const huniKuinTitle = 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu';
-        const projectExists = mappedProjects.some(p => p.title === huniKuinTitle);
+        // List of authorized titles
+        const allowedTitles = [
+          'Água Limpa para Todos',
+          'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina',
+          'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru',
+          'Centro Cerimonial de Cultura Huni Kuin do Rio Breu'
+        ];
 
-        if (!projectExists) {
-          const huniKuinProject: Project = {
-            id: 'huni-kuin-rio-breu',
-            title: huniKuinTitle,
-            category: 'Cultura',
-            description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
-            fullDescription: '',
-            image: '/assets/img/project-huni-kuin.png',
-            raised: 0,
-            goal: 50000, // Arbitrary goal for now
-            status: 'Em Planejamento',
-            beneficiaries: 0,
-            year: 2025,
-            gallery: ['/assets/img/project-huni-kuin.png'],
-            objectives: [
-              'Construção do Centro Cerimonial',
-              'Santuário para medicinas tradicionais',
-              'Espaço de transmissão de saberes ancestrais'
-            ]
-          };
-          setProjects([...mappedProjects, huniKuinProject]);
-        } else {
-          setProjects(mappedProjects);
-        }
+        // Add the new synthetic Huni Kuin project
+        const huniKuinTitle = 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu';
+        const huniKuinProject: Project = {
+          id: 'huni-kuin-rio-breu',
+          title: huniKuinTitle,
+          category: 'Cultura',
+          description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
+          fullDescription: '',
+          image: '/assets/img/project-huni-kuin.png',
+          raised: 0,
+          goal: 50000,
+          status: 'Em Planejamento',
+          beneficiaries: 0,
+          year: 2025,
+          gallery: ['/assets/img/project-huni-kuin.png'],
+          objectives: [
+            'Construção do Centro Cerimonial',
+            'Santuário para medicinas tradicionais',
+            'Espaço de transmissão de saberes ancestrais'
+          ]
+        };
+
+        const allProjects = [...mappedProjects, huniKuinProject];
+
+        // Filter to keep only one instance of each allowed project
+        const finalProjects: Project[] = [];
+        const seenTitles = new Set();
+
+        allowedTitles.forEach(title => {
+          const project = allProjects.find(p => p.title === title && !seenTitles.has(title));
+          if (project) {
+            finalProjects.push(project);
+            seenTitles.add(title);
+          }
+        });
+
+        setProjects(finalProjects);
       }
     } catch (error) {
       console.error('Erro ao buscar projetos:', error);
