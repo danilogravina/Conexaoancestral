@@ -208,7 +208,7 @@ const Home: React.FC = () => {
       </section>
 
       <section id="sobre" className="px-4 relative z-20 -mt-12 mb-12">
-        <div className="max-w-5xl mx-auto bg-white dark:bg-[#1a2c20] rounded-2xl shadow-xl border border-stone-100 dark:border-stone-800 p-8 md:p-12 text-center transition-colors duration-500">
+        <div className="max-w-4xl mx-auto bg-white dark:bg-[#1a2c20] rounded-2xl shadow-xl border border-stone-100 dark:border-stone-800 p-8 md:p-12 text-center transition-colors duration-500">
           <img
             src="/assets/img/icons/icone-missao.svg"
             alt="Ícone Nossa Missão"
