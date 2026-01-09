@@ -89,19 +89,16 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           description: data.description,
           fullDescription: data.full_description,
           image: mainImage,
-          raised: data.raised_amount,
+          raised: 0,
           goal: data.goal_amount,
-          status: data.status,
+          status: 'Em Planejamento' as const,
           beneficiaries: data.beneficiaries_count,
           year: data.year,
           gallery: gallery,
           objectives: data.impact_data?.objectives || []
         };
 
-        // Override for the specific project identified by user
-        if (mappedProject.title === 'Água Limpa para Todos') {
-          mappedProject.category = ProjectCategory.WATER;
-        }
+
 
         if (mappedProject.title === 'Escola Viva da Floresta') {
           mappedProject.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';

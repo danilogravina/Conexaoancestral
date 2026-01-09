@@ -36,9 +36,9 @@ const Projects: React.FC = () => {
             description: p.description,
             fullDescription: p.full_description,
             image: ensureAbsolutePath(p.image_url),
-            raised: p.raised_amount,
+            raised: 0,
             goal: p.goal_amount,
-            status: p.status,
+            status: 'Em Planejamento' as const,
             beneficiaries: p.beneficiaries_count,
             year: p.year,
             gallery: (p.gallery || []).map(ensureAbsolutePath),
@@ -46,10 +46,7 @@ const Projects: React.FC = () => {
             testimonials: p.impact_data?.testimonials || []
           };
 
-          // Override for the specific project identified by user
-          if (projectData.title === 'Água Limpa para Todos') {
-            projectData.category = ProjectCategory.WATER;
-          }
+
 
           if (projectData.title === 'Escola Viva da Floresta') {
             projectData.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
@@ -68,7 +65,6 @@ const Projects: React.FC = () => {
 
         // List of authorized titles
         const allowedTitles = [
-          'Água Limpa para Todos',
           'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina',
           'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru',
           'Centro Cerimonial de Cultura Huni Kuin do Rio Breu'
@@ -85,7 +81,7 @@ const Projects: React.FC = () => {
           image: '/assets/img/project-huni-kuin.png',
           raised: 0,
           goal: 50000,
-          status: 'Em Planejamento',
+          status: 'Em Planejamento' as const,
           beneficiaries: 0,
           year: 2025,
           gallery: ['/assets/img/project-huni-kuin.png'],
@@ -303,10 +299,11 @@ const Projects: React.FC = () => {
                   <div className={`relative h-60 overflow-hidden ${project.status === 'Concluído' ? 'grayscale group-hover:grayscale-0' : ''} transition-all duration-500`}>
                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500" style={{ backgroundImage: `url("${project.image}")` }}></div>
                     <div className="absolute top-4 right-4">
-                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold ring-1 ring-inset ${project.status === 'Em Andamento' ? 'bg-green-100 text-green-800 ring-green-600/20' :
-                        project.status === 'Quase Lá' ? 'bg-blue-100 text-blue-800 ring-blue-600/20' :
-                          project.status === 'Novo' ? 'bg-green-100 text-green-800 ring-green-600/20' :
-                            'bg-gray-100 text-gray-800 ring-gray-600/20 dark:bg-gray-700 dark:text-gray-300'
+                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold ring-1 ring-inset ${project.status === 'Em Planejamento' ? 'bg-indigo-100 text-indigo-800 ring-indigo-600/20 dark:bg-indigo-900/30 dark:text-indigo-300' :
+                        project.status === 'Em Andamento' ? 'bg-green-100 text-green-800 ring-green-600/20' :
+                          project.status === 'Quase Lá' ? 'bg-blue-100 text-blue-800 ring-blue-600/20' :
+                            project.status === 'Novo' ? 'bg-green-100 text-green-800 ring-green-600/20' :
+                              'bg-gray-100 text-gray-800 ring-gray-600/20 dark:bg-gray-700 dark:text-gray-300'
                         }`}>
                         {project.status}
                       </span>

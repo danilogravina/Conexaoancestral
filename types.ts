@@ -13,7 +13,7 @@ export interface Project {
   image: string;
   raised: number;
   goal: number;
-  status: 'Em Andamento' | 'Quase Lá' | 'Concluído' | 'Novo' | 'Em Planejamento';
+  status: 'Em Planejamento' | 'Em Andamento' | 'Quase Lá' | 'Concluído' | 'Novo';
   beneficiaries?: number;
   year?: number;
   power?: string;
