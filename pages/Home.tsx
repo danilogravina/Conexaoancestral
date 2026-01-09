@@ -202,7 +202,11 @@ const Home: React.FC = () => {
 
       <section id="sobre" className="px-4 relative z-20 -mt-12 mb-12">
         <div className="max-w-5xl mx-auto bg-white dark:bg-[#1a2c20] rounded-2xl shadow-xl border border-stone-100 dark:border-stone-800 p-8 md:p-12 text-center transition-colors duration-500">
-          <span className="material-symbols-outlined text-4xl text-primary mb-4">diversity_2</span>
+          <img
+            src="/assets/img/icons/icone-missao.svg"
+            alt="Ícone Nossa Missão"
+            className="w-20 h-20 md:w-28 md:h-28 object-contain mx-auto mb-6 drop-shadow-sm"
+          />
           <h2 className="text-[#0d1b12] dark:text-white h2-standard mb-6">Nossa Missão</h2>
           <p className="text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
             Empoderar e promover a autonomia dos povos indígenas e comunidades tradicionais, fortalecendo sua autonomia cultural, social, ambiental e econômica.
