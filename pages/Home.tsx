@@ -480,10 +480,7 @@ const Home: React.FC = () => {
             <span className="w-8 h-[2px] bg-primary"></span>
             <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Parceiros</h2>
           </div>
-          <Link to="/transparencia" className="text-xs font-bold uppercase tracking-wider text-stone-400 hover:text-primary transition-colors flex items-center gap-2 group">
-            Relatórios de Governança
-            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-          </Link>
+
         </div>
 
         <div className="max-w-7xl mx-auto px-4 relative">
