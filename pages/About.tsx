@@ -133,9 +133,6 @@ const About: React.FC = () => {
                         <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg font-light mb-8">
                             De um pequeno grupo de amigos a uma organização internacional. Acompanhe nossos passos.
                         </p>
-                        <Link to="/transparencia" className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase tracking-widest text-xs">
-                            Ler relatório completo <span className="material-symbols-outlined">trending_flat</span>
-                        </Link>
                     </div>
 
                     <div className="lg:w-2/3 relative">
@@ -190,6 +187,10 @@ const About: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+
+
+
 
             {/* Nossa Equipe Section */}
             <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

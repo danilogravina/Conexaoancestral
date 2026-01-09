@@ -45,10 +45,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                         <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/projetos') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                     </Link>
 
-                    <Link to="/blog" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/blog') ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
-                        Blog
-                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                    </Link>
+
                 </nav>
 
                 <div className="flex-1 flex justify-end">
@@ -121,7 +118,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                         <Link to="/quem-somos" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/quem-somos') ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>Sobre Nós</Link>
                         <Link to="/projetos" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/projetos') ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>Projetos</Link>
 
-                        <Link to="/blog" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/blog') ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>Blog</Link>
+
                         <div className="border-t border-gray-100 dark:border-white/10 my-2"></div>
                         <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold p-3 hover:bg-primary/10 rounded-lg text-text-main-light dark:text-white transition-colors flex items-center gap-2">
                             <span className="material-symbols-outlined">login</span> Entrar / Minha Conta

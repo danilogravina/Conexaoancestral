@@ -37,19 +37,11 @@ const Footer: React.FC = () => {
                         <ul className="space-y-3">
                             <li><Link to="/quem-somos" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Sobre Nós</Link></li>
                             <li><Link to="/projetos" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Nossos Projetos</Link></li>
-                            <li><Link to="/blog" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Blog & Notícias</Link></li>
+
                             <li><Link to="/contato" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Fale Conosco</Link></li>
                         </ul>
                     </div>
-                    <div>
-                        <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-text-main-light dark:text-white mb-6">Áreas de Atuação</h3>
-                        <ul className="space-y-3">
-                            <li><Link to="/blog?category=Educação" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Educação na Floresta</Link></li>
-                            <li><Link to="/blog?category=Saúde" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Saúde Comunitária</Link></li>
-                            <li><Link to="/blog?category=Sustentabilidade" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Agrofloresta</Link></li>
-                            <li><Link to="/blog?category=Meio Ambiente" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Proteção Ambiental</Link></li>
-                        </ul>
-                    </div>
+
                     <div>
                         <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-text-main-light dark:text-white mb-6">Fale Conosco</h3>
                         <ul className="space-y-4">

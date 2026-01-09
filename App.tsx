@@ -76,8 +76,8 @@ const AppContent: React.FC = () => {
             <Route path="/projetos/:id" element={<ProjectDetails />} />
             <Route path="/quem-somos" element={<About />} />
             {/* <Route path="/transparencia" element={<Transparency />} /> */}
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<Article />} />
+            {/* <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<Article />} /> */}
             <Route path="/contato" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Register />} />

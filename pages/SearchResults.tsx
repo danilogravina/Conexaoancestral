@@ -87,7 +87,7 @@ const SearchResults: React.FC = () => {
         );
     }
 
-    const hasResults = filteredProjects.length > 0 || filteredPosts.length > 0;
+    const hasResults = filteredProjects.length > 0;
 
     return (
         <div className="w-full min-h-screen bg-background-light dark:bg-background-dark pb-20">
@@ -97,7 +97,7 @@ const SearchResults: React.FC = () => {
                         Resultados para: <span className="text-white">"{query}"</span>
                     </h1>
                     <p className="text-lg md:text-xl text-text-secondary-light dark:text-text-secondary-dark font-light">
-                        Encontramos {filteredProjects.length + filteredPosts.length} resultados.
+                        Encontramos {filteredProjects.length} resultados.
                     </p>
                 </div>
             </div>
@@ -145,38 +145,7 @@ const SearchResults: React.FC = () => {
                     </section>
                 )}
 
-                {filteredPosts.length > 0 && (
-                    <section>
-                        <h2 className="text-text-main-light dark:text-white h2-standard mb-8 flex items-center gap-3">
-                            <span className="material-symbols-outlined text-primary text-3xl md:text-5xl">article</span>
-                            Blog & Notícias
-                        </h2>
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                            {filteredPosts.map(post => (
-                                <Link key={post.id} to={`/blog/${post.slug}`} className="group flex flex-col bg-white dark:bg-surface-dark rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                                    <div className="relative h-48 overflow-hidden">
-                                        <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500" />
-                                        <div className="absolute top-4 right-4">
-                                            <span className="bg-white/90 dark:bg-black/80 backdrop-blur-sm text-text-main-light dark:text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">
-                                                {post.category}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="p-6 flex flex-col flex-1">
-                                        <div className="flex items-center gap-2 mb-3 text-xs text-text-secondary-light dark:text-text-secondary-dark">
-                                            <span className="material-symbols-outlined text-sm">calendar_month</span>
-                                            {post.date}
-                                        </div>
-                                        <h3 className="text-xl font-bold text-text-main-light dark:text-white mb-4 leading-tight group-hover:text-primary transition-colors line-clamp-2 tracking-tight">
-                                            {post.title}
-                                        </h3>
-                                        <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark line-clamp-2 font-normal">{post.excerpt}</p>
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
-                    </section>
-                )}
+
 
             </div>
         </div>

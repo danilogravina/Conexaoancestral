@@ -270,36 +270,18 @@ const Dashboard: React.FC = () => {
                         </div>
 
                         {/* Sidebar Widget / News */}
-                        <div className="flex flex-col gap-4">
-                            <h2 className="text-xl font-bold text-text-main-light dark:text-white">Impacto Real</h2>
-                            <div className="bg-white dark:bg-surface-dark rounded-2xl border border-stone-100 dark:border-white/10 shadow-sm overflow-hidden flex flex-col h-full">
-                                <div className="h-48 bg-cover bg-center relative" style={{ backgroundImage: 'url("/assets/img/dashboard-news-planting.jpg")' }}>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
-                                        <span className="bg-primary text-[#0d1b12] text-xs font-bold px-2 py-1 rounded mb-1">Novidade</span>
-                                    </div>
-                                </div>
-                                <div className="p-5 flex flex-col gap-3 flex-1">
-                                    <h4 className="text-lg font-bold text-text-main-light dark:text-white leading-tight">1.000 novas mudas plantadas no último mês</h4>
-                                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark line-clamp-3">Graças ao apoio de doadores como você, conseguimos reflorestar uma área crítica próxima ao Rio Negro. Veja as fotos do progresso.</p>
-                                    <div className="mt-auto pt-2">
-                                        <Link to="/blog" className="w-full block text-center py-2.5 rounded-lg border border-stone-200 hover:bg-background-light dark:border-white/20 dark:hover:bg-white/5 text-text-main-light dark:text-white text-sm font-bold transition-colors">
-                                            Ler história completa
-                                        </Link>
-                                    </div>
-                                </div>
+
+                        <div
+                            className="bg-background-dark dark:bg-black rounded-2xl p-5 flex items-center gap-4 text-white relative overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform active:scale-95"
+                            onClick={handleInvite}
+                        >
+                            <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-primary rounded-full opacity-20 blur-xl"></div>
+                            <div className="bg-white/10 p-3 rounded-full shrink-0 backdrop-blur-sm z-10">
+                                <span className="material-symbols-outlined text-primary">share</span>
                             </div>
-                            <div
-                                className="bg-background-dark dark:bg-black rounded-2xl p-5 flex items-center gap-4 text-white relative overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform active:scale-95"
-                                onClick={handleInvite}
-                            >
-                                <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-primary rounded-full opacity-20 blur-xl"></div>
-                                <div className="bg-white/10 p-3 rounded-full shrink-0 backdrop-blur-sm z-10">
-                                    <span className="material-symbols-outlined text-primary">share</span>
-                                </div>
-                                <div className="z-10">
-                                    <p className="font-bold text-sm">Convide um amigo</p>
-                                    <p className="text-xs text-gray-300 mt-0.5">Aumente nossa rede de proteção.</p>
-                                </div>
+                            <div className="z-10">
+                                <p className="font-bold text-sm">Convide um amigo</p>
+                                <p className="text-xs text-gray-300 mt-0.5">Aumente nossa rede de proteção.</p>
                             </div>
                         </div>
                     </div>

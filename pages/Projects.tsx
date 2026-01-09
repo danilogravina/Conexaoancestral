@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'Todos'>('Todos');
   const [selectedStatus, setSelectedStatus] = useState<'Todos' | 'Ativos' | 'Concluídos'>('Todos');
   const [visibleCount, setVisibleCount] = useState(6);
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
 
   useEffect(() => {
     fetchProjects();
@@ -166,12 +166,7 @@ const Projects: React.FC = () => {
     setVisibleCount(prev => prev + 3);
   };
 
-  const scrollToProjects = () => {
-    const element = document.getElementById('lista-projetos');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+
 
   if (isLoading && projects.length === 0) {
     return (
@@ -215,24 +210,7 @@ const Projects: React.FC = () => {
             <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl font-light">
               Conheça iniciativas que preservam culturas vivas, fortalecem saberes ancestrais e promovem a autonomia dos povos da floresta.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <button
-                onClick={() => {
-                  setSelectedStatus('Ativos');
-                  scrollToProjects();
-                }}
-                className="flex h-12 items-center justify-center rounded-xl bg-primary px-6 text-base font-bold text-white hover:brightness-110 transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5"
-              >
-                Ver Projetos Ativos
-              </button>
-              <button
-                onClick={() => setIsVideoOpen(true)}
-                className="flex h-12 items-center justify-center rounded-xl bg-white/10 px-6 text-base font-bold text-white hover:bg-white/20 backdrop-blur-sm transition-all border border-white/30 hover:-translate-y-0.5"
-              >
-                <span className="material-symbols-outlined mr-2">play_circle</span>
-                Assista ao Vídeo
-              </button>
-            </div>
+
           </div>
         </div>
       </section>
@@ -240,28 +218,7 @@ const Projects: React.FC = () => {
       <div className="w-full flex-1 flex justify-center py-12 md:py-20">
         <div className="flex flex-col max-w-[960px] flex-1 px-4 lg:px-0">
 
-          {/* Video Modal */}
-          {isVideoOpen && (
-            <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-in fade-in duration-200">
-              <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl">
-                <button
-                  onClick={() => setIsVideoOpen(false)}
-                  className="absolute top-4 right-4 z-10 p-2 bg-black/50 text-white rounded-full hover:bg-white hover:text-black transition-colors"
-                >
-                  <span className="material-symbols-outlined">close</span>
-                </button>
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/BfiILjoAT-U?autoplay=1"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-          )}
+
 
 
           <div className="sticky top-24 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur px-4 mb-8">
