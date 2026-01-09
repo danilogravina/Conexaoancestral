@@ -188,7 +188,7 @@ const Home: React.FC = () => {
           <img
             src="/assets/img/icons/logo-hero.svg"
             alt="Logo Conexão Ancestral"
-            className="w-16 md:w-24 mx-auto mb-6 drop-shadow-2xl animate-float"
+            className="w-20 md:w-32 mx-auto mb-6 drop-shadow-2xl animate-float"
           />
           <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
             Conexão Ancestral
@@ -212,7 +212,7 @@ const Home: React.FC = () => {
           <img
             src="/assets/img/icons/icone-missao.svg"
             alt="Ícone Nossa Missão"
-            className="w-16 h-16 md:w-24 md:h-24 object-contain mx-auto mb-6 drop-shadow-sm"
+            className="w-12 h-12 md:w-16 md:h-16 object-contain mx-auto mb-6 drop-shadow-sm"
           />
           <h2 className="text-[#0d1b12] dark:text-white h2-standard mb-6">Nossa Missão</h2>
           <p className="text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
