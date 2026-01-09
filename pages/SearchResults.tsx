@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { blogPosts } from './Blog';
-import { Project, BlogPost, ProjectCategory } from '../types';
+
+import { Project, ProjectCategory } from '../types';
 import { supabase } from '../lib/supabase';
 
 const SearchResults: React.FC = () => {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('q') || '';
     const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
-    const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -51,14 +50,8 @@ const SearchResults: React.FC = () => {
                     p.category.toLowerCase().includes(lowerQuery)
                 );
 
-                const posts = blogPosts.filter(p =>
-                    p.title.toLowerCase().includes(lowerQuery) ||
-                    p.excerpt.toLowerCase().includes(lowerQuery) ||
-                    p.category.toLowerCase().includes(lowerQuery)
-                );
 
                 setFilteredProjects(projects);
-                setFilteredPosts(posts);
             } catch (error) {
                 console.error('Erro na busca:', error);
             } finally {

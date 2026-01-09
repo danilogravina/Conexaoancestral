@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
                             <Logo />
                         </Link>
                         <p className="text-sm leading-relaxed text-text-secondary-light dark:text-text-secondary-dark pr-4 font-normal">
-                            Nossa missão é proteger a biodiversidade amazônica e fortalecer as comunidades tradicionais através de saúde, educação e desenvolvimento sustentável.
+                            Empoderar e promover a autonomia dos povos e comunidades tradicionais, fomentando o desenvolvimento social, econômico e ambiental de forma integrada e contínua, respeitando e fortalecendo os modos de vida tradicionais.
                         </p>
                         <div className="flex gap-3">
                             <a href="https://instagram.com/conexaoancestral" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-primary hover:text-primary dark:hover:border-primary dark:text-gray-400 transition-all duration-300" aria-label="Instagram">
