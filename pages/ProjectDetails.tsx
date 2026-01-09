@@ -99,9 +99,14 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
         };
 
         // Override for the specific project identified by user
+        if (mappedProject.title === 'Água Limpa para Todos') {
+          mappedProject.category = ProjectCategory.WATER;
+        }
+
         if (mappedProject.title === 'Escola Viva da Floresta') {
           mappedProject.title = 'Sistema Sustentável de Captação e Distribuição de Água na T.I. Campinas/Katukina';
           mappedProject.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
+          mappedProject.category = ProjectCategory.WATER;
           mappedProject.fullDescription = `Este projeto nasce do movimento de fortalecimento cultural e territorial do povo Katukina, cujo nome significa “povo verdadeiro”. Ao longo dos anos, as aldeias localizadas às margens da BR-364, que atravessa a Terra Indígena Campinas/Katukina, passaram a enfrentar pressões crescentes sobre seus territórios, seus recursos naturais e seu modo de vida tradicional, gerando impactos ambientais, riscos à saúde e desafios à preservação cultural.
 
 Diante desse cenário, cerca de 12 famílias Katukina decidiram criar uma nova aldeia em uma área mais preservada do território, distante da rodovia, reafirmando seu compromisso com a floresta, com os saberes ancestrais e com uma vida em harmonia com a natureza. Esse deslocamento representa um gesto de resistência cultural, autonomia e fortalecimento da identidade indígena.
@@ -124,6 +129,7 @@ Mais do que uma solução de infraestrutura, o projeto representa um investiment
         if (mappedProject.title === 'Agrofloresta Comunitária') {
           mappedProject.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru';
           mappedProject.description = 'O Centro Yuvanapanamaritiru é um santuário para a medicina tradicional, fortalecendo a cultura e a autonomia do povo Shawãdawa (Arara).';
+          mappedProject.category = ProjectCategory.CULTURE;
           mappedProject.fullDescription = `O Centro Yuvanapanamaritiru é a concretização do sonho de resistência e fortalecimento cultural do povo Shawãdawa (Arara), no Alto Rio Juruá, Acre. Após séculos de luta, a comunidade de 1.600 indígenas busca preservar seu conhecimento ancestral. O Centro, que significa 'Cura, Cultura e Formação dos Guardiões', é um santuário para a medicina tradicional e sua transmissão. Estruturado com Kupixawa, Pousada, Casa de Cura e Banhos Curativos, o projeto também foca na sustentabilidade: poço artesiano, viveiro de plantas medicinais e cultivo orgânico, gerando renda e autonomia para o povo Shawãdawa.`;
           mappedProject.objectives = [
             'Construção do Kupixawa e Pousada de cura',

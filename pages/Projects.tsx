@@ -47,14 +47,20 @@ const Projects: React.FC = () => {
           };
 
           // Override for the specific project identified by user
+          if (projectData.title === 'Água Limpa para Todos') {
+            projectData.category = ProjectCategory.WATER;
+          }
+
           if (projectData.title === 'Escola Viva da Floresta') {
             projectData.title = 'Sistema Sustentável de Captação e Distribuição de Água na T.I. Campinas/Katukina';
             projectData.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
+            projectData.category = ProjectCategory.WATER;
           }
 
           if (projectData.title === 'Agrofloresta Comunitária') {
             projectData.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru';
-            projectData.description = 'Projeto de fortalecimento cultural e espiritual do povo Shawãdawa, por meio da criação do Centro Yuvanapanamaritiru, dedicado à cura tradicional, à transmissão de saberes ancestrais e à formação de guardiões da cultura.';
+            projectData.description = 'O Centro Yuvanapanamaritiru é um santuário para a medicina tradicional, fortalecendo a cultura e a autonomia do povo Shawãdawa (Arara).';
+            projectData.category = ProjectCategory.CULTURE;
           }
 
           return projectData;

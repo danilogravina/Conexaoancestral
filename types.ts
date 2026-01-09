@@ -27,7 +27,8 @@ export enum ProjectCategory {
   EDUCATION = 'Educação',
   HEALTH = 'Saúde',
   SUSTAINABILITY = 'Sustentabilidade',
-  CULTURE = 'Cultura'
+  CULTURE = 'Cultura',
+  WATER = 'Segurança Hídrica'
 }
 
 export interface NavItem {
