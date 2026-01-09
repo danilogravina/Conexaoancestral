@@ -77,12 +77,7 @@ const About: React.FC = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center gap-6 p-6 rounded-2xl bg-primary/5 border border-primary/10 transition-all hover:bg-primary/10">
-                            <div className="text-4xl font-black text-primary">8+</div>
-                            <div className="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark leading-snug">
-                                Anos dedicados à proteção da biodiversidade e dos povos originários.
-                            </div>
-                        </div>
+
                     </div>
 
                     {/* Image Collage Side */}
