@@ -180,7 +180,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <section className="relative h-[80vh] min-h-[600px] overflow-hidden flex items-center justify-center bg-background-dark">
+      <section className="relative h-screen min-h-[600px] overflow-hidden flex flex-col bg-background-dark">
         {/* Layer 1: Video Background (Only if enabled) */}
         {VIDEO_HERO_ENABLED && (
           <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-1">
@@ -193,31 +193,33 @@ const Home: React.FC = () => {
           </div>
         )}
 
-        {/* Content Layer - Perfectly Centered */}
-        <div className="max-w-4xl px-4 text-center z-10 relative">
-          <img
-            src="/assets/img/icons/logo-hero.svg"
-            alt="Logo Conexão Ancestral"
-            className="w-20 md:w-32 mx-auto mb-6 drop-shadow-2xl animate-float"
-          />
-          <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
-            Conexão Ancestral
-          </h1>
-          <h2 className="text-white text-2xl md:text-4xl font-light leading-tight max-w-3xl mx-auto drop-shadow-md mb-12">
-            Tecendo o Futuro com os Povos da Floresta
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/projetos" className="h-14 px-10 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
-              Fazer Doação
-            </Link>
-            <Link to="/contato" className="h-14 px-10 rounded-full bg-primary hover:bg-primary-dark text-white font-black transition-all shadow-xl shadow-primary/20 flex items-center justify-center">
-              Junte-se à Conexão
-            </Link>
+        {/* Header Spacer - Ensures centering happens below the header */}
+        <div className="h-28 md:h-36 flex-shrink-0" aria-hidden="true"></div>
+
+        {/* Content Layer - Centered in the remaining space */}
+        <div className="flex-grow flex items-center justify-center z-10 relative px-4 text-center">
+          <div className="max-w-4xl w-full">
+            <img
+              src="/assets/img/icons/logo-hero.svg"
+              alt="Logo Conexão Ancestral"
+              className="w-20 md:w-32 mx-auto mb-6 drop-shadow-2xl animate-float"
+            />
+            <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
+              Conexão Ancestral
+            </h1>
+            <h2 className="text-white text-2xl md:text-4xl font-light leading-tight max-w-3xl mx-auto drop-shadow-md mb-12">
+              Tecendo o Futuro com os Povos da Floresta
+            </h2>
+            <div className="flex justify-center">
+              <Link to="/projetos" className="h-14 px-12 rounded-full bg-primary hover:bg-primary-dark text-white font-black transition-all shadow-xl shadow-primary/20 flex items-center justify-center">
+                Fazer Doação
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="sobre" className="px-4 relative z-20 -mt-12 mb-12">
+      <section id="sobre" className="px-4 relative z-20 py-20 bg-white dark:bg-background-dark">
         <div className="max-w-4xl mx-auto bg-white dark:bg-[#1a2c20] rounded-2xl shadow-xl border border-stone-100 dark:border-stone-800 p-8 md:p-12 text-center transition-colors duration-500">
           <img
             src="/assets/img/icons/icone-missao.svg"

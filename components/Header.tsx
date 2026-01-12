@@ -9,8 +9,19 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isScrolled, setIsScrolled] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+
+    const isHomePage = location.pathname === '/';
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const isActive = (path: string) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
 
@@ -22,11 +33,17 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
         }
     };
 
+    const headerBgClass = isHomePage
+        ? (isScrolled ? 'bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md shadow-sm' : 'bg-transparent')
+        : 'bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md shadow-sm';
+
+    const headerTextClass = isHomePage && !isScrolled ? 'text-white' : 'text-text-secondary-light dark:text-text-secondary-dark';
+
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-[#e7f3eb] dark:border-[#1e3a29] bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md shadow-sm transition-all duration-300">
-            <div className="mx-auto flex h-24 md:h-28 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <header className={`${isHomePage ? 'fixed' : 'sticky'} top-0 z-50 w-full transition-all duration-700 ease-in-out ${isHomePage && !isScrolled ? 'pt-4 px-4' : ''} ${headerBgClass}`}>
+            <div className={`mx-auto flex h-24 md:h-28 max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12 transition-all duration-700 ease-in-out ${isHomePage && !isScrolled ? 'bg-primary/25 backdrop-blur-md rounded-[32px] border border-white/15 shadow-2xl' : ''}`}>
                 {/* 1. Logo Section */}
-                <div className="flex-shrink-0">
+                <div className="flex-1 flex justify-start">
                     <Link
                         to="/"
                         className="block scale-90 md:scale-100 transition-transform"
@@ -37,75 +54,72 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                             }
                         }}
                     >
-                        <Logo />
+                        <Logo forceWhite={isHomePage && !isScrolled} />
                     </Link>
                 </div>
 
-                {/* 2. Unified Right Section (Nav + Actions) */}
-                <div className="flex items-center gap-6 lg:gap-10">
-                    {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-8">
-                        <Link to="/" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/') && location.pathname === '/' ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
-                            Início
-                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/') && location.pathname === '/' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                        </Link>
-                        <Link to="/quem-somos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/quem-somos') ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
-                            Sobre Nós
-                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/quem-somos') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                        </Link>
-                        <Link to="/projetos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/projetos') ? 'text-donate-red' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary'}`}>
-                            Projetos
-                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/projetos') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                        </Link>
-                    </nav>
+                {/* 2. Desktop Navigation (Centered) */}
+                <nav className="hidden lg:flex items-center justify-center gap-8 flex-1">
+                    <Link to="/" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/') && location.pathname === '/' ? (isHomePage && !isScrolled ? 'text-white' : 'text-donate-red') : (isHomePage && !isScrolled ? 'text-white/90 hover:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary')}`}>
+                        Início
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${(isActive('/') && location.pathname === '/') ? 'w-full' : 'w-0 group-hover:w-full'} ${isHomePage && !isScrolled && 'bg-white'}`}></span>
+                    </Link>
+                    <Link to="/quem-somos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/quem-somos') ? 'text-donate-red' : (isHomePage && !isScrolled ? 'text-white/90 hover:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary')}`}>
+                        Sobre Nós
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/quem-somos') ? 'w-full' : 'w-0 group-hover:w-full'} ${isHomePage && !isScrolled && isActive('/quem-somos') && 'bg-white'}`}></span>
+                    </Link>
+                    <Link to="/projetos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/projetos') ? 'text-donate-red' : (isHomePage && !isScrolled ? 'text-white/90 hover:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary')}`}>
+                        Projetos
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/projetos') ? 'w-full' : 'w-0 group-hover:w-full'} ${isHomePage && !isScrolled && isActive('/projetos') && 'bg-white'}`}></span>
+                    </Link>
+                </nav>
 
-                    {/* Actions Group (Search, Icons, CTA, Mobile Toggle) */}
-                    <div className="flex items-center gap-3 sm:gap-6">
-                        {/* Desktop Search Bar */}
-                        <div className="hidden lg:block relative group">
-                            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 group-focus-within:text-primary transition-colors text-xl">search</span>
-                            <input
-                                type="text"
-                                placeholder="Buscar..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                onKeyDown={handleSearch}
-                                className="w-28 xl:w-40 pl-10 pr-4 py-2.5 rounded-full bg-stone-50 dark:bg-white/5 border border-transparent focus:bg-white dark:focus:bg-black/20 border-gray-200 dark:border-white/10 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-sm font-medium placeholder-gray-500 text-text-main-light dark:text-white"
-                            />
-                        </div>
-
-                        {/* Theme Toggle */}
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2.5 rounded-full hover:bg-stone-50 dark:hover:bg-white/10 text-text-main-light dark:text-text-main-dark transition-colors"
-                            aria-label="Alternar Tema"
-                        >
-                            <span className="material-symbols-outlined dark:hidden text-[22px]">dark_mode</span>
-                            <span className="material-symbols-outlined hidden dark:block text-[22px]">light_mode</span>
-                        </button>
-
-                        {/* Login Link */}
-                        <Link
-                            to="/login"
-                            className="p-2.5 rounded-full hover:bg-stone-50 dark:hover:bg-white/10 text-text-main-light dark:text-text-main-dark transition-colors"
-                            aria-label="Minha Conta"
-                        >
-                            <span className="material-symbols-outlined text-[26px]">person</span>
-                        </Link>
-
-                        {/* CTA Button */}
-                        <Link to="/projetos" className="hidden sm:flex h-11 items-center justify-center rounded-xl bg-donate-red px-6 xl:px-8 text-sm font-extrabold text-white shadow-lg shadow-donate-red/25 hover:bg-red-600 hover:-translate-y-0.5 hover:shadow-donate-red/40 transition-all duration-200 whitespace-nowrap">
-                            Doar Agora
-                        </Link>
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            className="lg:hidden p-2 text-text-main-light dark:text-white hover:bg-stone-50 dark:hover:bg-white/10 rounded-xl transition-colors"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        >
-                            <span className="material-symbols-outlined text-3xl">{isMenuOpen ? 'close' : 'menu'}</span>
-                        </button>
+                {/* 3. Actions Group (Right Aligned) */}
+                <div className="flex items-center justify-end gap-3 sm:gap-6 flex-1">
+                    {/* Desktop Search Bar */}
+                    <div className="hidden lg:block relative group">
+                        <span className={`material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 transition-colors text-xl ${isHomePage && !isScrolled ? 'text-white/70 group-focus-within:text-white' : 'text-gray-500 dark:text-gray-400 group-focus-within:text-primary'}`}>search</span>
+                        <input
+                            type="text"
+                            placeholder="Buscar..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyDown={handleSearch}
+                            className={`w-28 xl:w-40 pl-10 pr-4 py-2.5 rounded-full border border-transparent outline-none transition-all text-sm font-medium placeholder-gray-500 ${isHomePage && !isScrolled ? 'bg-white/10 border-white/20 focus:bg-white/20 focus:border-white/40 text-white placeholder-white/50' : 'bg-stone-50 dark:bg-white/5 border-gray-200 dark:border-white/10 focus:bg-white dark:focus:bg-black/20 focus:border-primary focus:ring-4 focus:ring-primary/10 text-text-main-light dark:text-white'}`}
+                        />
                     </div>
+
+                    {/* Theme Toggle */}
+                    <button
+                        onClick={toggleTheme}
+                        className={`p-2.5 rounded-full hover:bg-stone-50 dark:hover:bg-white/10 transition-colors ${isHomePage && !isScrolled ? 'text-white hover:bg-white/10' : 'text-text-main-light dark:text-text-main-dark'}`}
+                        aria-label="Alternar Tema"
+                    >
+                        <span className="material-symbols-outlined dark:hidden text-[22px]">dark_mode</span>
+                        <span className="material-symbols-outlined hidden dark:block text-[22px]">light_mode</span>
+                    </button>
+
+                    {/* Login Link */}
+                    <Link
+                        to="/login"
+                        className={`p-2.5 rounded-full hover:bg-stone-50 dark:hover:bg-white/10 transition-colors ${isHomePage && !isScrolled ? 'text-white hover:bg-white/10' : 'text-text-main-light dark:text-text-main-dark'}`}
+                        aria-label="Minha Conta"
+                    >
+                        <span className="material-symbols-outlined text-[26px]">person</span>
+                    </Link>
+
+                    {/* CTA Button */}
+                    <Link to="/projetos" className="hidden sm:flex h-11 items-center justify-center rounded-xl bg-donate-red px-6 xl:px-8 text-sm font-extrabold text-white shadow-lg shadow-donate-red/25 hover:bg-red-600 hover:-translate-y-0.5 hover:shadow-donate-red/40 transition-all duration-200 whitespace-nowrap">
+                        Doar Agora
+                    </Link>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className={`lg:hidden p-2 rounded-xl transition-colors ${isHomePage && !isScrolled ? 'text-white hover:bg-white/10' : 'text-text-main-light dark:text-white hover:bg-stone-50 dark:hover:bg-white/10'}`}
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        <span className="material-symbols-outlined text-3xl">{isMenuOpen ? 'close' : 'menu'}</span>
+                    </button>
                 </div>
             </div>
 
