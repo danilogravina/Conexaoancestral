@@ -71,7 +71,7 @@ insert into projects (title, category, description, full_description, image_url,
 
 -- 3. Inserir Pilares de Impacto (Substituindo estatísticas numéricas)
 insert into impact_stats (label, value, description, icon, suffix) values
-('Cultura', 'Saberes Ancestrais', 'Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.', 'diversity_2', ''),
+('Cultura', 'Saberes Ancestrais', 'Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.', '/assets/img/icons/icone-saberes-ancestrais.svg', ''),
 ('Território', 'Autonomia e Proteção', 'Defendemos os direitos territoriais e a autogestão dos povos tradicionais.', 'forest', ''),
 ('Futuro', 'Sustentabilidade Viva', 'Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.', 'eco', '')
 on conflict (label) do update set value = excluded.value, description = excluded.description;
