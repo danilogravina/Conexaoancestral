@@ -68,7 +68,15 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center">
         <div className="mb-4 p-3 bg-white/10 rounded-2xl backdrop-blur-md group-hover:scale-110 transition-transform duration-300">
-          <span className="material-symbols-outlined text-4xl text-white">{icon}</span>
+          {icon.includes('/') || icon.includes('.') ? (
+            <img
+              src={icon}
+              alt={label}
+              className="w-9 h-9 object-contain brightness-0 invert"
+            />
+          ) : (
+            <span className="material-symbols-outlined text-4xl text-white">{icon}</span>
+          )}
         </div>
         <p className="text-white/80 text-sm font-bold uppercase tracking-[0.2em] mb-1">{label}</p>
         <p className="text-white text-2xl md:text-2xl lg:text-3xl font-black tracking-tight text-center px-4 leading-tight mb-2">
@@ -91,7 +99,7 @@ const VIDEO_HERO_ENABLED = true;
 const VIDEO_ID = "iy8wWnhyN78";
 
 const HOME_STATS = [
-  { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "diversity_2" },
+  { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "/assets/img/icons/icone-saberes-ancestrais.svg" },
   { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
   { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
 ];
