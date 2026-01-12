@@ -19,6 +19,7 @@ interface UserData {
         city: string;
         state: string;
     };
+    role: string;
     stats: {
         totalDonated: number;
         projectsSupported: number;
@@ -90,6 +91,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     fullName: profile.full_name || 'Usuário',
                     email: email,
                     avatar: profile.avatar_url || '/assets/img/user-avatar-default.jpg',
+                    role: profile.role || 'user',
                     since: new Date(profile.created_at || Date.now()).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long' }),
                     cpf: profile.cpf || '',
                     phone: profile.phone || '',

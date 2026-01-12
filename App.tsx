@@ -19,8 +19,15 @@ const Transparency = lazy(() => import('./pages/Transparency'));
 const About = lazy(() => import('./pages/About'));
 const SearchResults = lazy(() => import('./pages/SearchResults'));
 
+// Admin Pages
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const AdminProjectsList = lazy(() => import('./pages/admin/AdminProjectsList'));
+const AdminProjectForm = lazy(() => import('./pages/admin/AdminProjectForm'));
+
 import Header from './components/Header';
 import Footer from './components/Footer';
+import AdminRoute from './components/AdminRoute';
 
 const ScrollToTop = () => {
   const { pathname, hash, search } = useLocation();
@@ -42,6 +49,8 @@ const ScrollToTop = () => {
 };
 
 const AppContent: React.FC = () => {
+  const location = useLocation();
+
   useEffect(() => {
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
@@ -60,10 +69,12 @@ const AppContent: React.FC = () => {
     }
   };
 
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <div className="flex flex-col min-h-screen font-display">
       <ScrollToTop />
-      <Header toggleTheme={toggleTheme} />
+      {!isAdminRoute && <Header toggleTheme={toggleTheme} />}
       <main className="flex-grow flex flex-col">
         <Suspense fallback={
           <div className="flex-grow flex items-center justify-center min-h-[50vh]">
@@ -86,11 +97,22 @@ const AppContent: React.FC = () => {
             <Route path="/minha-conta/doacoes" element={<UserDonations />} />
             <Route path="/minha-conta/configuracoes" element={<Settings />} />
             <Route path="/busca" element={<SearchResults />} />
+
+            {/* Admin Routes */}
+            <Route element={<AdminRoute />}>
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="projects" element={<AdminProjectsList />} />
+                <Route path="projects/new" element={<AdminProjectForm />} />
+                <Route path="projects/:id" element={<AdminProjectForm />} />
+              </Route>
+            </Route>
+
             <Route path="*" element={<Home />} />
           </Routes>
         </Suspense>
       </main>
-      <Footer />
+      {!isAdminRoute && <Footer />}
     </div>
   );
 }
