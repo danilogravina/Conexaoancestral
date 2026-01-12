@@ -44,7 +44,7 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
   }, [value, delay, label]);
 
   return (
-    <div id={`stat-card-${label.replace(/\s+/g, '-')}`} className="group relative flex flex-col items-center gap-2 rounded-3xl p-8 bg-primary shadow-2xl shadow-primary/30 border border-white/10 hover:scale-[1.03] transition-all duration-500 overflow-hidden cursor-default min-h-[220px] justify-center">
+    <div id={`stat-card-${label.replace(/\s+/g, '-')}`} className="group relative flex flex-col items-center rounded-3xl p-8 bg-primary shadow-2xl shadow-primary/30 border border-white/10 hover:scale-[1.03] transition-all duration-500 overflow-hidden cursor-default min-h-[220px] justify-center">
       {/* Background Graphic (Animated Line) */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 200 100" preserveAspectRatio="none">
@@ -67,7 +67,7 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center">
-        <div className="mb-4 p-3 bg-white/10 rounded-2xl backdrop-blur-md group-hover:scale-110 transition-transform duration-300">
+        <div className="mb-6 p-3 bg-white/10 rounded-2xl backdrop-blur-md group-hover:scale-110 transition-transform duration-300">
           {icon.includes('/') || icon.includes('.') ? (
             <img
               src={icon}
@@ -78,8 +78,8 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
             <span className="material-symbols-outlined text-4xl text-white">{icon}</span>
           )}
         </div>
-        <p className="text-white/80 text-sm font-bold uppercase tracking-[0.2em] mb-1">{label}</p>
-        <p className="text-white text-2xl md:text-2xl lg:text-3xl font-black tracking-tight text-center px-4 leading-tight mb-2">
+        <p className="text-white/80 text-sm font-bold uppercase tracking-[0.2em] mb-2">{label}</p>
+        <p className="text-white text-2xl md:text-2xl lg:text-3xl font-black tracking-tight text-center px-4 leading-tight mb-4">
           {typeof count === 'number' ? count.toLocaleString('pt-BR') : count}{suffix}
         </p>
         {description && (
@@ -207,8 +207,8 @@ const Home: React.FC = () => {
             <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
               Conexão Ancestral
             </h1>
-            <h2 className="text-white text-2xl md:text-4xl font-light leading-tight max-w-3xl mx-auto drop-shadow-md mb-12">
-              Tecendo o Futuro com os Povos da Floresta
+            <h2 className="text-white text-lg md:text-2xl font-extralight leading-relaxed max-w-4xl mx-auto drop-shadow-md mb-12">
+              Tecendo o futuro com os povos da floresta ao proteger seus territórios, fortalecer sua cultura e valorizar o conhecimento que equilibra o planeta.
             </h2>
             <div className="flex justify-center">
               <Link to="/projetos" className="h-14 px-12 rounded-full bg-primary hover:bg-primary-dark text-white font-black transition-all shadow-xl shadow-primary/20 flex items-center justify-center">
@@ -219,8 +219,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section id="sobre" className="px-4 relative z-20 py-20 bg-white dark:bg-background-dark">
-        <div className="max-w-4xl mx-auto bg-white dark:bg-[#1a2c20] rounded-2xl shadow-xl border border-stone-100 dark:border-stone-800 p-8 md:p-12 text-center transition-colors duration-500">
+      <section id="sobre" className="px-4 relative z-20 pt-20 pb-10 bg-background-light dark:bg-background-dark">
+        <div className="max-w-4xl mx-auto text-center">
           <img
             src="/assets/img/icons/icone-missao.svg"
             alt="Ícone Nossa Missão"
@@ -233,7 +233,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className="px-4 py-20 md:py-24 bg-background-light dark:bg-background-dark overflow-hidden">
+      <section className="px-4 pt-10 pb-20 md:pb-24 bg-background-light dark:bg-background-dark overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {HOME_STATS.map((stat, idx) => (
@@ -442,7 +442,7 @@ const Home: React.FC = () => {
                 {
                   title: "Saberes Ancestrais",
                   description: "Valorizamos o conhecimento tradicional como patrimônio vivo, essencial para a preservação da floresta, da cultura e do equilíbrio entre humanidade e natureza.",
-                  icon: "balance"
+                  icon: "/assets/img/icons/icone-saberes.svg"
                 },
                 {
                   title: "Cuidado com a Vida e a Floresta",
