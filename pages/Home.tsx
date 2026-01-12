@@ -260,7 +260,7 @@ const Home: React.FC = () => {
               Nossas Raízes
             </div>
             <h2 className="text-[#0d1b12] dark:text-white h2-standard">
-              Uma História de Resiliência e Conexão
+              Uma História de Resiliência e Conexãooo
             </h2>
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
               Nossas raízes nascem do encontro com a floresta e com os povos que a protegem há milênios. Elas brotam da escuta atenta, do respeito profundo e da convivência verdadeira com os povos indígenas, guardiões de saberes ancestrais que sustentam a vida em equilíbrio com a terra.
