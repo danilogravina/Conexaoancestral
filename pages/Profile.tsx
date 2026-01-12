@@ -48,10 +48,42 @@ const Profile: React.FC = () => {
         }
     }, [user]);
 
-    if (isAuthLoading || !user) {
+    if (isAuthLoading) {
         return (
             <div className="flex-1 flex items-center justify-center bg-background-light dark:bg-background-dark py-20">
                 <span className="material-symbols-outlined animate-spin text-4xl text-primary">sync</span>
+            </div>
+        );
+    }
+
+    if (!user) {
+        return (
+            <div className="flex-1 flex items-center justify-center bg-background-light dark:bg-background-dark py-20">
+                <div className="flex flex-col items-center gap-6 max-w-md mx-auto text-center px-6">
+                    <div className="w-20 h-20 bg-red-50 dark:bg-red-900/10 rounded-full flex items-center justify-center">
+                        <span className="material-symbols-outlined text-4xl text-red-500">error</span>
+                    </div>
+                    <div>
+                        <h2 className="text-xl font-bold text-text-main-light dark:text-white mb-2">Erro no Perfil</h2>
+                        <p className="text-text-secondary-light dark:text-gray-400">
+                            Não foi possível carregar suas informações de perfil. Isso pode ocorrer se o cadastro não foi concluído corretamente.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3 w-full">
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="flex-1 px-6 py-3 rounded-lg bg-primary text-[#0d1b12] font-bold hover:bg-primary-dark transition-colors"
+                        >
+                            Tentar Novamente
+                        </button>
+                        <button
+                            onClick={() => supabase.auth.signOut().then(() => navigate('/login'))}
+                            className="flex-1 px-6 py-3 rounded-lg border border-stone-200 dark:border-white/10 text-text-main-light dark:text-white font-bold hover:bg-stone-50 dark:hover:bg-white/5 transition-colors"
+                        >
+                            Sair da Conta
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }
