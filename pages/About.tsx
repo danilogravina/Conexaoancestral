@@ -164,10 +164,10 @@ const About: React.FC = () => {
 
                         <div className="flex flex-col gap-12">
                             {[
-                                { year: '2015', title: 'Fundação', text: 'A ONG nasce após uma expedição ao Rio Xingu, identificando a necessidade de conectar aldeias isoladas.', icon: 'rocket_launch' },
-                                { year: '2018', title: 'Primeira Comunidade Atendida', text: 'Instalação do primeiro ponto de internet via satélite na aldeia Yanomami, permitindo denúncias ambientais em tempo real.', icon: 'home_work' },
-                                { year: '2020', title: 'Expansão Regional', text: 'Chegamos a 5 estados da Amazônia Legal, estabelecendo parcerias com cooperativas locais de açaí e castanha.', icon: 'map' },
-                                { year: '2023', title: 'Parceria Internacional', text: 'Recebimento de apoio financeiro para o projeto "Guardiões Digitais", treinando jovens indígenas em monitoramento territorial.', icon: 'public' },
+                                { title: 'O Chamado da Amazônia', text: 'A jornada começa com uma peregrinação ao Acre para buscar o conhecimento ancestral do povos indígenas.', icon: 'explore' },
+                                { title: 'A Semente do Compromisso', text: 'O laço de amizade com as comunidades transforma a curiosidade em uma vontade genuína de ajudar a superar desafios territoriais e culturais.', icon: 'favorite' },
+                                { title: 'Projetos Concretos e Necessidades Básicas', text: 'Início de ações pontuais em diálogo com lideranças, focadas em áreas como água potável, segurança alimentar, mobilidade fluvial e proteção da cultura.', icon: 'handshake' },
+                                { title: 'Fundação da ONG', text: 'Com o aumento das demandas, o grupo se organiza formalmente como uma ONG para oferecer um apoio estruturado, transparente e servir como amplificador das vozes da floresta.', icon: 'groups' },
                             ].map((event, idx) => (
                                 <div key={idx} className="relative pl-16 group">
                                     <div
@@ -176,7 +176,6 @@ const About: React.FC = () => {
                                     >
                                         <span className="material-symbols-outlined text-primary text-xl font-bold">{event.icon}</span>
                                     </div>
-                                    <div className="text-primary text-xs font-black mb-1 transform transition-all group-hover:translate-x-2">{event.year}</div>
                                     <h3 className="text-lg font-black text-text-main-light dark:text-white mb-2 group-hover:text-primary transition-colors">{event.title}</h3>
                                     <p className="text-text-secondary-light dark:text-text-secondary-dark font-light leading-relaxed group-hover:text-text-main-light dark:group-hover:text-gray-200 transition-colors">
                                         {event.text}

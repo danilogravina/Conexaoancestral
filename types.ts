@@ -21,6 +21,7 @@ export interface Project {
   objectives?: string[];
   gallery?: string[];
   testimonials?: Testimonial[];
+  video_url?: string;
 }
 
 export enum ProjectCategory {

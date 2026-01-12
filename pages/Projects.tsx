@@ -191,10 +191,14 @@ const Projects: React.FC = () => {
           <div className="px-4 pb-20 pt-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {visibleProjects.map((project) => (
-                <article key={project.id} className={`group flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 ${project.status === 'Concluído' ? 'opacity-90 hover:opacity-100' : ''}`}>
+                <Link
+                  to={`/projetos/${project.id}`}
+                  key={project.id}
+                  className={`group flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 ${project.status === 'Concluído' ? 'opacity-90 hover:opacity-100' : ''}`}
+                >
                   <div className={`relative h-60 overflow-hidden ${project.status === 'Concluído' ? 'grayscale group-hover:grayscale-0' : ''} transition-all duration-500`}>
                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500" style={{ backgroundImage: `url("${project.image}")` }}></div>
-                    <div className="absolute top-4 right-4">
+                    <div className="absolute top-4 right-4 text-center">
                       <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold ring-1 ring-inset ${project.status === 'Em Planejamento' ? 'bg-indigo-100 text-indigo-800 ring-indigo-600/20 dark:bg-indigo-900/30 dark:text-indigo-300' :
                         project.status === 'Em Andamento' ? 'bg-green-100 text-green-800 ring-green-600/20' :
                           project.status === 'Quase Lá' ? 'bg-blue-100 text-blue-800 ring-blue-600/20' :
@@ -211,7 +215,7 @@ const Projects: React.FC = () => {
                       <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{project.category}</h4>
                       <h3 className="mt-2 text-xl md:text-2xl font-bold text-text-main-light dark:text-white group-hover:text-primary transition-colors">{project.title}</h3>
                     </div>
-                    <p className="mb-6 flex-1 text-sm leading-relaxed text-text-secondary-light dark:text-text-secondary-dark">
+                    <p className="mb-6 flex-1 text-sm leading-relaxed text-text-secondary-light dark:text-text-secondary-dark line-clamp-2">
                       {project.description}
                     </p>
 
@@ -247,14 +251,14 @@ const Projects: React.FC = () => {
                       </div>
                     )}
 
-                    <Link to={`/projetos/${project.id}`} className={`inline-flex items-center justify-between rounded-lg px-4 py-3 text-sm font-bold transition-colors group/btn ${project.status === 'Concluído' ? 'bg-gray-50 dark:bg-gray-800 text-text-main-light dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' : 'bg-background-light dark:bg-background-dark text-text-main-light dark:text-white hover:bg-emerald-50 dark:hover:bg-emerald-900/20'}`}>
+                    <div className={`inline-flex items-center justify-between rounded-lg px-4 py-3 text-sm font-bold transition-colors group/btn ${project.status === 'Concluído' ? 'bg-gray-50 dark:bg-gray-800 text-text-main-light dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' : 'bg-background-light dark:bg-background-dark text-text-main-light dark:text-white hover:bg-emerald-50 dark:hover:bg-emerald-900/20'}`}>
                       {project.status === 'Concluído' ? 'Ver Relatório' : 'Saiba Mais'}
                       <span className={`material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1 ${project.status === 'Concluído' ? 'icon-description' : 'icon-arrow_forward'}`}>
                         {project.status === 'Concluído' ? 'description' : 'arrow_forward'}
                       </span>
-                    </Link>
+                    </div>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
 

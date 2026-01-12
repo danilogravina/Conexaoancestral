@@ -18,6 +18,7 @@ const Settings = lazy(() => import('./pages/Settings'));
 const Transparency = lazy(() => import('./pages/Transparency'));
 const About = lazy(() => import('./pages/About'));
 const SearchResults = lazy(() => import('./pages/SearchResults'));
+const Maintenance = lazy(() => import('./pages/Maintenance'));
 
 // Admin Pages
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
@@ -28,6 +29,7 @@ const AdminProjectForm = lazy(() => import('./pages/admin/AdminProjectForm'));
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AdminRoute from './components/AdminRoute';
+import MaintenanceGuard from './components/MaintenanceGuard';
 
 const ScrollToTop = () => {
   const { pathname, hash, search } = useLocation();
@@ -70,49 +72,54 @@ const AppContent: React.FC = () => {
   };
 
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const isMaintenanceRoute = location.pathname === '/maintenance';
+  const showHeaderFooter = !isAdminRoute && !isMaintenanceRoute;
 
   return (
     <div className="flex flex-col min-h-screen font-display">
       <ScrollToTop />
-      {!isAdminRoute && <Header toggleTheme={toggleTheme} />}
+      {showHeaderFooter && <Header toggleTheme={toggleTheme} />}
       <main className="flex-grow flex flex-col">
-        <Suspense fallback={
-          <div className="flex-grow flex items-center justify-center min-h-[50vh]">
-            <div className="w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        }>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projetos" element={<Projects />} />
-            <Route path="/projetos/:id" element={<ProjectDetails />} />
-            <Route path="/quem-somos" element={<About />} />
-            {/* <Route path="/transparencia" element={<Transparency />} /> */}
-            {/* <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<Article />} /> */}
-            <Route path="/contato" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/cadastro" element={<Register />} />
-            <Route path="/minha-conta" element={<Dashboard />} />
-            <Route path="/minha-conta/perfil" element={<Profile />} />
-            <Route path="/minha-conta/doacoes" element={<UserDonations />} />
-            <Route path="/minha-conta/configuracoes" element={<Settings />} />
-            <Route path="/busca" element={<SearchResults />} />
+        <MaintenanceGuard>
+          <Suspense fallback={
+            <div className="flex-grow flex items-center justify-center min-h-[50vh]">
+              <div className="w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          }>
+            <Routes>
+              <Route path="/maintenance" element={<Maintenance />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/projetos" element={<Projects />} />
+              <Route path="/projetos/:id" element={<ProjectDetails />} />
+              <Route path="/quem-somos" element={<About />} />
+              {/* <Route path="/transparencia" element={<Transparency />} /> */}
+              {/* <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<Article />} /> */}
+              <Route path="/contato" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/cadastro" element={<Register />} />
+              <Route path="/minha-conta" element={<Dashboard />} />
+              <Route path="/minha-conta/perfil" element={<Profile />} />
+              <Route path="/minha-conta/doacoes" element={<UserDonations />} />
+              <Route path="/minha-conta/configuracoes" element={<Settings />} />
+              <Route path="/busca" element={<SearchResults />} />
 
-            {/* Admin Routes */}
-            <Route element={<AdminRoute />}>
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminDashboard />} />
-                <Route path="projects" element={<AdminProjectsList />} />
-                <Route path="projects/new" element={<AdminProjectForm />} />
-                <Route path="projects/:id" element={<AdminProjectForm />} />
+              {/* Admin Routes */}
+              <Route element={<AdminRoute />}>
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="projects" element={<AdminProjectsList />} />
+                  <Route path="projects/new" element={<AdminProjectForm />} />
+                  <Route path="projects/:id" element={<AdminProjectForm />} />
+                </Route>
               </Route>
-            </Route>
 
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </Suspense>
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </Suspense>
+        </MaintenanceGuard>
       </main>
-      {!isAdminRoute && <Footer />}
+      {showHeaderFooter && <Footer />}
     </div>
   );
 }

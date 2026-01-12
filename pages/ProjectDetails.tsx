@@ -95,7 +95,8 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           beneficiaries: data.beneficiaries_count,
           year: data.year,
           gallery: gallery,
-          objectives: data.impact_data?.objectives || []
+          objectives: data.impact_data?.objectives || [],
+          video_url: data.video_url
         };
         if (mappedProject.title === 'Escola Viva da Floresta') {
           mappedProject.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
@@ -253,7 +254,13 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/S_IqjB4A1jY?autoplay=1"
+              src={project.video_url?.includes('youtube.com/embed')
+                ? project.video_url
+                : project.video_url?.includes('watch?v=')
+                  ? `https://www.youtube.com/embed/${project.video_url.split('v=')[1].split('&')[0]}?autoplay=1`
+                  : project.video_url?.includes('youtu.be/')
+                    ? `https://www.youtube.com/embed/${project.video_url.split('youtu.be/')[1].split('?')[0]}?autoplay=1`
+                    : project.video_url}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -397,18 +404,20 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                   </div>
                 ))}
 
-                <div
-                  className="relative rounded-2xl h-32 w-full overflow-hidden md:col-span-2 group cursor-pointer border-2 border-transparent hover:border-primary/50"
-                  onClick={() => setIsVideoOpen(true)}
-                >
-                  <img alt="Vídeo Thumbnail" className="w-full h-full object-cover transition-transform duration-500" src={videoThumbnail} />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
-                    <span className="text-white font-medium flex items-center gap-2 transform group-hover:scale-110 transition-transform bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
-                      <span className="material-icons-round text-2xl">play_circle</span>
-                      <span className="text-sm">Assistir Vídeo</span>
-                    </span>
+                {project.video_url && (
+                  <div
+                    className="relative rounded-2xl h-32 w-full overflow-hidden md:col-span-2 group cursor-pointer border-2 border-transparent hover:border-primary/50"
+                    onClick={() => setIsVideoOpen(true)}
+                  >
+                    <img alt="Vídeo Thumbnail" className="w-full h-full object-cover transition-transform duration-500" src={activeImage} />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
+                      <span className="text-white font-medium flex items-center gap-2 transform group-hover:scale-110 transition-transform bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
+                        <span className="material-icons-round text-2xl">play_circle</span>
+                        <span className="text-sm">Assistir Vídeo</span>
+                      </span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 

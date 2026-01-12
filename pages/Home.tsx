@@ -49,14 +49,14 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 200 100" preserveAspectRatio="none">
           <path
-            d="M0 80 Q 25 70, 50 80 T 100 80 T 150 80 T 200 80"
+            d="M0 35 Q 25 25, 50 35 T 100 35 T 150 35 T 200 35 T 250 35 T 300 35"
             fill="none"
             stroke="white"
             strokeWidth="2"
             className="animate-wave"
           />
           <path
-            d="M0 60 Q 25 50, 50 60 T 100 60 T 150 60 T 200 60"
+            d="M0 20 Q 25 10, 50 20 T 100 20 T 150 20 T 200 20 T 250 20 T 300 20"
             fill="none"
             stroke="white"
             strokeWidth="1"
@@ -100,8 +100,8 @@ const VIDEO_ID = "iy8wWnhyN78";
 
 const HOME_STATS = [
   { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "/assets/img/icons/icone-saberes-ancestrais.svg" },
-  { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "forest" },
-  { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "eco" }
+  { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "/assets/img/icons/icone-autonomia-protecao.svg" },
+  { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "/assets/img/icons/icone-sustentabilidade-viva.svg" }
 ];
 
 const PARTNERS = [
@@ -119,8 +119,12 @@ const Home: React.FC = () => {
     const style = document.createElement('style');
     style.innerHTML = `
       @keyframes wave {
-        0% { transform: translateX(-50px); }
+        0% { transform: translateX(-100px); }
         100% { transform: translateX(0); }
+      }
+      @keyframes wave-reverse {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100px); }
       }
       @keyframes float {
         0%, 100% { transform: translateY(0); }
@@ -135,12 +139,10 @@ const Home: React.FC = () => {
         50% { transform: translateY(-18px); }
       }
       .animate-wave {
-        animation: wave 3s linear infinite;
-        stroke-dasharray: 200;
-        stroke-dashoffset: 0;
+        animation: wave 4s linear infinite;
       }
       .animate-wave-slow {
-        animation: wave 5s linear infinite reverse;
+        animation: wave-reverse 7s linear infinite;
       }
       .animate-float {
         animation: float 4s ease-in-out infinite;
@@ -313,21 +315,21 @@ const Home: React.FC = () => {
                 title: "Segurança Hídrica e Infraestrutura Sustentável",
                 desc: "Implantação de soluções de acesso à água potável e infraestrutura básica com uso de tecnologias sustentáveis, fortalecendo a saúde, a autonomia e o bem viver das comunidades indígenas.",
                 impact: "Comunidades com acesso seguro e contínuo à água potável, promovendo melhorias significativas na saúde, na autonomia e na qualidade de vida.",
-                icon: "handshake",
+                icon: "/assets/img/icons/icone-Seguranca-hidrica.svg",
                 delay: "0s"
               },
               {
                 title: "Valorização Cultural e Saberes Ancestrais",
                 desc: "Fortalecimento das culturas indígenas por meio da preservação das línguas, das práticas espirituais, das artes tradicionais e da transmissão dos conhecimentos ancestrais às novas gerações.",
                 impact: "Fortalecimento e continuidade das línguas, práticas culturais e saberes ancestrais, assegurando sua transmissão às futuras gerações.",
-                icon: "history_edu",
+                icon: "/assets/img/icons/icone-valorizacao-cultural.svg",
                 delay: "0.2s"
               },
               {
                 title: "Autonomia Comunitária e Sustentabilidade",
                 desc: "Promoção de iniciativas que geram autonomia econômica e ambiental, integrando práticas tradicionais, cuidado com o território e desenvolvimento sustentável conduzido pelas próprias comunidades indígenas.",
                 impact: "Comunidades mais autônomas econômica e ambientalmente, com iniciativas sustentáveis conduzidas e geridas pelas próprias lideranças comunitárias.",
-                icon: "forest",
+                icon: "/assets/img/icons/icone-autonomia-comunitaria.svg",
                 delay: "0.4s"
               }
             ].map((item, idx) => (
@@ -349,8 +351,24 @@ const Home: React.FC = () => {
                 {/* Glow on hover */}
                 <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/10 blur-[60px] rounded-full group-hover:bg-white/20 transition-all duration-500"></div>
 
-                <div className="relative z-10 w-20 h-20 rounded-3xl bg-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-primary transition-all duration-500 shadow-xl">
-                  <span className="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                <div className="relative z-10 w-24 h-24 rounded-3xl bg-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-primary transition-all duration-500 shadow-xl overflow-hidden">
+                  {item.icon.includes('/') || item.icon.includes('.') ? (
+                    <div
+                      className="w-14 h-14 bg-current transition-all duration-500"
+                      style={{
+                        maskImage: `url(${item.icon})`,
+                        WebkitMaskImage: `url(${item.icon})`,
+                        maskSize: 'contain',
+                        WebkitMaskSize: 'contain',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskPosition: 'center',
+                        WebkitMaskPosition: 'center'
+                      }}
+                    />
+                  ) : (
+                    <span className="material-symbols-outlined text-5xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                  )}
                 </div>
 
                 <div className="relative z-10 space-y-4 text-center">
@@ -417,7 +435,7 @@ const Home: React.FC = () => {
                 {
                   title: "Protagonismo Indígena",
                   description: "Reconhecemos e fortalecemos o direito dos povos indígenas de decidir sobre seus territórios, modos de vida e futuros, atuando sempre em diálogo e respeito às suas lideranças.",
-                  icon: "history"
+                  icon: "/assets/img/icons/icone-protagonismo-indigena.svg"
                 },
                 {
                   title: "Saberes Ancestrais",
@@ -431,10 +449,26 @@ const Home: React.FC = () => {
                 }
               ].map((value, index) => (
                 <div key={index} className="flex gap-6 group">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white dark:bg-surface-dark border border-stone-100 dark:border-white/5 shadow-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <span className="material-symbols-outlined text-3xl">
-                      {value.icon}
-                    </span>
+                  <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white dark:bg-surface-dark border border-stone-100 dark:border-white/5 shadow-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 overflow-hidden">
+                    {value.icon.includes('/') || value.icon.includes('.') ? (
+                      <div
+                        className="w-10 h-10 bg-current transition-all duration-300"
+                        style={{
+                          maskImage: `url(${value.icon})`,
+                          WebkitMaskImage: `url(${value.icon})`,
+                          maskSize: 'contain',
+                          WebkitMaskSize: 'contain',
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskPosition: 'center',
+                          WebkitMaskPosition: 'center'
+                        }}
+                      />
+                    ) : (
+                      <span className="material-symbols-outlined text-4xl">
+                        {value.icon}
+                      </span>
+                    )}
                   </div>
                   <div className="flex flex-col gap-2">
                     <h3 className="text-xl md:text-2xl font-bold text-[#0d1b12] dark:text-white group-hover:text-primary transition-colors">

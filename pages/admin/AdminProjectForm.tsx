@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { ProjectCategory, Testimonial } from '../../types';
+import ImageUpload from '../../components/ImageUpload';
 
 interface ProjectFormData {
     title: string;
@@ -18,6 +19,7 @@ interface ProjectFormData {
     gallery: string[];
     objectives: string[];
     testimonials: Testimonial[];
+    video_url: string;
 }
 
 const AdminProjectForm: React.FC = () => {
@@ -43,7 +45,8 @@ const AdminProjectForm: React.FC = () => {
         power: '',
         gallery: [],
         objectives: [],
-        testimonials: []
+        testimonials: [],
+        video_url: ''
     });
 
     useEffect(() => {
@@ -77,7 +80,8 @@ const AdminProjectForm: React.FC = () => {
                     power: data.impact_data?.power || '',
                     gallery: data.gallery || [],
                     objectives: data.impact_data?.objectives || [],
-                    testimonials: data.impact_data?.testimonials || []
+                    testimonials: data.impact_data?.testimonials || [],
+                    video_url: data.video_url || ''
                 });
             }
         } catch (error) {
@@ -189,18 +193,21 @@ const AdminProjectForm: React.FC = () => {
                 </h1>
                 <div className="flex bg-gray-100 dark:bg-white/5 rounded-lg p-1">
                     <button
+                        type="button"
                         onClick={() => setActiveTab('details')}
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'details' ? 'bg-white dark:bg-black/40 shadow-sm text-primary' : 'text-text-secondary-light dark:text-gray-400'}`}
                     >
                         Detalhes
                     </button>
                     <button
+                        type="button"
                         onClick={() => setActiveTab('media')}
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'media' ? 'bg-white dark:bg-black/40 shadow-sm text-primary' : 'text-text-secondary-light dark:text-gray-400'}`}
                     >
                         Mídia & Galeria
                     </button>
                     <button
+                        type="button"
                         onClick={() => setActiveTab('impact')}
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'impact' ? 'bg-white dark:bg-black/40 shadow-sm text-primary' : 'text-text-secondary-light dark:text-gray-400'}`}
                     >
@@ -310,28 +317,28 @@ const AdminProjectForm: React.FC = () => {
                 {activeTab === 'media' && (
                     <div className="space-y-8 animate-fade-in">
                         <div className="bg-gray-50 dark:bg-white/5 p-6 rounded-xl border border-gray-100 dark:border-white/10">
-                            <h3 className="text-lg font-bold text-text-main-light dark:text-white mb-4">Imagem de Capa (Banner)</h3>
-                            <div className="flex flex-col md:flex-row gap-6">
-                                <div className="flex-1">
-                                    <label className="block text-sm font-bold text-text-main-light dark:text-gray-300 mb-2">URL da Imagem</label>
-                                    <input
-                                        type="text"
-                                        name="image_url"
-                                        value={formData.image_url}
-                                        onChange={handleChange}
-                                        placeholder="https://..."
-                                        className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-black/20 dark:border-white/10 dark:text-white"
-                                    />
-                                    <p className="text-xs text-gray-500 mt-2">Recomendado: 1200x600 px</p>
-                                </div>
-                                <div className="w-full md:w-1/3 aspect-video bg-gray-200 rounded-lg overflow-hidden border border-gray-300 dark:border-white/10 flex items-center justify-center">
-                                    {formData.image_url ? (
-                                        <img src={formData.image_url} alt="Preview" className="w-full h-full object-cover" onError={(e) => (e.currentTarget.src = '/assets/img/placeholder.jpg')} />
-                                    ) : (
-                                        <span className="text-gray-400 material-symbols-outlined text-4xl">image</span>
-                                    )}
-                                </div>
+                            <h3 className="text-lg font-bold text-text-main-light dark:text-white mb-4">Link do Vídeo (Youtube / Vimeo)</h3>
+                            <div className="flex gap-3 items-center">
+                                <span className="material-symbols-outlined text-gray-400">play_circle</span>
+                                <input
+                                    type="text"
+                                    name="video_url"
+                                    value={formData.video_url}
+                                    onChange={handleChange}
+                                    placeholder="Ex: https://www.youtube.com/watch?v=..."
+                                    className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-black/20 dark:border-white/10 dark:text-white"
+                                />
                             </div>
+                            <p className="mt-2 text-[10px] text-gray-500 italic">O vídeo aparecerá como o último item da galeria na página do projeto.</p>
+                        </div>
+
+                        <div className="bg-gray-50 dark:bg-white/5 p-6 rounded-xl border border-gray-100 dark:border-white/10">
+                            <h3 className="text-lg font-bold text-text-main-light dark:text-white mb-4">Imagem de Capa (Banner)</h3>
+                            <ImageUpload
+                                value={formData.image_url}
+                                onChange={(url) => setFormData(prev => ({ ...prev, image_url: url }))}
+                                folder="banners"
+                            />
                         </div>
 
                         <div>
@@ -340,26 +347,27 @@ const AdminProjectForm: React.FC = () => {
                                 <button type="button" onClick={() => addArrayItem('gallery')} className="text-sm text-primary font-bold hover:underline">+ Adicionar Foto</button>
                             </div>
 
-                            <div className="space-y-3">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {formData.gallery.map((url, index) => (
-                                    <div key={index} className="flex gap-3">
-                                        <input
-                                            type="text"
+                                    <div key={index} className="bg-gray-50 dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/10">
+                                        <div className="flex justify-between mb-2">
+                                            <span className="text-xs font-bold text-gray-500 uppercase">Foto {index + 1}</span>
+                                            <button
+                                                type="button"
+                                                onClick={() => removeArrayItem(index, 'gallery')}
+                                                className="text-red-500 hover:text-red-700"
+                                            >
+                                                <span className="material-symbols-outlined text-sm">delete</span>
+                                            </button>
+                                        </div>
+                                        <ImageUpload
                                             value={url}
-                                            onChange={(e) => handleArrayChange(index, e.target.value, 'gallery')}
-                                            placeholder="URL da foto..."
-                                            className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-black/20 dark:border-white/10 dark:text-white"
+                                            onChange={(newUrl) => handleArrayChange(index, newUrl, 'gallery')}
+                                            folder="gallery"
                                         />
-                                        <button
-                                            type="button"
-                                            onClick={() => removeArrayItem(index, 'gallery')}
-                                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                        >
-                                            <span className="material-symbols-outlined">delete</span>
-                                        </button>
                                     </div>
                                 ))}
-                                {formData.gallery.length === 0 && <p className="text-sm text-gray-500 italic">Nenhuma foto adicionada.</p>}
+                                {formData.gallery.length === 0 && <p className="text-sm text-gray-500 italic col-span-2">Nenhuma foto adicionada.</p>}
                             </div>
                         </div>
                     </div>
@@ -414,7 +422,7 @@ const AdminProjectForm: React.FC = () => {
                                             type="text"
                                             value={obj}
                                             onChange={(e) => handleArrayChange(index, e.target.value, 'objectives')}
-                                            placeholder="Descreva um objetivo..."
+                                            placeholder="Descreve um objetivo..."
                                             className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-black/20 dark:border-white/10 dark:text-white"
                                         />
                                         <button
@@ -437,43 +445,49 @@ const AdminProjectForm: React.FC = () => {
                             </div>
                             <div className="space-y-6">
                                 {formData.testimonials.map((testimonial, index) => (
-                                    <div key={index} className="bg-gray-50 dark:bg-white/5 p-4 rounded-xl relative border border-gray-100 dark:border-white/10">
+                                    <div key={index} className="bg-gray-50 dark:bg-white/5 p-6 rounded-xl relative border border-gray-100 dark:border-white/10">
                                         <button
                                             type="button"
                                             onClick={() => removeTestimonial(index)}
-                                            className="absolute top-2 right-2 text-gray-400 hover:text-red-500"
+                                            className="absolute top-4 right-4 text-gray-400 hover:text-red-500"
                                         >
                                             <span className="material-symbols-outlined">close</span>
                                         </button>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <input
-                                                type="text"
-                                                value={testimonial.name}
-                                                onChange={(e) => handleTestimonialChange(index, 'name', e.target.value)}
-                                                placeholder="Nome da pessoa"
-                                                className="px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 text-sm"
-                                            />
-                                            <input
-                                                type="text"
-                                                value={testimonial.role}
-                                                onChange={(e) => handleTestimonialChange(index, 'role', e.target.value)}
-                                                placeholder="Cargo / Função"
-                                                className="px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 text-sm"
-                                            />
-                                            <input
-                                                type="text"
-                                                value={testimonial.avatar}
-                                                onChange={(e) => handleTestimonialChange(index, 'avatar', e.target.value)}
-                                                placeholder="URL Foto Avatar"
-                                                className="px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 text-sm"
-                                            />
-                                            <div className="md:col-span-2">
+
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            <div className="md:col-span-1">
+                                                <ImageUpload
+                                                    label="Avatar"
+                                                    value={testimonial.avatar}
+                                                    onChange={(url) => handleTestimonialChange(index, 'avatar', url)}
+                                                    folder="testimonials"
+                                                    className="max-w-xs"
+                                                />
+                                            </div>
+
+                                            <div className="md:col-span-2 space-y-4">
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <input
+                                                        type="text"
+                                                        value={testimonial.name}
+                                                        onChange={(e) => handleTestimonialChange(index, 'name', e.target.value)}
+                                                        placeholder="Nome da pessoa"
+                                                        className="px-3 py-2 rounded-lg border border-gray-300 dark:bg-black/20 dark:border-white/10 dark:text-white text-sm"
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        value={testimonial.role}
+                                                        onChange={(e) => handleTestimonialChange(index, 'role', e.target.value)}
+                                                        placeholder="Cargo / Função"
+                                                        className="px-3 py-2 rounded-lg border border-gray-300 dark:bg-black/20 dark:border-white/10 dark:text-white text-sm"
+                                                    />
+                                                </div>
                                                 <textarea
                                                     value={testimonial.quote}
                                                     onChange={(e) => handleTestimonialChange(index, 'quote', e.target.value)}
                                                     placeholder="Depoimento..."
-                                                    rows={2}
-                                                    className="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-white/10 text-sm"
+                                                    rows={3}
+                                                    className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:bg-black/20 dark:border-white/10 dark:text-white text-sm"
                                                 />
                                             </div>
                                         </div>
