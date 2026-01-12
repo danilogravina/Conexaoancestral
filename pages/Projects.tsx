@@ -28,80 +28,24 @@ const Projects: React.FC = () => {
 
       if (data) {
         // Map database snake_case to frontend camelCase
-        const mappedProjects: Project[] = data.map((p: any) => {
-          let projectData = {
-            id: p.id,
-            title: p.title,
-            category: p.category as ProjectCategory,
-            description: p.description,
-            fullDescription: p.full_description,
-            image: ensureAbsolutePath(p.image_url),
-            raised: 0,
-            goal: p.goal_amount,
-            status: 'Em Planejamento' as const,
-            beneficiaries: p.beneficiaries_count,
-            year: p.year,
-            gallery: (p.gallery || []).map(ensureAbsolutePath),
-            objectives: p.impact_data?.objectives || [],
-            testimonials: p.impact_data?.testimonials || []
-          };
-          if (projectData.title === 'Escola Viva da Floresta') {
-            projectData.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
-            projectData.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
-            projectData.category = ProjectCategory.WATER;
-          }
-          if (projectData.title === 'Agrofloresta Comunitária') {
-            projectData.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru';
-            projectData.description = 'O Centro Yuvanapanamaritiru é um santuário para a medicina tradicional, fortalecendo a cultura e a autonomia do povo Shawãdawa (Arara).';
-            projectData.category = ProjectCategory.CULTURE;
-          }
-          return projectData;
-        });
+        const mappedProjects: Project[] = data.map((p: any) => ({
+          id: p.id,
+          title: p.title,
+          category: p.category as ProjectCategory,
+          description: p.description,
+          fullDescription: p.full_description,
+          image: ensureAbsolutePath(p.image_url),
+          raised: Number(p.raised_amount) || 0,
+          goal: Number(p.goal_amount) || 0,
+          status: p.status as Project['status'],
+          beneficiaries: p.beneficiaries_count,
+          year: p.year,
+          gallery: (p.gallery || []).map(ensureAbsolutePath),
+          objectives: p.impact_data?.objectives || [],
+          testimonials: p.impact_data?.testimonials || []
+        }));
 
-        // List of authorized titles
-        const allowedTitles = [
-          'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina',
-          'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru',
-          'Centro Cerimonial de Cultura Huni Kuin do Rio Breu'
-        ];
-
-        // Add the new synthetic Huni Kuin project
-        const huniKuinTitle = 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu';
-        const huniKuinProject: Project = {
-          id: 'huni-kuin-rio-breu',
-          title: huniKuinTitle,
-          category: 'Cultura',
-          description: 'Criação de um Centro Cerimonial de Cultura para fortalecer a identidade, os saberes ancestrais e a continuidade cultural do povo Huni Kuin.',
-          fullDescription: '',
-          image: '/assets/img/project-huni-kuin.png',
-          raised: 0,
-          goal: 50000,
-          status: 'Em Planejamento' as const,
-          beneficiaries: 0,
-          year: 2025,
-          gallery: ['/assets/img/project-huni-kuin.png'],
-          objectives: [
-            'Construção do Centro Cerimonial',
-            'Santuário para medicinas tradicionais',
-            'Espaço de transmissão de saberes ancestrais'
-          ]
-        };
-
-        const allProjects = [...mappedProjects, huniKuinProject];
-
-        // Filter to keep only one instance of each allowed project
-        const finalProjects: Project[] = [];
-        const seenTitles = new Set();
-
-        allowedTitles.forEach(title => {
-          const project = allProjects.find(p => p.title === title && !seenTitles.has(title));
-          if (project) {
-            finalProjects.push(project);
-            seenTitles.add(title);
-          }
-        });
-
-        setProjects(finalProjects);
+        setProjects(mappedProjects);
       }
     } catch (error) {
       console.error('Erro ao buscar projetos:', error);
