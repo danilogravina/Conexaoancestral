@@ -447,7 +447,7 @@ const Home: React.FC = () => {
                 {
                   title: "Cuidado com a Vida e a Floresta",
                   description: "Atuamos pela proteção da vida em todas as suas formas, promovendo práticas sustentáveis que respeitam os ciclos da natureza e garantem o bem viver das gerações presentes e futuras.",
-                  icon: "moving"
+                  icon: "/assets/img/icons/icone-cuidado-vida-floresta.svg"
                 }
               ].map((value, index) => (
                 <div key={index} className="flex gap-6 group">
