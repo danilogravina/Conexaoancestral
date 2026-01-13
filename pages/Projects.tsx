@@ -3,8 +3,10 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Project, ProjectCategory } from '../types';
 import { supabase } from '../lib/supabase';
 import { ensureAbsolutePath } from '../lib/utils';
+import { useTranslation } from 'react-i18next';
 
 const Projects: React.FC = () => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,8 +34,8 @@ const Projects: React.FC = () => {
           id: p.id,
           title: p.title,
           category: p.category as ProjectCategory,
-          description: p.description,
-          fullDescription: p.full_description,
+          description: t(`projects_data.${p.id}.description`, { defaultValue: p.description }),
+          fullDescription: t(`projects_data.${p.id}.full_description`, { defaultValue: p.full_description }),
           image: ensureAbsolutePath(p.image_url),
           raised: Number(p.raised_amount) || 0,
           goal: Number(p.goal_amount) || 0,
@@ -41,8 +43,8 @@ const Projects: React.FC = () => {
           beneficiaries: p.beneficiaries_count,
           year: p.year,
           gallery: (p.gallery || []).map(ensureAbsolutePath),
-          objectives: p.impact_data?.objectives || [],
-          testimonials: p.impact_data?.testimonials || []
+          objectives: p.impact_data?.objectives || [], // Consider translating deep objects later if needed
+          testimonials: p.impact_data?.testimonials || [] // Consider translating deep objects later if needed
         }));
 
         setProjects(mappedProjects);
@@ -145,14 +147,13 @@ const Projects: React.FC = () => {
           <div className="relative z-20 flex flex-col items-center gap-6 max-w-3xl px-4">
             <div className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs md:text-sm font-bold text-white backdrop-blur-sm border border-white/20 uppercase tracking-[0.2em]">
               <span className="material-symbols-outlined text-sm">volunteer_activism</span>
-              Impacto Real
+              {t('projects.hero.badge')}
             </div>
             <h1 className="text-white h1-standard">
-              Nossos Projetos <br />
-              <span className="text-white">Transformam Vidas</span>
+              {t('projects.hero.title')}
             </h1>
             <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl font-light">
-              Conheça iniciativas que preservam culturas vivas, fortalecem saberes ancestrais e promovem a autonomia dos povos da floresta.
+              {t('projects.hero.description')}
             </p>
 
           </div>
@@ -167,21 +168,21 @@ const Projects: React.FC = () => {
 
           <div className="sticky top-24 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur px-4 mb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-100 dark:border-gray-800 py-6">
-              <h2 id="lista-projetos" className="text-text-main-light dark:text-white h2-standard scroll-mt-32">Explorar Projetos</h2>
+              <h2 id="lista-projetos" className="text-text-main-light dark:text-white h2-standard scroll-mt-32">{t('projects.list.title')}</h2>
               <div className="flex flex-wrap gap-2">
                 {['Todos', ...Object.values(ProjectCategory)].map((category) => (
                   <button
                     key={category}
                     onClick={() => {
                       handleCategoryChange(category as ProjectCategory | 'Todos');
-                      setSelectedStatus('Todos'); // Reset status when picking a category for simplicity
+                      setSelectedStatus('Todos');
                     }}
                     className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ring-1 ring-inset ${selectedCategory === category
                       ? 'bg-[#0d1b12] text-white ring-gray-300 dark:ring-0'
                       : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-text-main-light ring-gray-200 dark:ring-gray-700'
                       }`}
                   >
-                    {category}
+                    {category === 'Todos' ? t('projects.list.categories.all') : category}
                   </button>
                 ))}
               </div>
@@ -213,7 +214,10 @@ const Projects: React.FC = () => {
                   <div className="flex flex-1 flex-col p-6">
                     <div className="mb-4">
                       <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{project.category}</h4>
-                      <h3 className="mt-2 text-xl md:text-2xl font-bold text-text-main-light dark:text-white group-hover:text-primary transition-colors">{project.title}</h3>
+                      {/* Title is dynamic. We attempt translation if available in 'projects_data.[id].title' otherwise use DB value */}
+                      <h3 className="mt-2 text-xl md:text-2xl font-bold text-text-main-light dark:text-white group-hover:text-primary transition-colors">
+                        {t(`projects_data.${project.id}.title`, { defaultValue: project.title })}
+                      </h3>
                     </div>
                     <p className="mb-6 flex-1 text-sm leading-relaxed text-text-secondary-light dark:text-text-secondary-dark line-clamp-2">
                       {project.description}
@@ -229,12 +233,12 @@ const Projects: React.FC = () => {
                           {project.power ? (
                             <>
                               <span className="material-symbols-outlined text-sm">bolt</span>
-                              {project.power} Gerados
+                              {project.power} {t('projects.list.card.generated')}
                             </>
                           ) : (
                             <>
                               <span className="material-symbols-outlined text-sm">groups</span>
-                              {project.beneficiaries} Beneficiadas
+                              {project.beneficiaries} {t('projects.list.card.beneficiaries')}
                             </>
                           )}
                         </div>
@@ -242,8 +246,8 @@ const Projects: React.FC = () => {
                     ) : (
                       <div className="mb-6">
                         <div className="mb-2 flex justify-between text-xs font-medium">
-                          <span className="text-text-main-light dark:text-gray-300">R$ {project.raised.toLocaleString('pt-BR')} arrecadados</span>
-                          <span className="text-text-secondary-light dark:text-gray-400">Meta: R$ {project.goal.toLocaleString('pt-BR')}</span>
+                          <span className="text-text-main-light dark:text-gray-300">{t('projects.list.card.raised', { value: project.raised.toLocaleString('pt-BR') })}</span>
+                          <span className="text-text-secondary-light dark:text-gray-400">{t('projects.list.card.goal', { value: project.goal.toLocaleString('pt-BR') })}</span>
                         </div>
                         <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
                           <div className="h-full rounded-full bg-primary" style={{ width: `${Math.min((project.raised / project.goal) * 100, 100)}%` }}></div>
@@ -251,8 +255,9 @@ const Projects: React.FC = () => {
                       </div>
                     )}
 
+
                     <div className={`inline-flex items-center justify-between rounded-lg px-4 py-3 text-sm font-bold transition-colors group/btn ${project.status === 'Concluído' ? 'bg-gray-50 dark:bg-gray-800 text-text-main-light dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' : 'bg-background-light dark:bg-background-dark text-text-main-light dark:text-white hover:bg-emerald-50 dark:hover:bg-emerald-900/20'}`}>
-                      {project.status === 'Concluído' ? 'Ver Relatório' : 'Saiba Mais'}
+                      {project.status === 'Concluído' ? t('projects.list.card.view_report') : t('projects.list.card.learn_more')}
                       <span className={`material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1 ${project.status === 'Concluído' ? 'icon-description' : 'icon-arrow_forward'}`}>
                         {project.status === 'Concluído' ? 'description' : 'arrow_forward'}
                       </span>
@@ -268,13 +273,13 @@ const Projects: React.FC = () => {
                   onClick={handleLoadMore}
                   className="flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-6 py-3 text-sm font-bold text-text-main-light transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-surface-dark dark:text-white dark:hover:bg-gray-800"
                 >
-                  Carregar Mais Projetos
+                  {t('projects.list.load_more')}
                   <span className="material-symbols-outlined">expand_more</span>
                 </button>
               </div>
             ) : (
               <div className="mt-12 flex justify-center">
-                <p className="text-text-secondary-light dark:text-text-secondary-dark italic">Você chegou ao fim da lista.</p>
+                <p className="text-text-secondary-light dark:text-text-secondary-dark italic">{t('projects.list.end_list')}</p>
               </div>
             )}
           </div>
@@ -299,14 +304,14 @@ const Projects: React.FC = () => {
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <span className="material-symbols-outlined mb-6 text-6xl text-white opacity-90 inline-block">volunteer_activism</span>
           <h2 className="text-white h2-standard mb-4">
-            Apoio direto aos Povos da Floresta
+            {t('projects.cta.title')}
           </h2>
           <p className="mx-auto mb-10 max-w-xl text-lg md:text-xl text-white/80 font-light leading-relaxed">
-            Sua doação garante saúde, território e proteção para indígenas, caboclos e comunidades tradicionais da Amazônia.
+            {t('projects.cta.description')}
           </p>
           <div className="flex flex-col items-center justify-center">
             <Link to="/projetos" className="h-14 px-12 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
-              Doar Agora
+              {t('projects.cta.button')}
             </Link>
           </div>
         </div>

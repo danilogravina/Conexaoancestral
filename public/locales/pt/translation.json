@@ -1,0 +1,231 @@
+{
+    "header": {
+        "home": "Início",
+        "about": "Sobre Nós",
+        "projects": "Projetos",
+        "contact": "Fale Conosco",
+        "donate": "Doar Agora",
+        "login": "Entrar / Minha Conta",
+        "search_placeholder": "Buscar...",
+        "search_placeholder_mobile": "Buscar no site..."
+    },
+    "hero": {
+        "title": "Conexão Ancestral",
+        "subtitle": "Tecendo o futuro com os povos da floresta ao proteger seus territórios, fortalecer sua cultura e valorizar o conhecimento que equilibra o planeta.",
+        "cta_primary": "Fazer Doação",
+        "cta_secondary": "Conheça os Projetos"
+    },
+    "about": {
+        "hero": {
+            "badge": "Institucional",
+            "title": "Quem Somos",
+            "description": "Somos uma organização dedicada a fortalecer a autonomia dos povos tradicionais por meio da valorização da cultura, dos saberes ancestrais e da sustentabilidade."
+        },
+        "story": {
+            "badge": "ONDE TUDO COMEÇOU",
+            "title": "Nossa História",
+            "p1": "A <1>Conexão Ancestral – Povos da Floresta</1> é uma organização da sociedade civil fundada em 2025 a partir do encontro entre pessoas comprometidas com a preservação da cultura, do modo de vida e a promoção da autonomia dos povos indígenas e comunidades tradicionais.",
+            "p2": "Nossa história nasce do convívio direto com comunidades indígenas do Acre, e do reconhecimento de que seus saberes ancestrais, suas culturas e seus territórios são fundamentais para a proteção da floresta e da vida no planeta.",
+            "p3": "Acreditamos que os povos indígenas são protagonistas de suas próprias histórias e guardiões de conhecimentos milenares sobre o cuidado com a natureza. Por isso, atuamos como um braço de apoio, desenvolvendo projetos em diálogo com as comunidades, respeitando sua autonomia, suas tradições e seus modos de vida.",
+            "p4": "A Conexão Ancestral trabalha para fortalecer a autodeterminação indígena, apoiar a preservação cultural, promover a segurança alimentar, melhorar as condições de vida nas aldeias e contribuir para a defesa dos territórios tradicionais.",
+            "p5": "Mais do que uma ONG, somos uma ponte entre a floresta e a sociedade, amplificando as vozes que há séculos cuidam da Amazônia."
+        },
+        "journey": {
+            "title": "Nossa Jornada",
+            "description": "De um pequeno grupo de pessoas a um coletivo de ação. Nossa jornada é guiada pela preservação da cultura e pela promoção da autonomia indígena. Atuamos lado a lado com comunidades tradicionais, transformando o compromisso com a ancestralidade em projetos reais de soberania e sustentabilidade.",
+            "steps": [
+                {
+                    "title": "O Chamado da Amazônia",
+                    "text": "A jornada começa com uma peregrinação ao Acre para buscar o conhecimento ancestral do povos indígenas."
+                },
+                {
+                    "title": "A Semente do Compromisso",
+                    "text": "O laço de amizade com as comunidades transforma a curiosidade em uma vontade genuína de ajudar a superar desafios territoriais e culturais."
+                },
+                {
+                    "title": "Projetos Concretos",
+                    "text": "Início de ações pontuais em diálogo com lideranças, focadas em áreas como água potável, segurança alimentar, mobilidade fluvial e proteção da cultura."
+                },
+                {
+                    "title": "Fundação da ONG",
+                    "text": "Com o aumento das demandas, o grupo se organiza formalmente como uma ONG para oferecer um apoio estruturado, transparente e servir como amplificador das vozes da floresta."
+                }
+            ]
+        },
+        "team": {
+            "badge": "QUEM FAZ ACONTECER",
+            "title": "Diretoria Executiva",
+            "description": "Conheça as pessoas apaixonadas que dedicam suas vidas à missão da Conexão Ancestral."
+        },
+        "cta": {
+            "title": "Junte-se ao movimento",
+            "description": "Sua contribuição planta árvores, empodera comunidades e protege o nosso futuro.",
+            "button": "Doar Agora"
+        }
+    },
+    "projects": {
+        "hero": {
+            "badge": "Impacto Real",
+            "title": "Nossos Projetos Transformam Vidas",
+            "description": "Conheça iniciativas que preservam culturas vivas, fortalecem saberes ancestrais e promovem a autonomia dos povos da floresta."
+        },
+        "list": {
+            "title": "Explorar Projetos",
+            "categories": {
+                "all": "Todos"
+            },
+            "status": {
+                "completed": "Concluído",
+                "in_progress": "Em Andamento",
+                "planning": "Em Planejamento",
+                "almost_there": "Quase Lá",
+                "new": "Novo"
+            },
+            "card": {
+                "learn_more": "Saiba Mais",
+                "view_report": "Ver Relatório",
+                "raised": "R$ {{value}} arrecadados",
+                "goal": "Meta: R$ {{value}}",
+                "generated": "Gerados",
+                "beneficiaries": "Beneficiadas"
+            },
+            "load_more": "Carregar Mais Projetos",
+            "end_list": "Você chegou ao fim da lista.",
+            "empty": "Nenhum projeto encontrado."
+        },
+        "cta": {
+            "title": "Apoio direto aos Povos da Floresta",
+            "description": "Sua doação garante saúde, território e proteção para indígenas, caboclos e comunidades tradicionais da Amazônia.",
+            "button": "Doar Agora"
+        }
+    },
+    "contact": {
+        "hero": {
+            "badge": "Fale Conosco",
+            "title": "Vamos construir o futuro da floresta juntos?",
+            "description": "Seja para tirar dúvidas, propor parcerias ou oferecer ajuda, nossa equipe está pronta para ouvir você. Sua conexão é o primeiro passo para a mudança."
+        },
+        "form": {
+            "title": "Envie uma mensagem",
+            "name": "Nome Completo *",
+            "name_placeholder": "Maria Silva",
+            "email": "E-mail *",
+            "email_placeholder": "exemplo@email.com",
+            "phone": "Telefone (Opcional)",
+            "phone_placeholder": "(00) 00000-0000",
+            "subject": "Assunto",
+            "subject_placeholder": "Selecione o motivo",
+            "message": "Mensagem *",
+            "message_placeholder": "Escreva sua mensagem aqui...",
+            "submit": "Enviar Mensagem",
+            "privacy": "Ao enviar, você concorda com nossa Política de Privacidade e o processamento dos seus dados.",
+            "success": "Mensagem enviada com sucesso! Em breve entraremos em contato.",
+            "options": {
+                "volunteer": "Quero ser voluntário",
+                "donation": "Dúvidas sobre doação",
+                "partnership": "Parcerias e Imprensa",
+                "other": "Outros assuntos"
+            },
+            "errors": {
+                "name_required": "Por favor, informe seu nome completo.",
+                "name_length": "O nome deve ter pelo menos 3 caracteres.",
+                "email_required": "O e-mail é obrigatório.",
+                "email_invalid": "Por favor, insira um e-mail válido.",
+                "message_required": "A mensagem não pode estar vazia.",
+                "message_length": "Sua mensagem deve ter pelo menos 10 caracteres."
+            }
+        },
+        "channels": {
+            "title": "Canais de Atendimento",
+            "map_link": "Ver localização no mapa",
+            "follow_us": "Nos siga nas redes"
+        },
+        "faq": {
+            "title": "Ainda tem dúvidas?",
+            "description": "Muitas perguntas comuns sobre voluntariado e doações já estão respondidas em nossa central de ajuda.",
+            "link": "Acessar Perguntas Frequentes"
+        }
+    },
+    "project_details": {
+        "loading": "Carregando projeto...",
+        "about_title": "Sobre o Projeto",
+        "objectives_title": "Nossos Objetivos Principais",
+        "gallery_title": "Galeria",
+        "watch_video": "Assistir Vídeo",
+        "voices_title": "Vozes da Comunidade",
+        "join_change": "Faça Parte da Mudança",
+        "impact_report": "Relatório de Impacto",
+        "executed": "Executado",
+        "days_remaining": "Dias Restantes",
+        "your_impact_label": "Seu impacto:",
+        "your_impact_text": "Sua doação direta apoia o projeto",
+        "choose_amount": "Escolha o valor",
+        "other_amount": "Outro valor",
+        "donate_button": "Doar para este Projeto",
+        "share_cause": "Compartilhe essa causa"
+    },
+    "missao": {
+        "title": "Nossa Missão",
+        "description": "Empoderar e promover a autonomia dos povos indígenas e comunidades tradicionais, fortalecendo sua autonomia cultural, social, ambiental e econômica."
+    },
+    "roots": {
+        "label": "Nossas Raízes",
+        "title": "Uma História de Resiliência e Conexão",
+        "p1": "Nossas raízes nascem do encontro com a floresta e com os povos que a protegem há milênios. Elas brotam da escuta atenta, do respeito profundo e da convivência verdadeira com os povos indígenas, guardiões de saberes ancestrais que sustentam a vida em equilíbrio com a terra.",
+        "p2": "São raízes fincadas no território, na memória e na espiritualidade. Crescem a partir das histórias contadas ao redor do fogo, dos cantos que atravessam gerações, do cuidado com as plantas, os rios e os ciclos da natureza.",
+        "p3": "Cada passo dado junto às comunidades fortaleceu a certeza de que preservar a floresta é preservar culturas, modos de vida e futuros possíveis. A Conexão Ancestral se enraíza no compromisso com a autodeterminação dos povos indígenas, no reconhecimento de seu protagonismo e na valorização de seus conhecimentos como pilares para um mundo mais justo e sustentável.",
+        "p4": "É dessas raízes profundas que nasce nossa missão: caminhar junto, fortalecer laços e proteger a vida que pulsa na floresta."
+    },
+    "stats": {
+        "culture": "Saberes Ancestrais",
+        "territory": "Autonomia e Proteção",
+        "future": "Sustentabilidade Viva"
+    },
+    "values": {
+        "label": "Nossos Valores",
+        "title": "Princípios que Pulsam em Cada Ação",
+        "protagonism": {
+            "title": "Protagonismo Indígena",
+            "desc": "Reconhecemos e fortalecemos o direito dos povos indígenas de decidir sobre seus territórios, modos de vida e futuros, atuando sempre em diálogo e respeito às suas lideranças."
+        },
+        "knowledge": {
+            "title": "Saberes Ancestrais",
+            "desc": "Valorizamos o conhecimento tradicional como patrimônio vivo, essencial para a preservação da floresta, da cultura e do equilíbrio entre humanidade e natureza."
+        },
+        "care": {
+            "title": "Cuidado com a Vida e a Floresta",
+            "desc": "Atuamos pela proteção da vida em todas as suas formas, promovendo práticas sustentáveis que respeitam os ciclos da natureza e garantem o bem viver das gerações presentes e futuras."
+        }
+    },
+    "initiatives": {
+        "label": "Nossa Missão em Ação",
+        "title": "Nossas Iniciativas",
+        "description": "Atuamos de forma integrada para fortalecer a autonomia dos povos tradicionais, valorizando saberes ancestrais e sua cultura.",
+        "water": {
+            "title": "Segurança Hídrica e Infraestrutura Sustentável",
+            "desc": "Implantação de soluções de acesso à água potável e infraestrutura básica com uso de tecnologias sustentáveis, fortalecendo a saúde, a autonomia e o bem viver das comunidades indígenas.",
+            "impact": "Comunidades com acesso seguro e contínuo à água potável, promovendo melhorias significativas na saúde, na autonomia e na qualidade de vida."
+        },
+        "culture": {
+            "title": "Valorização Cultural e Saberes Ancestrais",
+            "desc": "Fortalecimento das culturas indígenas por meio da preservação das línguas, das práticas espirituais, das artes tradicionais e da transmissão dos conhecimentos ancestrais às novas gerações.",
+            "impact": "Fortalecimento e continuidade das línguas, práticas culturais e saberes ancestrais, assegurando sua transmissão às futuras gerações."
+        },
+        "autonomy": {
+            "title": "Autonomia Comunitária e Sustentabilidade",
+            "desc": "Promoção de iniciativas que geram autonomia econômica e ambiental, integrando práticas tradicionais, cuidado com o território e desenvolvimento sustentável conduzido pelas próprias comunidades indígenas.",
+            "impact": "Comunidades mais autônomas econômica e ambientalmente, com iniciativas sustentáveis conduzidas e geridas pelas próprias lideranças comunitárias."
+        },
+        "cta_banner": {
+            "title": "Faça parte dessa história",
+            "description": "Junte-se a nós nesta missão de construir um futuro onde tradição e desenvolvimento caminham lado a lado.",
+            "button": "Quero Doar Mensalmente"
+        }
+    },
+    "footer": {
+        "description": "Empoderar e promover a autonomia dos povos e comunidades tradicionais, fomentando o desenvolvimento social, econômico e ambiental de forma integrada e contínua, respeitando e fortalecendo os modos de vida tradicionais.",
+        "navigation": "Navegação",
+        "contact": "Fale Conosco",
+        "rights": "© {{year}} Conexão Ancestral. Todos os direitos reservados. ONG sem fins lucrativos."
+    }
+}

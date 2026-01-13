@@ -1,7 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { Trans, useTranslation } from 'react-i18next';
+
 const About: React.FC = () => {
+    const { t } = useTranslation();
+
+    // Journey steps data derived from translations
+    const journeySteps = t('about.journey.steps', { returnObjects: true }) as Array<{ title: string, text: string, icon?: string }>;
+    // We need to re-attach icons since they are not in the JSON translation (or we hardcode them and just translate text)
+    const icons = ['explore', 'favorite', 'handshake', 'groups'];
+    const journeyWithIcons = journeySteps.map((step, index) => ({ ...step, icon: icons[index] }));
+
     return (
         <div className="w-full bg-background-light dark:bg-background-dark transition-colors duration-300">
             {/* Hero Section - Full Width Standardized */}
@@ -20,13 +30,13 @@ const About: React.FC = () => {
                     <div className="relative z-20 flex flex-col items-center gap-6 max-w-3xl px-4">
                         <div className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs md:text-sm font-bold text-white backdrop-blur-sm border border-white/20 uppercase tracking-[0.2em]">
                             <span className="material-symbols-outlined text-sm">foundation</span>
-                            Institucional
+                            {t('about.hero.badge')}
                         </div>
                         <h1 className="text-white h1-standard drop-shadow-lg">
-                            Quem Somos
+                            {t('about.hero.title')}
                         </h1>
                         <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl font-light drop-shadow-md">
-                            Somos uma organização dedicada a fortalecer a autonomia dos povos tradicionais por meio da valorização da cultura, dos saberes ancestrais e da sustentabilidade.
+                            {t('about.hero.description')}
                         </p>
                     </div>
                 </div>
@@ -57,24 +67,18 @@ const About: React.FC = () => {
                     {/* Text Side */}
                     <div className="flex flex-col gap-8 order-2 lg:order-1">
                         <div>
-                            <span className="text-primary text-xs font-black tracking-widest uppercase mb-4 block">ONDE TUDO COMEÇOU</span>
-                            <h2 className="h2-standard text-text-main-light dark:text-white mb-6">Nossa História</h2>
+                            <span className="text-primary text-xs font-black tracking-widest uppercase mb-4 block">{t('about.story.badge')}</span>
+                            <h2 className="h2-standard text-text-main-light dark:text-white mb-6">{t('about.story.title')}</h2>
                             <div className="flex flex-col gap-6 text-text-secondary-light dark:text-text-secondary-dark text-lg font-light leading-relaxed">
                                 <p>
-                                    A <span className="text-primary font-bold">Conexão Ancestral – Povos da Floresta</span> é uma organização da sociedade civil fundada em 2025 a partir do encontro entre pessoas comprometidas com a preservação da cultura, do modo de vida e a promoção da autonomia dos povos indígenas e comunidades tradicionais.
+                                    <Trans i18nKey="about.story.p1">
+                                        A <span className="text-primary font-bold">Conexão Ancestral – Povos da Floresta</span> é uma organização...
+                                    </Trans>
                                 </p>
-                                <p>
-                                    Nossa história nasce do convívio direto com comunidades indígenas do Acre, e do reconhecimento de que seus saberes ancestrais, suas culturas e seus territórios são fundamentais para a proteção da floresta e da vida no planeta.
-                                </p>
-                                <p>
-                                    Acreditamos que os povos indígenas são protagonistas de suas próprias histórias e guardiões de conhecimentos milenares sobre o cuidado com a natureza. Por isso, atuamos como um braço de apoio, desenvolvendo projetos em diálogo com as comunidades, respeitando sua autonomia, suas tradições e seus modos de vida.
-                                </p>
-                                <p>
-                                    A Conexão Ancestral trabalha para fortalecer a autodeterminação indígena, apoiar a preservação cultural, promover a segurança alimentar, melhorar as condições de vida nas aldeias e contribuir para a defesa dos territórios tradicionais.
-                                </p>
-                                <p>
-                                    Mais do que uma ONG, somos uma ponte entre a floresta e a sociedade, amplificando as vozes que há séculos cuidam da Amazônia.
-                                </p>
+                                <p>{t('about.story.p2')}</p>
+                                <p>{t('about.story.p3')}</p>
+                                <p>{t('about.story.p4')}</p>
+                                <p>{t('about.story.p5')}</p>
                             </div>
                         </div>
 
@@ -129,9 +133,9 @@ const About: React.FC = () => {
             <section className="py-24 bg-[#f8fcf9] dark:bg-black/10 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-16">
                     <div className="lg:w-1/3">
-                        <h2 className="h2-standard text-text-main-light dark:text-white mb-6">Nossa Jornada</h2>
+                        <h2 className="h2-standard text-text-main-light dark:text-white mb-6">{t('about.journey.title')}</h2>
                         <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg font-light mb-8">
-                            De um pequeno grupo de pessoas a um coletivo de ação. Nossa jornada é guiada pela preservação da cultura e pela promoção da autonomia indígena. Atuamos lado a lado com comunidades tradicionais, transformando o compromisso com a ancestralidade em projetos reais de soberania e sustentabilidade.
+                            {t('about.journey.description')}
                         </p>
                     </div>
 
@@ -163,12 +167,7 @@ const About: React.FC = () => {
                         </div>
 
                         <div className="flex flex-col gap-12">
-                            {[
-                                { title: 'O Chamado da Amazônia', text: 'A jornada começa com uma peregrinação ao Acre para buscar o conhecimento ancestral do povos indígenas.', icon: 'explore' },
-                                { title: 'A Semente do Compromisso', text: 'O laço de amizade com as comunidades transforma a curiosidade em uma vontade genuína de ajudar a superar desafios territoriais e culturais.', icon: 'favorite' },
-                                { title: 'Projetos Concretos e Necessidades Básicas', text: 'Início de ações pontuais em diálogo com lideranças, focadas em áreas como água potável, segurança alimentar, mobilidade fluvial e proteção da cultura.', icon: 'handshake' },
-                                { title: 'Fundação da ONG', text: 'Com o aumento das demandas, o grupo se organiza formalmente como uma ONG para oferecer um apoio estruturado, transparente e servir como amplificador das vozes da floresta.', icon: 'groups' },
-                            ].map((event, idx) => (
+                            {journeyWithIcons.map((event, idx) => (
                                 <div key={idx} className="relative pl-16 group">
                                     <div
                                         className="absolute left-0 top-0 size-12 rounded-full bg-white dark:bg-[#1a2e20] border-4 border-primary/20 flex items-center justify-center z-10 shadow-lg transition-transform duration-500 group-hover:scale-110"
@@ -194,10 +193,10 @@ const About: React.FC = () => {
             {/* Nossa Equipe Section */}
             <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <span className="text-primary text-xs font-black tracking-widest uppercase mb-4 block">QUEM FAZ ACONTECER</span>
-                    <h2 className="h2-standard text-text-main-light dark:text-white">Diretoria Executiva</h2>
+                    <span className="text-primary text-xs font-black tracking-widest uppercase mb-4 block">{t('about.team.badge')}</span>
+                    <h2 className="h2-standard text-text-main-light dark:text-white">{t('about.team.title')}</h2>
                     <p className="max-w-2xl mx-auto mt-4 text-text-secondary-light dark:text-text-secondary-dark text-lg font-light">
-                        Conheça as pessoas apaixonadas que dedicam suas vidas à missão da Conexão Ancestral.
+                        {t('about.team.description')}
                     </p>
                 </div>
 
@@ -244,13 +243,13 @@ const About: React.FC = () => {
 
                     <div className="relative z-10 flex flex-col items-center text-center">
                         <span className="material-symbols-outlined mb-6 text-6xl text-white opacity-90 inline-block">favorite</span>
-                        <h2 className="text-white h2-standard mb-4 max-w-2xl">Junte-se ao movimento</h2>
+                        <h2 className="text-white h2-standard mb-4 max-w-2xl">{t('about.cta.title')}</h2>
                         <p className="text-white/80 text-lg md:text-xl font-light max-w-xl mb-10 leading-relaxed">
-                            Sua contribuição planta árvores, empodera comunidades e protege o nosso futuro.
+                            {t('about.cta.description')}
                         </p>
                         <div className="flex flex-col items-center justify-center">
                             <Link to="/projetos" className="h-14 px-12 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
-                                Doar Agora
+                                {t('about.cta.button')}
                             </Link>
                         </div>
                     </div>

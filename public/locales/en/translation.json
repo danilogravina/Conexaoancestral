@@ -1,0 +1,231 @@
+{
+    "header": {
+        "home": "Home",
+        "about": "About Us",
+        "projects": "Projects",
+        "contact": "Contact Us",
+        "donate": "Donate Now",
+        "login": "Login / My Account",
+        "search_placeholder": "Search...",
+        "search_placeholder_mobile": "Search site..."
+    },
+    "hero": {
+        "title": "Ancestral Connection",
+        "subtitle": "Weaving the future with forest peoples by protecting their territories, strengthening their culture, and valuing the knowledge that balances the planet.",
+        "cta_primary": "Support our Cause",
+        "cta_secondary": "Our Projects"
+    },
+    "about": {
+        "hero": {
+            "badge": "Institutional",
+            "title": "Who We Are",
+            "description": "We are an organization dedicated to strengthening the autonomy of traditional peoples by valuing culture, ancestral knowledge, and sustainability."
+        },
+        "story": {
+            "badge": "WHERE IT ALL BEGAN",
+            "title": "Our Story",
+            "p1": "<1>Ancestral Connection – Peoples of the Forest</1> is a civil society organization founded in 2025 from the meeting of people committed to preserving culture, way of life, and promoting the autonomy of indigenous peoples and traditional communities.",
+            "p2": "Our story is born from direct interaction with indigenous communities in Acre, and the recognition that their ancestral knowledge, cultures, and territories are fundamental to protecting the forest and life on the planet.",
+            "p3": "We believe that indigenous peoples are the protagonists of their own stories and guardians of ancient knowledge about caring for nature. Therefore, we act as a support arm, developing projects in dialogue with communities, respecting their autonomy, traditions, and ways of life.",
+            "p4": "Ancestral Connection works to strengthen indigenous self-determination, support cultural preservation, promote food security, improve living conditions in villages, and contribute to the defense of traditional territories.",
+            "p5": "More than an NGO, we are a bridge between the forest and society, amplifying the voices that have cared for the Amazon for centuries."
+        },
+        "journey": {
+            "title": "Our Journey",
+            "description": "From a small group of people to a collective of action. Our journey is guided by the preservation of culture and the promotion of indigenous autonomy. We work side by side with traditional communities, transforming commitment to ancestry into real projects of sovereignty and sustainability.",
+            "steps": [
+                {
+                    "title": "The Call of the Amazon",
+                    "text": "The journey begins with a pilgrimage to Acre to seek the ancestral knowledge of indigenous peoples."
+                },
+                {
+                    "title": "The Seed of Commitment",
+                    "text": "The bond of friendship with communities transforms curiosity into a genuine desire to help overcome territorial and cultural challenges."
+                },
+                {
+                    "title": "Concrete Projects",
+                    "text": "Start of specific actions in dialogue with leaders, focused on areas such as drinking water, food security, river mobility, and cultural protection."
+                },
+                {
+                    "title": "NGO Foundation",
+                    "text": "With increasing demands, the group formally organizes as an NGO to offer structured, transparent support and serve as an amplifier of forest voices."
+                }
+            ]
+        },
+        "team": {
+            "badge": "WHO MAKES IT HAPPEN",
+            "title": "Executive Board",
+            "description": "Meet the passionate people who dedicate their lives to the mission of Ancestral Connection."
+        },
+        "cta": {
+            "title": "Join the movement",
+            "description": "Your contribution plants trees, empowers communities, and protects our future.",
+            "button": "Donate Now"
+        }
+    },
+    "projects": {
+        "hero": {
+            "badge": "Real Impact",
+            "title": "Our Projects Transform Lives",
+            "description": "Discover initiatives that preserve living cultures, strengthen ancestral knowledge, and promote the autonomy of forest peoples."
+        },
+        "list": {
+            "title": "Explore Projects",
+            "categories": {
+                "all": "All"
+            },
+            "status": {
+                "completed": "Completed",
+                "in_progress": "In Progress",
+                "planning": "In Planning",
+                "almost_there": "Almost There",
+                "new": "New"
+            },
+            "card": {
+                "learn_more": "Learn More",
+                "view_report": "View Report",
+                "raised": "R$ {{value}} raised",
+                "goal": "Goal: R$ {{value}}",
+                "generated": "Generated",
+                "beneficiaries": "Beneficiaries"
+            },
+            "load_more": "Load More Projects",
+            "end_list": "You reached the end of the list.",
+            "empty": "No projects found."
+        },
+        "cta": {
+            "title": "Direct support to Forest Peoples",
+            "description": "Your donation ensures health, territory, and protection for indigenous and traditional communities of the Amazon.",
+            "button": "Donate Now"
+        }
+    },
+    "contact": {
+        "hero": {
+            "badge": "Contact Us",
+            "title": "Let's build the future of the forest together?",
+            "description": "Whether to ask questions, propose partnerships, or offer help, our team is ready to listen to you. Your connection is the first step towards change."
+        },
+        "form": {
+            "title": "Send a message",
+            "name": "Full Name *",
+            "name_placeholder": "Maria Silva",
+            "email": "E-mail *",
+            "email_placeholder": "example@email.com",
+            "phone": "Phone (Optional)",
+            "phone_placeholder": "(00) 00000-0000",
+            "subject": "Subject",
+            "subject_placeholder": "Select a reason",
+            "message": "Message *",
+            "message_placeholder": "Write your message here...",
+            "submit": "Send Message",
+            "privacy": "By sending, you agree to our Privacy Policy and the processing of your data.",
+            "success": "Message sent successfully! We will contact you shortly.",
+            "options": {
+                "volunteer": "I want to volunteer",
+                "donation": "Questions about donation",
+                "partnership": "Partnerships and Press",
+                "other": "Other subjects"
+            },
+            "errors": {
+                "name_required": "Please enter your full name.",
+                "name_length": "Name must be at least 3 characters.",
+                "email_required": "Email is required.",
+                "email_invalid": "Please enter a valid email.",
+                "message_required": "Message cannot be empty.",
+                "message_length": "Your message must be at least 10 characters."
+            }
+        },
+        "channels": {
+            "title": "Service Channels",
+            "map_link": "View location on map",
+            "follow_us": "Follow us on social media"
+        },
+        "faq": {
+            "title": "Still have questions?",
+            "description": "Many common questions about volunteering and donations are already answered in our help center.",
+            "link": "Access FAQ"
+        }
+    },
+    "project_details": {
+        "loading": "Loading project...",
+        "about_title": "About the Project",
+        "objectives_title": "Key Objectives",
+        "gallery_title": "Gallery",
+        "watch_video": "Watch Video",
+        "voices_title": "Community Voices",
+        "join_change": "Be Part of the Change",
+        "impact_report": "Impact Report",
+        "executed": "Executed",
+        "days_remaining": "Days Remaining",
+        "your_impact_label": "Your impact:",
+        "your_impact_text": "Your direct donation supports the project",
+        "choose_amount": "Choose amount",
+        "other_amount": "Other amount",
+        "donate_button": "Donate to this Project",
+        "share_cause": "Share this cause"
+    },
+    "missao": {
+        "title": "Our Mission",
+        "description": "Empowering and promoting the autonomy of indigenous peoples and traditional communities, strengthening their cultural, social, environmental, and economic autonomy."
+    },
+    "roots": {
+        "label": "Our Roots",
+        "title": "A Story of Resilience and Connection",
+        "p1": "Our roots are born from the encounter with the forest and the peoples who have protected it for millennia. They sprout from attentive listening, deep respect, and true coexistence with indigenous peoples, guardians of ancestral knowledge that sustains life in balance with the earth.",
+        "p2": "They are roots planted in territory, memory, and spirituality. They grow from stories told around the fire, songs that span generations, care for plants, rivers, and nature's cycles.",
+        "p3": "Each step taken alongside the communities strengthened the certainty that preserving the forest means preserving cultures, ways of life, and possible futures. Ancestral Connection is rooted in the commitment to the self-determination of indigenous peoples, recognizing their leadership and valuing their knowledge as pillars for a fairer and more sustainable world.",
+        "p4": "It is from these deep roots that our mission is born: to walk together, strengthen bonds, and protect the life that pulses in the forest."
+    },
+    "stats": {
+        "culture": "Ancestral Knowledge",
+        "territory": "Autonomy and Protection",
+        "future": "Living Sustainability"
+    },
+    "values": {
+        "label": "Our Values",
+        "title": "Principles that Pulse in Every Action",
+        "protagonism": {
+            "title": "Indigenous Leadership",
+            "desc": "We recognize and strengthen the right of indigenous peoples to decide on their territories, ways of life, and futures, always acting in dialogue and respect for their leadership."
+        },
+        "knowledge": {
+            "title": "Ancestral Knowledge",
+            "desc": "We value traditional knowledge as living heritage, essential for the preservation of the forest, culture, and the balance between humanity and nature."
+        },
+        "care": {
+            "title": "Care for Life and Forest",
+            "desc": "We act for the protection of life in all its forms, promoting sustainable practices that respect nature's cycles and ensure the well-being of present and future generations."
+        }
+    },
+    "initiatives": {
+        "label": "Our Mission in Action",
+        "title": "Our Initiatives",
+        "description": "We work in an integrated way to strengthen the autonomy of traditional peoples, valuing ancestral knowledge and their culture.",
+        "water": {
+            "title": "Water Security & Sustainable Infrastructure",
+            "desc": "Implementation of access to drinking water solutions and basic infrastructure using sustainable technologies, strengthening health, autonomy, and well-being of indigenous communities.",
+            "impact": "Communities with safe and continuous access to drinking water, promoting significant improvements in health, autonomy, and quality of life."
+        },
+        "culture": {
+            "title": "Cultural Valuation & Ancestral Knowledge",
+            "desc": "Strengthening indigenous cultures through preservation of languages, spiritual practices, traditional arts, and transmission of ancestral knowledge to new generations.",
+            "impact": "Strengthening and continuity of languages, cultural practices, and ancestral knowledge, ensuring their transmission to future generations."
+        },
+        "autonomy": {
+            "title": "Community Autonomy & Sustainability",
+            "desc": "Promotion of initiatives generating economic and environmental autonomy, integrating traditional practices, territory care, and sustainable development led by indigenous communities themselves.",
+            "impact": "Communities more economically and environmentally autonomous, with sustainable initiatives led and managed by community leaders themselves."
+        },
+        "cta_banner": {
+            "title": "Be part of this story",
+            "description": "Join us in this mission to build a future where tradition and development walk side by side.",
+            "button": "I Want to Donate Monthly"
+        }
+    },
+    "footer": {
+        "description": "Empowering and promoting the autonomy of traditional peoples and communities, fostering social, economic, and environmental development in an integrated and continuous way, respecting and strengthening traditional ways of life.",
+        "navigation": "Navigation",
+        "contact": "Contact Us",
+        "rights": "© {{year}} Ancestral Connection. All rights reserved. Non-profit NGO."
+    }
+}
