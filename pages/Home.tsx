@@ -205,7 +205,7 @@ const Home: React.FC = () => {
               className="w-20 md:w-32 mx-auto mb-6 drop-shadow-2xl animate-float"
             />
             <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
-              Conexão Ancestral
+              Conexão Ancestralll
             </h1>
             <h2 className="text-white text-lg md:text-2xl font-extralight leading-relaxed max-w-4xl mx-auto drop-shadow-md mb-12">
               Tecendo o futuro com os povos da floresta ao proteger seus territórios, fortalecer sua cultura e valorizar o conhecimento que equilibra o planeta.
