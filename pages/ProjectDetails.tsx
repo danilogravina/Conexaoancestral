@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Project, ProjectCategory } from '../types';
 import { supabase } from '../lib/supabase';
 import { ensureAbsolutePath } from '../lib/utils';
 
 const ProjectDetails: React.FC = () => {
-  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState<Project | null>(null);
@@ -88,8 +86,8 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           id: data.id,
           title: data.title,
           category: data.category as any,
-          description: t(`projects_data.${data.id}.description`, { defaultValue: data.description }),
-          fullDescription: t(`projects_data.${data.id}.full_description`, { defaultValue: data.full_description }),
+          description: data.description,
+          fullDescription: data.full_description,
           image: mainImage,
           raised: 0,
           goal: data.goal_amount,
@@ -100,8 +98,43 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           objectives: data.impact_data?.objectives || [],
           video_url: data.video_url
         };
-        // NOTE: Override logic blocks for specific mocked titles removed or should be adapted if strictly needed.
-        // Assuming database + translation is the source of truth now.
+        if (mappedProject.title === 'Escola Viva da Floresta') {
+          mappedProject.title = 'Projeto de Infraestrutura e Gestão Participativa de Água no Território Katukina';
+          mappedProject.description = 'Implementação de solução sustentável de captação e distribuição de água para assegurar água de qualidade no território Katukina.';
+          mappedProject.category = ProjectCategory.WATER;
+          mappedProject.fullDescription = `Este projeto impulsiona o fortalecimento cultural e territorial do povo Katukina, o "povo verdadeiro". Diante das pressões da BR-364 sobre a T.I. Campinas/Katukina, 12 famílias Katukina criaram uma nova aldeia em área preservada, reafirmando sua conexão com a floresta e saberes ancestrais. Para consolidar essa resistência, o projeto implementará um sistema de água potável com poço artesiano e energia solar fotovoltaica, reduzindo a dependência de rios e riscos de contaminação. Mais que infraestrutura, é um investimento na autonomia, saúde e preservação cultural e ambiental do povo Katukina.`;
+          mappedProject.objectives = [
+            'Perfuração de poço artesiano',
+            'Instalação de sistema de energia solar fotovoltaica',
+            'Abastecimento de água potável para a nova aldeia',
+            'Melhora nas condições de saúde e saneamento'
+          ];
+          mappedProject.testimonials = [
+            { name: "Txai Katukina", role: "Liderança Local", quote: "Ter água limpa brotando na nossa nova aldeia é devolver a saúde e a dignidade para nossas crianças.", avatar: "/assets/img/team-joao.jpg" },
+            { name: "Maria Katukina", role: "Agente de Saúde Indígena", quote: "O poço artesiano reduziu as doenças na comunidade. É uma vitória da nossa resistência.", avatar: "/assets/img/team-mariana.jpg" }
+          ];
+        }
+        if (mappedProject.title === 'Agrofloresta Comunitária') {
+          mappedProject.title = 'Projeto Aldeia Sagrada - Construção do Centro Yuvanapanamaritiru';
+          mappedProject.description = 'O Centro Yuvanapanamaritiru é um santuário para a medicina tradicional, fortalecendo a cultura e a autonomia do povo Shawãdawa (Arara).';
+          mappedProject.category = ProjectCategory.CULTURE;
+          mappedProject.fullDescription = `O Centro Yuvanapanamaritiru é a concretização do sonho de resistência e fortalecimento cultural do povo Shawãdawa (Arara), no Alto Rio Juruá, Acre. Após séculos de luta, a comunidade de 1.600 indígenas busca preservar seu conhecimento ancestral. O Centro, que significa 'Cura, Cultura e Formação dos Guardiões', é um santuário para a medicina tradicional e sua transmissão. Estruturado com Kupixawa, Pousada, Casa de Cura e Banhos Curativos, o projeto também foca na sustentabilidade: poço artesiano, viveiro de plantas medicinais e cultivo orgânico, gerando renda e autonomia para o povo Shawãdawa.`;
+          mappedProject.objectives = [
+            'Construção do Kupixawa e Pousada de cura',
+            'Implementação de viveiro para plantas medicinais',
+            'Instalação de poço artesiano para a comunidade',
+            'Fortalecimento da autonomia cultural e espiritual'
+          ];
+          mappedProject.testimonials = [
+            { name: "Pajé Shawãdawa", role: "Líder Espiritual", quote: "O Centro Yuvanapanamaritiru é o coração da nossa cura. Aqui guardamos o espírito da floresta.", avatar: "/assets/img/team-joao.jpg" },
+            { name: "Arara Shawã", role: "Coordenadora de Cultura", quote: "Nosso centro de cultura garante que os jovens aprendam os cantos e as medicinas dos avós.", avatar: "/assets/img/team-mariana.jpg" }
+          ];
+        }
+        if (mappedProject.title === 'Centro Cerimonial de Cultura Huni Kuin do Rio Breu') {
+          mappedProject.fullDescription = `Este projeto visa fortalecer a cultura Huni Kuin, o "gente verdadeira", preservando saberes ancestrais, língua, espiritualidade e expressões culturais frente a pressões externas. O foco é a construção de um Centro Cerimonial de Cultura, um espaço vivo para a língua Hãtxa Kuin, medicinas tradicionais, cerimônias, cantos sagrados e artes Huni Kuin (kenê, tecelagem, cerâmica). Mais que uma estrutura, o Centro representa autodeterminação, gestão comunitária do patrimônio cultural, promovendo sustentabilidade, renda e a continuidade do legado Huni Kuin para futuras gerções.`;
+          mappedProject.image = '/assets/img/project-huni-kuin.png';
+          mappedProject.gallery = ['/assets/img/project-huni-kuin.png'];
+        }
 
         setProject(mappedProject);
         setActiveImage(mappedProject.image);
@@ -198,7 +231,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
     return (
       <div className="flex flex-col flex-grow items-center justify-center py-20">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mb-4"></div>
-        <p className="text-text-secondary-light dark:text-text-secondary-dark">{t('project_details.loading')}</p>
+        <p className="text-text-secondary-light dark:text-text-secondary-dark">Carregando projeto...</p>
       </div>
     );
   }
@@ -283,11 +316,11 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 pt-8">
         <nav className="flex text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">
-          <Link to="/" className="hover:text-primary">{t('header.home')}</Link>
+          <Link to="/" className="hover:text-primary">Home</Link>
           <span className="mx-2">/</span>
-          <Link to="/projetos" className="hover:text-primary">{t('header.projects')}</Link>
+          <Link to="/projetos" className="hover:text-primary">Projetos</Link>
           <span className="mx-2">/</span>
-          <span className="text-primary font-semibold">{t(`projects_data.${project.id}.title`, { defaultValue: project.title })}</span>
+          <span className="text-primary font-semibold">{project.title}</span>
         </nav>
       </div>
 
@@ -323,7 +356,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-8 shadow-sm border border-gray-100 dark:border-gray-700">
               <h2 className="text-gray-900 dark:text-white h2-standard mb-8 flex items-center gap-3">
-                <span className="material-icons-round text-primary text-3xl md:text-5xl">description</span> {t('project_details.about_title')}
+                <span className="material-icons-round text-primary text-3xl md:text-5xl">description</span> Sobre o Projeto
               </h2>
               <div className="prose dark:prose-invert prose-green max-w-none text-text-secondary-light dark:text-text-secondary-dark">
                 <div className="mb-4 text-lg md:text-xl leading-relaxed font-light whitespace-pre-wrap">
@@ -332,7 +365,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
 
                 {project.objectives && (
                   <>
-                    <h3 className="text-xl font-bold mt-8 mb-4 text-gray-900 dark:text-white">{t('project_details.objectives_title')}</h3>
+                    <h3 className="text-xl font-bold mt-8 mb-4 text-gray-900 dark:text-white">Nossos Objetivos Principais</h3>
                     <ul className="space-y-3 list-none pl-0">
                       {project.objectives.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3">
@@ -348,7 +381,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
 
             <div>
               <h2 className="text-gray-900 dark:text-white h2-standard mb-8 flex items-center gap-3">
-                <span className="material-icons-round text-primary text-3xl md:text-5xl">photo_library</span> {t('project_details.gallery_title')}
+                <span className="material-icons-round text-primary text-3xl md:text-5xl">photo_library</span> Galeria
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {gallery.map((img, index) => (
@@ -380,7 +413,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
                       <span className="text-white font-medium flex items-center gap-2 transform group-hover:scale-110 transition-transform bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
                         <span className="material-icons-round text-2xl">play_circle</span>
-                        <span className="text-sm">{t('project_details.watch_video')}</span>
+                        <span className="text-sm">Assistir Vídeo</span>
                       </span>
                     </div>
                   </div>
@@ -389,7 +422,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             </div>
 
             <div className="bg-primary/5 dark:bg-primary/10 rounded-3xl p-8 border border-primary/10">
-              <h2 className="text-gray-900 dark:text-white h2-standard mb-10">{t('project_details.voices_title')}</h2>
+              <h2 className="text-gray-900 dark:text-white h2-standard mb-10">Vozes da Comunidade</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {(project.testimonials || [
                   { name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "/assets/img/team-mariana.jpg" },
@@ -418,7 +451,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
               <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 relative overflow-hidden" id="doar">
                 <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
                 <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 relative z-10 tracking-tight">
-                  {project.status === 'Concluído' ? t('project_details.impact_report') : t('project_details.join_change')}
+                  {project.status === 'Concluído' ? 'Relatório de Impacto' : 'Faça Parte da Mudança'}
                 </h3>
 
                 <div className="mb-6 relative z-10">
@@ -442,7 +475,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-xl p-3 text-center">
                           <span className="block text-xl font-bold text-gray-900 dark:text-white">100%</span>
-                          <span className="text-[10px] uppercase font-semibold tracking-wider text-text-secondary-light dark:text-text-secondary-dark">{t('project_details.executed')}</span>
+                          <span className="text-[10px] uppercase font-semibold tracking-wider text-text-secondary-light dark:text-text-secondary-dark">Executado</span>
                         </div>
                       </div>
                     </div>
@@ -464,7 +497,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-xl p-3 text-center">
                           <span className="block text-xl font-bold text-gray-900 dark:text-white">--</span>
-                          <span className="text-[10px] uppercase font-semibold tracking-wider text-text-secondary-light dark:text-text-secondary-dark">{t('project_details.days_remaining')}</span>
+                          <span className="text-[10px] uppercase font-semibold tracking-wider text-text-secondary-light dark:text-text-secondary-dark">Dias Restantes</span>
                         </div>
                       </div>
                     </>
@@ -477,13 +510,13 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                       <div className="flex gap-3">
                         <span className="material-icons-round text-primary shrink-0">volunteer_activism</span>
                         <p className="text-sm text-gray-700 dark:text-gray-300 leading-snug">
-                          <span className="font-bold text-primary">{t('project_details.your_impact_label')}</span> {t('project_details.your_impact_text')} <span className="font-bold">{t(`projects_data.${project.id}.title`, { defaultValue: project.title })}</span>.
+                          <span className="font-bold text-primary">Seu impacto:</span> Sua doação direta apoia o projeto <span className="font-bold">{project.title}</span>.
                         </p>
                       </div>
                     </div>
 
                     <div className="mb-6 relative z-10">
-                      <label className="block text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider mb-3">{t('project_details.choose_amount')}</label>
+                      <label className="block text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider mb-3">Escolha o valor</label>
                       <div className="grid grid-cols-4 gap-2 mb-3">
                         {['25', '50', '100', '250'].map(val => (
                           <button
@@ -502,7 +535,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                         <input
                           type="number"
                           className="block w-full pl-10 pr-4 py-2.5 sm:text-sm border-gray-200 dark:border-gray-600 rounded-lg dark:bg-surface-dark dark:text-white focus:ring-primary focus:border-primary placeholder-gray-400"
-                          placeholder={t('project_details.other_amount')}
+                          placeholder="Outro valor"
                           value={donationAmount}
                           onChange={(e) => setDonationAmount(e.target.value)}
                         />
@@ -510,7 +543,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                     </div>
                     <div className="space-y-3 relative z-10">
                       <button onClick={handleDonate} className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
-                        <span className="material-icons-round">favorite</span> {t('project_details.donate_button')}
+                        <span className="material-icons-round">favorite</span> Doar para este Projeto
                       </button>
                     </div>
                   </>
@@ -539,7 +572,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
               </div>
 
               <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-4 text-sm">{t('project_details.share_cause')}</h4>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-4 text-sm">Compartilhe essa causa</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <button onClick={() => handleShare('Facebook')} className="flex bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-primary hover:text-primary rounded-lg py-2 px-3 items-center justify-center gap-2 transition-all">
                     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>

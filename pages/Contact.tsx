@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
 
 interface FormErrors {
   name?: string;
@@ -8,7 +7,6 @@ interface FormErrors {
 }
 
 const Contact: React.FC = () => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,29 +33,29 @@ const Contact: React.FC = () => {
 
     // Name validation
     if (!formData.name.trim()) {
-      newErrors.name = t('contact.form.errors.name_required');
+      newErrors.name = 'Por favor, informe seu nome completo.';
       isValid = false;
     } else if (formData.name.trim().length < 3) {
-      newErrors.name = t('contact.form.errors.name_length');
+      newErrors.name = 'O nome deve ter pelo menos 3 caracteres.';
       isValid = false;
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = t('contact.form.errors.email_required');
+      newErrors.email = 'O e-mail é obrigatório.';
       isValid = false;
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = t('contact.form.errors.email_invalid');
+      newErrors.email = 'Por favor, insira um e-mail válido.';
       isValid = false;
     }
 
     // Message validation
     if (!formData.message.trim()) {
-      newErrors.message = t('contact.form.errors.message_required');
+      newErrors.message = 'A mensagem não pode estar vazia.';
       isValid = false;
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = t('contact.form.errors.message_length');
+      newErrors.message = 'Sua mensagem deve ter pelo menos 10 caracteres.';
       isValid = false;
     }
 
@@ -69,7 +67,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      alert(t('contact.form.success'));
+      alert("Mensagem enviada com sucesso! Em breve entraremos em contato.");
       // Form submission logic
 
       // Reset form
@@ -93,12 +91,12 @@ const Contact: React.FC = () => {
         <div className="absolute right-0 top-0 h-full w-1/3 opacity-10 pointer-events-none" style={{ backgroundImage: "url('/assets/img/contact-hero-pattern.png')", backgroundSize: 'cover', mixBlendMode: 'multiply' }}></div>
         <div className="max-w-[1200px] mx-auto relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="max-w-xl">
-            <span className="inline-block px-3 py-1 mb-6 text-xs md:text-sm font-bold tracking-[0.2em] text-primary uppercase bg-primary/10 rounded-full dark:text-primary dark:bg-primary/20">{t('contact.hero.badge')}</span>
+            <span className="inline-block px-3 py-1 mb-6 text-xs md:text-sm font-bold tracking-[0.2em] text-primary uppercase bg-primary/10 rounded-full dark:text-primary dark:bg-primary/20">Fale Conosco</span>
             <h1 className="text-text-main-light dark:text-white h1-standard mb-6">
-              {t('contact.hero.title')}
+              Vamos construir o futuro da floresta juntos?
             </h1>
             <p className="text-lg md:text-xl text-text-secondary-light dark:text-gray-300 leading-relaxed max-w-lg font-light">
-              {t('contact.hero.description')}
+              Seja para tirar dúvidas, propor parcerias ou oferecer ajuda, nossa equipe está pronta para ouvir você. Sua conexão é o primeiro passo para a mudança.
             </p>
           </div>
           <div className="hidden md:block w-64 h-64 rounded-full overflow-hidden border-8 border-white dark:border-white/10 shadow-xl shrink-0">
@@ -111,11 +109,11 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-7 xl:col-span-8 order-2 lg:order-1">
             <div className="bg-white dark:bg-[#1a3324] rounded-2xl shadow-sm border border-stone-200 dark:border-white/10 p-6 md:p-10">
-              <h2 className="text-text-main-light dark:text-white h2-standard mb-8">{t('contact.form.title')}</h2>
+              <h2 className="text-text-main-light dark:text-white h2-standard mb-8">Envie uma mensagem</h2>
               <form className="flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <label className="flex flex-col gap-2">
-                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">{t('contact.form.name')}</span>
+                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">Nome Completo *</span>
                     <input
                       name="name"
                       value={formData.name}
@@ -130,7 +128,7 @@ const Contact: React.FC = () => {
                     {errors.name && <span className="text-red-500 text-xs font-medium animate-pulse">{errors.name}</span>}
                   </label>
                   <label className="flex flex-col gap-2">
-                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">{t('contact.form.email')}</span>
+                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">E-mail *</span>
                     <input
                       name="email"
                       value={formData.email}
@@ -147,18 +145,18 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <label className="flex flex-col gap-2">
-                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">{t('contact.form.phone')}</span>
+                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">Telefone (Opcional)</span>
                     <input
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       className="form-input w-full h-12 px-4 rounded-xl border border-stone-200 bg-background-light focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-text-secondary-light/60 dark:bg-[#102216] dark:border-white/10 dark:text-white"
-                      placeholder={t('contact.form.phone_placeholder')}
+                      placeholder="(00) 00000-0000"
                       type="tel"
                     />
                   </label>
                   <label className="flex flex-col gap-2">
-                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">{t('contact.form.subject')}</span>
+                    <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">Assunto</span>
                     <div className="relative">
                       <select
                         name="subject"
@@ -166,18 +164,18 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         className="form-select w-full h-12 px-4 rounded-xl border border-stone-200 bg-background-light focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-text-main-light dark:bg-[#102216] dark:border-white/10 dark:text-white cursor-pointer appearance-none"
                       >
-                        <option value="">{t('contact.form.subject_placeholder')}</option>
-                        <option value="voluntariado">{t('contact.form.options.volunteer')}</option>
-                        <option value="doacao">{t('contact.form.options.donation')}</option>
-                        <option value="parceria">{t('contact.form.options.partnership')}</option>
-                        <option value="outros">{t('contact.form.options.other')}</option>
+                        <option value="">Selecione o motivo</option>
+                        <option value="voluntariado">Quero ser voluntário</option>
+                        <option value="doacao">Dúvidas sobre doação</option>
+                        <option value="parceria">Parcerias e Imprensa</option>
+                        <option value="outros">Outros assuntos</option>
                       </select>
                       <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary-light">expand_more</span>
                     </div>
                   </label>
                 </div>
                 <label className="flex flex-col gap-2">
-                  <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">{t('contact.form.message')}</span>
+                  <span className="text-text-main-light dark:text-gray-200 text-sm font-bold">Mensagem *</span>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -191,9 +189,9 @@ const Contact: React.FC = () => {
                   {errors.message && <span className="text-red-500 text-xs font-medium animate-pulse">{errors.message}</span>}
                 </label>
                 <div className="flex items-center justify-between pt-2">
-                  <p className="text-xs text-text-secondary-light max-w-[60%] hidden md:block">{t('contact.form.privacy')}</p>
+                  <p className="text-xs text-text-secondary-light max-w-[60%] hidden md:block">Ao enviar, você concorda com nossa Política de Privacidade e o processamento dos seus dados.</p>
                   <button className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-text-main-light font-bold py-3 px-8 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-95 w-full md:w-auto" type="submit">
-                    <span>{t('contact.form.submit')}</span>
+                    <span>Enviar Mensagem</span>
                     <span className="material-symbols-outlined text-sm font-bold">send</span>
                   </button>
                 </div>
@@ -204,7 +202,7 @@ const Contact: React.FC = () => {
             <div className="bg-white dark:bg-[#1a3324] rounded-2xl shadow-sm border border-stone-200 dark:border-white/10 p-6 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold text-text-main-light dark:text-white mb-6 flex items-center gap-3">
                 <span className="material-symbols-outlined text-primary">contact_support</span>
-                {t('contact.channels.title')}
+                Canais de Atendimento
               </h2>
               <div className="flex flex-col gap-6">
                 {[
@@ -226,7 +224,7 @@ const Contact: React.FC = () => {
               </div>
               <div className="h-px w-full bg-stone-200 dark:bg-white/10 my-6"></div>
               <div className="flex flex-col gap-3">
-                <p className="text-sm font-bold text-text-secondary-light">{t('contact.channels.follow_us')}</p>
+                <p className="text-sm font-bold text-text-secondary-light">Nos siga nas redes</p>
                 <div className="flex gap-3">
                   <a href="https://instagram.com/conexaoancestral" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white dark:bg-[#102216] border border-stone-200 dark:border-white/10 flex items-center justify-center hover:border-primary text-gray-500 hover:text-primary transition-all duration-300 shadow-sm" aria-label="Instagram">
                     <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
@@ -248,7 +246,7 @@ const Contact: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 pointer-events-none">
                 <div className="flex items-center gap-2 text-white">
                   <span className="material-symbols-outlined text-primary">map</span>
-                  <span className="font-medium">{t('contact.channels.map_link')}</span>
+                  <span className="font-medium">Ver localização no mapa</span>
                 </div>
               </div>
             </div>
@@ -261,10 +259,10 @@ const Contact: React.FC = () => {
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-white/10 mb-4 shadow-sm">
             <span className="material-symbols-outlined text-primary text-2xl">help_center</span>
           </div>
-          <h2 className="text-text-main-light dark:text-white h2-standard mb-4">{t('contact.faq.title')}</h2>
-          <p className="text-lg md:text-xl text-text-secondary-light dark:text-gray-300 mb-8 font-light max-w-2xl mx-auto">{t('contact.faq.description')}</p>
+          <h2 className="text-text-main-light dark:text-white h2-standard mb-4">Ainda tem dúvidas?</h2>
+          <p className="text-lg md:text-xl text-text-secondary-light dark:text-gray-300 mb-8 font-light max-w-2xl mx-auto">Muitas perguntas comuns sobre voluntariado e doações já estão respondidas em nossa central de ajuda.</p>
           <a className="inline-flex items-center text-primary font-bold hover:underline gap-1" href="#">
-            {t('contact.faq.link')}
+            Acessar Perguntas Frequentes
             <span className="material-symbols-outlined text-sm">arrow_forward</span>
           </a>
         </div>

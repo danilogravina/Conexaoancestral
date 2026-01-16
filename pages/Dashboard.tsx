@@ -195,7 +195,7 @@ const Dashboard: React.FC = () => {
                                 Obrigado por ajudar a proteger a Amazônia.
                             </p>
                         </div>
-                        <Link to="/projetos" className="flex items-center justify-center overflow-hidden rounded-xl h-12 px-6 bg-primary hover:bg-primary-dark transition-transform active:scale-95 text-[#0d1b12] gap-2 text-base font-bold shadow-lg shadow-primary/20">
+                        <Link to="/projetos" className="flex items-center justify-center overflow-hidden rounded-xl h-12 px-6 bg-primary hover:bg-primary-dark transition-transform active:scale-95 text-white gap-2 text-base font-bold shadow-lg shadow-primary/20">
                             <span className="material-symbols-outlined">add_circle</span>
                             <span>Fazer Nova Doação</span>
                         </Link>

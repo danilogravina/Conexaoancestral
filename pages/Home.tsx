@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
 const StatCard: React.FC<{ icon: string; label: string; value: number | string; description?: string; suffix?: string; delay?: number }> = ({ icon, label, value, description = "", suffix = "", delay = 0 }) => {
   const [count, setCount] = useState<number | string>(typeof value === 'number' ? 0 : value);
@@ -99,8 +98,12 @@ const StatCard: React.FC<{ icon: string; label: string; value: number | string; 
 const VIDEO_HERO_ENABLED = true;
 const VIDEO_ID = "iy8wWnhyN78";
 
-// PARTNERS array removed from here to be defined inside or kept if no translation needed.
-// HOME_STATS moved inside component for translation
+const HOME_STATS = [
+  { label: "Cultura", value: "Saberes Ancestrais", description: "Preservamos a riqueza cultural e a sabedoria milenar dos povos originários.", suffix: "", icon: "/assets/img/icons/icone-saberes-ancestrais.svg" },
+  { label: "Território", value: "Autonomia e Proteção", description: "Defendemos os direitos territoriais e a autogestão dos povos tradicionais.", suffix: "", icon: "/assets/img/icons/icone-autonomia-protecao.svg" },
+  { label: "Futuro", value: "Sustentabilidade Viva", description: "Construímos um amanhã mais justo, com respeito à natureza e às gerações futuras.", suffix: "", icon: "/assets/img/icons/icone-sustentabilidade-viva.svg" }
+];
+
 const PARTNERS = [
   { logo: "logo_eco_amazon.png", url: "https://www.medicinasagrada.com.br" },
   { logo: "logo_ancestral_fund.png", url: "https://www.sacredconnection.co" },
@@ -111,13 +114,6 @@ const PARTNERS = [
 ];
 
 const Home: React.FC = () => {
-  const { t } = useTranslation();
-
-  const statsData = [
-    { label: "Cultura", value: t('stats.culture'), description: t('missao.description'), suffix: "", icon: "/assets/img/icons/icone-saberes-ancestrais.svg" },
-    { label: "Território", value: t('stats.territory'), description: "", suffix: "", icon: "/assets/img/icons/icone-autonomia-protecao.svg" },
-    { label: "Futuro", value: t('stats.future'), description: "", suffix: "", icon: "/assets/img/icons/icone-sustentabilidade-viva.svg" }
-  ];
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -209,14 +205,14 @@ const Home: React.FC = () => {
               className="w-20 md:w-32 mx-auto mb-6 drop-shadow-2xl animate-float"
             />
             <h1 className="text-white h1-standard mb-4 drop-shadow-lg font-black tracking-tight">
-              {t('hero.title')}
+              Conexão Ancestral
             </h1>
             <h2 className="text-white text-lg md:text-2xl font-extralight leading-relaxed max-w-4xl mx-auto drop-shadow-md mb-12">
-              {t('hero.subtitle')}
+              Tecendo o futuro com os povos da floresta ao proteger seus territórios, fortalecer sua cultura e valorizar o conhecimento que equilibra o planeta.
             </h2>
             <div className="flex justify-center">
               <Link to="/projetos" className="h-14 px-12 rounded-full bg-primary hover:bg-primary-dark text-white font-black transition-all shadow-xl shadow-primary/20 flex items-center justify-center">
-                {t('hero.cta_primary')}
+                Fazer Doação
               </Link>
             </div>
           </div>
@@ -230,9 +226,9 @@ const Home: React.FC = () => {
             alt="Ícone Nossa Missão"
             className="w-12 h-12 md:w-16 md:h-16 object-contain mx-auto mb-6 drop-shadow-sm"
           />
-          <h2 className="text-[#0d1b12] dark:text-white h2-standard mb-6">{t('missao.title')}</h2>
+          <h2 className="text-[#0d1b12] dark:text-white h2-standard mb-6">Nossa Missão</h2>
           <p className="text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
-            {t('missao.description')}
+            Empoderar e promover a autonomia dos povos indígenas e comunidades tradicionais, fortalecendo sua autonomia cultural, social, ambiental e econômica.
           </p>
         </div>
       </section>
@@ -240,14 +236,14 @@ const Home: React.FC = () => {
       <section className="px-4 pt-10 pb-20 md:pb-24 bg-background-light dark:bg-background-dark overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {statsData.map((stat, idx) => (
+            {HOME_STATS.map((stat, idx) => (
               <StatCard
                 key={idx}
                 icon={stat.icon}
                 label={stat.label}
                 value={stat.value}
-                description={""}
-                suffix={""}
+                description={stat.description}
+                suffix={stat.suffix}
                 delay={idx * 100}
               />
             ))}
@@ -273,22 +269,23 @@ const Home: React.FC = () => {
           <div className="order-1 md:order-2 flex flex-col gap-6">
             <div className="flex items-center gap-3 text-primary font-bold uppercase tracking-[0.2em] text-xs mb-4">
               <span className="w-10 h-[2px] bg-primary"></span>
-              {t('roots.label')}
+              Nossas Raízes
             </div>
             <h2 className="text-[#0d1b12] dark:text-white h2-standard">
-              {t('roots.title')}
+              Uma História de Resiliência e Conexão
             </h2>
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
-              {t('roots.p1')}
+              Nossas raízes nascem do encontro com a floresta e com os povos que a protegem há milênios. Elas brotam da escuta atenta, do respeito profundo e da convivência verdadeira com os povos indígenas, guardiões de saberes ancestrais que sustentam a vida em equilíbrio com a terra.
             </p>
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
-              {t('roots.p2')}
+              São raízes fincadas no território, na memória e na espiritualidade. Crescem a partir das histórias contadas ao redor do fogo, dos cantos que atravessam gerações, do cuidado com as plantas, os rios e os ciclos da natureza.
             </p>
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
-              {t('roots.p3')}
+              Cada passo dado junto às comunidades fortaleceu a certeza de que preservar a floresta é preservar culturas, modos de vida e futuros possíveis.
+              A Conexão Ancestral se enraíza no compromisso com a autodeterminação dos povos indígenas, no reconhecimento de seu protagonismo e na valorização de seus conhecimentos como pilares para um mundo mais justo e sustentável.
             </p>
             <p className="text-stone-600 dark:text-stone-300 text-lg leading-relaxed">
-              {t('roots.p4')}
+              É dessas raízes profundas que nasce nossa missão: caminhar junto, fortalecer laços e proteger a vida que pulsa na floresta.
             </p>
 
           </div>
@@ -304,36 +301,36 @@ const Home: React.FC = () => {
 
         <div className="max-w-6xl mx-auto relative z-10 flex flex-col gap-10">
           <div className="text-center max-w-3xl mx-auto reveal-on-scroll">
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#a5d6a7] mb-4 block">{t('initiatives.label')}</span>
-            <h2 className="text-white h2-standard mb-6">{t('initiatives.title')}</h2>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#a5d6a7] mb-4 block">Nossa Missão em Ação</span>
+            <h2 className="text-white h2-standard mb-6">Nossas Iniciativas</h2>
             <div className="w-20 h-1.5 bg-white/20 mx-auto rounded-full mb-8 overflow-hidden">
               <div className="w-1/2 h-full bg-white animate-wave"></div>
             </div>
             <p className="text-white/80 text-xl leading-relaxed font-light">
-              {t('initiatives.description')}
+              Atuamos de forma integrada para fortalecer a autonomia dos povos tradicionais, valorizando saberes ancestrais e sua cultura.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
-                title: t('initiatives.water.title'),
-                desc: t('initiatives.water.desc'),
-                impact: t('initiatives.water.impact'),
+                title: "Segurança Hídrica e Infraestrutura Sustentável",
+                desc: "Implantação de soluções de acesso à água potável e infraestrutura básica com uso de tecnologias sustentáveis, fortalecendo a saúde, a autonomia e o bem viver das comunidades indígenas.",
+                impact: "Comunidades com acesso seguro e contínuo à água potável, promovendo melhorias significativas na saúde, na autonomia e na qualidade de vida.",
                 icon: "/assets/img/icons/icone-Seguranca-hidrica.svg",
                 delay: "0s"
               },
               {
-                title: t('initiatives.culture.title'),
-                desc: t('initiatives.culture.desc'),
-                impact: t('initiatives.culture.impact'),
+                title: "Valorização Cultural e Saberes Ancestrais",
+                desc: "Fortalecimento das culturas indígenas por meio da preservação das línguas, das práticas espirituais, das artes tradicionais e da transmissão dos conhecimentos ancestrais às novas gerações.",
+                impact: "Fortalecimento e continuidade das línguas, práticas culturais e saberes ancestrais, assegurando sua transmissão às futuras gerações.",
                 icon: "/assets/img/icons/icone-valorizacao-cultural.svg",
                 delay: "0.2s"
               },
               {
-                title: t('initiatives.autonomy.title'),
-                desc: t('initiatives.autonomy.desc'),
-                impact: t('initiatives.autonomy.impact'),
+                title: "Autonomia Comunitária e Sustentabilidade",
+                desc: "Promoção de iniciativas que geram autonomia econômica e ambiental, integrando práticas tradicionais, cuidado com o território e desenvolvimento sustentável conduzido pelas próprias comunidades indígenas.",
+                impact: "Comunidades mais autônomas econômica e ambientalmente, com iniciativas sustentáveis conduzidas e geridas pelas próprias lideranças comunitárias.",
                 icon: "/assets/img/icons/icone-autonomia-comunitaria.svg",
                 delay: "0.4s"
               }
@@ -428,28 +425,28 @@ const Home: React.FC = () => {
             <div>
               <div className="flex items-center gap-3 text-primary font-bold uppercase tracking-[0.2em] text-xs mb-4">
                 <span className="w-10 h-[2px] bg-primary"></span>
-                {t('values.label')}
+                Nossos Valores
               </div>
               <h2 className="text-[#0d1b12] dark:text-white h2-standard">
-                {t('values.title')}
+                Princípios que Pulsam<br /> em Cada Ação
               </h2>
             </div>
 
             <div className="flex flex-col gap-10">
               {[
                 {
-                  title: t('values.protagonism.title'),
-                  description: t('values.protagonism.desc'),
+                  title: "Protagonismo Indígena",
+                  description: "Reconhecemos e fortalecemos o direito dos povos indígenas de decidir sobre seus territórios, modos de vida e futuros, atuando sempre em diálogo e respeito às suas lideranças.",
                   icon: "/assets/img/icons/icone-protagonismo-indigena.svg"
                 },
                 {
-                  title: t('values.knowledge.title'),
-                  description: t('values.knowledge.desc'),
+                  title: "Saberes Ancestrais",
+                  description: "Valorizamos o conhecimento tradicional como patrimônio vivo, essencial para a preservação da floresta, da cultura e do equilíbrio entre humanidade e natureza.",
                   icon: "/assets/img/icons/icone-saberes.svg"
                 },
                 {
-                  title: t('values.care.title'),
-                  description: t('values.care.desc'),
+                  title: "Cuidado com a Vida e a Floresta",
+                  description: "Atuamos pela proteção da vida em todas as suas formas, promovendo práticas sustentáveis que respeitam os ciclos da natureza e garantem o bem viver das gerações presentes e futuras.",
                   icon: "/assets/img/icons/icone-cuidado-vida-floresta.svg"
                 }
               ].map((value, index) => (
@@ -507,14 +504,14 @@ const Home: React.FC = () => {
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <span className="material-symbols-outlined mb-6 text-6xl text-white opacity-90 inline-block">volunteer_activism</span>
           <h2 className="text-white h2-standard mb-4">
-            {t('initiatives.cta_banner.title')}
+            Faça parte dessa história
           </h2>
           <p className="mx-auto mb-10 max-w-xl text-lg md:text-xl text-white/80 font-light leading-relaxed">
-            {t('initiatives.cta_banner.description')}
+            Junte-se a nós nesta missão de construir um futuro onde tradição e desenvolvimento caminham lado a lado.
           </p>
           <div className="flex flex-col items-center justify-center">
             <Link to="/projetos" className="h-14 px-12 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
-              {t('initiatives.cta_banner.button')}
+              Quero Doar Mensalmente
             </Link>
           </div>
         </div>

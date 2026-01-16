@@ -2,11 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 
-import { useTranslation } from 'react-i18next';
-
 const Footer: React.FC = () => {
-    const { t } = useTranslation();
-    const currentYear = new Date().getFullYear();
     return (
         <footer className="bg-white pt-16 pb-8 dark:bg-surface-dark border-t border-stone-100 dark:border-gray-800">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -16,7 +12,7 @@ const Footer: React.FC = () => {
                             <Logo />
                         </Link>
                         <p className="text-sm leading-relaxed text-text-secondary-light dark:text-text-secondary-dark pr-4 font-normal">
-                            {t('footer.description')}
+                            Empoderar e promover a autonomia dos povos e comunidades tradicionais, fomentando o desenvolvimento social, econômico e ambiental de forma integrada e contínua, respeitando e fortalecendo os modos de vida tradicionais.
                         </p>
                         <div className="flex gap-3">
                             <a href="https://instagram.com/conexaoancestral" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-primary hover:text-primary dark:hover:border-primary dark:text-gray-400 transition-all duration-300" aria-label="Instagram">
@@ -37,17 +33,17 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
                     <div>
-                        <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-text-main-light dark:text-white mb-6">{t('footer.navigation')}</h3>
+                        <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-text-main-light dark:text-white mb-6">Navegação</h3>
                         <ul className="space-y-3">
-                            <li><Link to="/quem-somos" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">{t('header.about')}</Link></li>
-                            <li><Link to="/projetos" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">{t('header.projects')}</Link></li>
+                            <li><Link to="/quem-somos" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Sobre Nós</Link></li>
+                            <li><Link to="/projetos" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Nossos Projetos</Link></li>
                             <li><a href="/assets/img/estatuto.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Estatuto</a></li>
-                            <li><Link to="/contato" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">{t('header.contact')}</Link></li>
+                            <li><Link to="/contato" className="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">Fale Conosco</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-text-main-light dark:text-white mb-6">{t('footer.contact')}</h3>
+                        <h3 className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-text-main-light dark:text-white mb-6">Fale Conosco</h3>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3">
                                 <span className="material-symbols-outlined text-primary text-xl mt-0.5">mail</span>
@@ -79,7 +75,7 @@ const Footer: React.FC = () => {
                 <div className="mt-12 border-t border-gray-100 dark:border-gray-800 pt-8">
                     <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                         <p className="text-xs text-gray-400 text-center md:text-left">
-                            {t('footer.rights', { year: currentYear })}
+                            © 2024 Conexão Ancestral. Todos os direitos reservados. ONG sem fins lucrativos.
                         </p>
                         <div className="flex gap-6 text-xs text-gray-500 dark:text-gray-400">
                             <Link to="/" className="hover:text-primary transition-colors">Política de Privacidade</Link>

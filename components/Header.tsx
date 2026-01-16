@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Logo } from './Logo';
-import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface HeaderProps {
     toggleTheme: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
-    const { t } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [isScrolled, setIsScrolled] = useState(false);
@@ -64,15 +61,15 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                 {/* 2. Desktop Navigation (Centered) */}
                 <nav className="hidden lg:flex items-center justify-center gap-8 flex-1">
                     <Link to="/" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/') && location.pathname === '/' ? (isHomePage && !isScrolled ? 'text-white' : 'text-donate-red') : (isHomePage && !isScrolled ? 'text-white/90 hover:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary')}`}>
-                        {t('header.home')}
+                        Início
                         <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${(isActive('/') && location.pathname === '/') ? 'w-full' : 'w-0 group-hover:w-full'} ${isHomePage && !isScrolled && 'bg-white'}`}></span>
                     </Link>
                     <Link to="/quem-somos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/quem-somos') ? 'text-donate-red' : (isHomePage && !isScrolled ? 'text-white/90 hover:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary')}`}>
-                        {t('header.about')}
+                        Sobre Nós
                         <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/quem-somos') ? 'w-full' : 'w-0 group-hover:w-full'} ${isHomePage && !isScrolled && isActive('/quem-somos') && 'bg-white'}`}></span>
                     </Link>
                     <Link to="/projetos" className={`relative text-sm font-bold transition-all duration-300 group ${isActive('/projetos') ? 'text-donate-red' : (isHomePage && !isScrolled ? 'text-white/90 hover:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary')}`}>
-                        {t('header.projects')}
+                        Projetos
                         <span className={`absolute -bottom-1 left-0 h-0.5 bg-donate-red transition-all duration-300 ${isActive('/projetos') ? 'w-full' : 'w-0 group-hover:w-full'} ${isHomePage && !isScrolled && isActive('/projetos') && 'bg-white'}`}></span>
                     </Link>
                 </nav>
@@ -84,17 +81,12 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                         <span className={`material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 transition-colors text-xl ${isHomePage && !isScrolled ? 'text-white/70 group-focus-within:text-white' : 'text-gray-500 dark:text-gray-400 group-focus-within:text-primary'}`}>search</span>
                         <input
                             type="text"
-                            placeholder={t('header.search_placeholder')}
+                            placeholder="Buscar..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onKeyDown={handleSearch}
                             className={`w-28 xl:w-40 pl-10 pr-4 py-2.5 rounded-full border border-transparent outline-none transition-all text-sm font-medium placeholder-gray-500 ${isHomePage && !isScrolled ? 'bg-white/10 border-white/20 focus:bg-white/20 focus:border-white/40 text-white placeholder-white/50' : 'bg-stone-50 dark:bg-white/5 border-gray-200 dark:border-white/10 focus:bg-white dark:focus:bg-black/20 focus:border-primary focus:ring-4 focus:ring-primary/10 text-text-main-light dark:text-white'}`}
                         />
-                    </div>
-
-                    {/* Language Switcher (Desktop) */}
-                    <div className="hidden sm:block">
-                        <LanguageSwitcher />
                     </div>
 
                     {/* Theme Toggle */}
@@ -118,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
 
                     {/* CTA Button */}
                     <Link to="/projetos" className="hidden sm:flex h-11 items-center justify-center rounded-xl bg-donate-red px-6 xl:px-8 text-sm font-extrabold text-white shadow-lg shadow-donate-red/25 hover:bg-red-600 hover:-translate-y-0.5 hover:shadow-donate-red/40 transition-all duration-200 whitespace-nowrap">
-                        {t('header.donate')}
+                        Doar Agora
                     </Link>
 
                     {/* Mobile Menu Button */}
@@ -139,7 +131,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                         <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
                         <input
                             type="text"
-                            placeholder={t('header.search_placeholder_mobile')}
+                            placeholder="Buscar no site..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onKeyDown={handleSearch}
@@ -148,20 +140,17 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <Link to="/" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/') && location.pathname === '/' ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>{t('header.home')}</Link>
-                        <Link to="/quem-somos" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/quem-somos') ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>{t('header.about')}</Link>
-                        <Link to="/projetos" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/projetos') ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>{t('header.projects')}</Link>
+                        <Link to="/" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/') && location.pathname === '/' ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>Início</Link>
+                        <Link to="/quem-somos" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/quem-somos') ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>Sobre Nós</Link>
+                        <Link to="/projetos" onClick={() => setIsMenuOpen(false)} className={`text-lg font-bold p-3 rounded-lg transition-all ${isActive('/projetos') ? 'bg-donate-red/10 text-donate-red border-l-4 border-donate-red' : 'text-text-main-light dark:text-white hover:bg-primary/5'}`}>Projetos</Link>
 
 
                         <div className="border-t border-gray-100 dark:border-white/10 my-2"></div>
-                        <div className="px-3 py-2">
-                            <LanguageSwitcher />
-                        </div>
                         <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold p-3 hover:bg-primary/10 rounded-lg text-text-main-light dark:text-white transition-colors flex items-center gap-2">
-                            <span className="material-symbols-outlined">login</span> {t('header.login')}
+                            <span className="material-symbols-outlined">login</span> Entrar / Minha Conta
                         </Link>
                     </div>
-                    <Link to="/projetos" onClick={() => setIsMenuOpen(false)} className="w-full h-12 flex items-center justify-center rounded-xl bg-donate-red text-white font-extrabold shadow-lg hover:bg-red-600 transition-colors">{t('header.donate')}</Link>
+                    <Link to="/projetos" onClick={() => setIsMenuOpen(false)} className="w-full h-12 flex items-center justify-center rounded-xl bg-donate-red text-white font-extrabold shadow-lg hover:bg-red-600 transition-colors">Doar Agora</Link>
                 </div>
             )}
         </header>
