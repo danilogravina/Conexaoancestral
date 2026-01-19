@@ -54,3 +54,8 @@
 [class*="bg-primary/"] *, [class*="bg-emerald/"] *, [class*="bg-green-50"] *, [class*="bg-green-100"] *, [class*="bg-green-200"] *, [class*="bg-emerald-50"] *, [class*="bg-emerald-100"] *, [class*="bg-emerald-200"] * {
     color: inherit !important;
 }
+
+/* Ensure header / hero overlays that use semi-transparent primary tints keep white text */
+[class*="bg-primary/25"], [class*="bg-primary/25"] * , [class*="bg-primary/40"], [class*="bg-primary/40"] * {
+    color: #ffffff !important;
+}
