@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Logo } from '../components/Logo';
 import { supabase } from '../lib/supabase';
 import { useUser } from '../contexts/UserContext';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = (location.state as any)?.redirectTo || '/minha-conta';
   const { session, isLoading: isAuthLoading } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,9 +17,9 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (!isAuthLoading && session) {
-      navigate('/minha-conta');
+      navigate(redirectTo);
     }
-  }, [session, isAuthLoading, navigate]);
+  }, [session, isAuthLoading, navigate, redirectTo]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const Login: React.FC = () => {
 
       if (error) throw error;
 
-      navigate('/minha-conta');
+      navigate(redirectTo);
     } catch (err: any) {
       setError(err.message || 'Erro ao fazer login. Verifique suas credenciais.');
     } finally {

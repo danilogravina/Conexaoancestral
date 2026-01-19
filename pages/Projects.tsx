@@ -20,30 +20,38 @@ const Projects: React.FC = () => {
   const fetchProjects = async () => {
     try {
       setIsLoading(true);
-      const { data, error } = await supabase
-        .from('projects')
-        .select('*');
+      const [{ data, error }, campaignRes] = await Promise.all([
+        supabase.from('projects').select('*'),
+        fetch('/api/public/campaigns').then((r) => r.json()).catch(() => []),
+      ]);
 
       if (error) throw error;
 
+      const campaignProgress = Array.isArray(campaignRes) ? campaignRes : [];
+
       if (data) {
-        // Map database snake_case to frontend camelCase
-        const mappedProjects: Project[] = data.map((p: any) => ({
-          id: p.id,
-          title: p.title,
-          category: p.category as ProjectCategory,
-          description: p.description,
-          fullDescription: p.full_description,
-          image: ensureAbsolutePath(p.image_url),
-          raised: Number(p.raised_amount) || 0,
-          goal: Number(p.goal_amount) || 0,
-          status: p.status as Project['status'],
-          beneficiaries: p.beneficiaries_count,
-          year: p.year,
-          gallery: (p.gallery || []).map(ensureAbsolutePath),
-          objectives: p.impact_data?.objectives || [],
-          testimonials: p.impact_data?.testimonials || []
-        }));
+        const mappedProjects: Project[] = data.map((p: any) => {
+          const campaign = campaignProgress.find((c: any) => c.slug === p.id);
+          const confirmedTotal = campaign ? Number(campaign.confirmed_total || 0) : Number(p.raised_amount) || 0;
+          const goalAmount = campaign ? Number(campaign.goal_amount || p.goal_amount || 0) : Number(p.goal_amount) || 0;
+
+          return {
+            id: p.id,
+            title: p.title,
+            category: p.category as ProjectCategory,
+            description: p.description,
+            fullDescription: p.full_description,
+            image: ensureAbsolutePath(p.image_url),
+            raised: confirmedTotal,
+            goal: goalAmount,
+            status: p.status as Project['status'],
+            beneficiaries: p.beneficiaries_count,
+            year: p.year,
+            gallery: (p.gallery || []).map(ensureAbsolutePath),
+            objectives: p.impact_data?.objectives || [],
+            testimonials: p.impact_data?.testimonials || []
+          };
+        });
 
         setProjects(mappedProjects);
       }
