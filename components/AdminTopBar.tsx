@@ -16,8 +16,8 @@ const AdminTopBar: React.FC = () => {
     }
 
     return (
-        <div className="sticky top-0 z-60 w-full bg-[#111827] text-white border-b border-black/30">
-            <div className="h-12 px-4 flex items-center justify-between">
+        <div className="sticky top-0 z-[10000] w-full bg-[#111827] text-white border-b border-black/30 relative isolate">
+            <div className="h-12 px-4 flex items-center justify-between overflow-visible">
                 <div className="flex items-center gap-3">
                     <Link to="/admin" className="flex items-center gap-2 text-sm font-semibold hover:text-primary transition-colors">
                         <span className="material-symbols-outlined text-[18px]">dashboard</span>
@@ -36,7 +36,7 @@ const AdminTopBar: React.FC = () => {
                         </button>
 
                         {isAddOpen && (
-                            <div className="absolute left-0 mt-2 w-48 rounded-md bg-white text-text-main-light shadow-lg border border-gray-200 dark:bg-surface-dark dark:text-white dark:border-white/10 z-70">
+                            <div className="absolute left-0 mt-2 w-48 rounded-md bg-white text-text-main-light shadow-lg border border-gray-200 dark:bg-surface-dark dark:text-white dark:border-white/10 z-[10001]">
                                 <Link
                                     to="/admin/projects/new"
                                     onClick={() => setIsAddOpen(false)}
