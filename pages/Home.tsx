@@ -451,7 +451,7 @@ const Home: React.FC = () => {
                 }
               ].map((value, index) => (
                 <div key={index} className="flex gap-6 group">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white dark:bg-surface-dark border border-stone-100 dark:border-white/5 shadow-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 overflow-hidden">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white/40 dark:bg-surface-dark border border-white/20 dark:border-white/5 shadow-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 overflow-hidden">
                     {value.icon.includes('/') || value.icon.includes('.') ? (
                       <div
                         className="w-10 h-10 bg-current transition-all duration-300"
