@@ -220,6 +220,12 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
       return;
     }
 
+    if (!user) {
+      setPaypalError('Para doar, entre ou cadastre seu e-mail (você receberá o link para criar sua senha).');
+      navigate('/login', { state: { redirectTo: `/projetos/${project.id}` } });
+      return;
+    }
+
     try {
       setIsCreatingOrder(true);
       setPaypalError(null);
