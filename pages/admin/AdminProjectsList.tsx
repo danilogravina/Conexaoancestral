@@ -70,7 +70,7 @@ const AdminProjectsList: React.FC = () => {
                 <h1 className="text-2xl font-bold text-text-main-light dark:text-white">Projetos</h1>
                 <Link
                     to="/admin/projects/new"
-                    className="flex items-center gap-2 px-4 py-2 bg-primary text-[#0d1b12] rounded-lg font-bold hover:bg-primary-dark transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg font-bold hover:bg-primary-dark transition-colors"
                 >
                     <span className="material-symbols-outlined">add</span>
                     Novo Projeto

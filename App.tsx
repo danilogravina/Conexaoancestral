@@ -26,6 +26,9 @@ const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminProjectsList = lazy(() => import('./pages/admin/AdminProjectsList'));
 const AdminProjectForm = lazy(() => import('./pages/admin/AdminProjectForm'));
+const AdminDonations = lazy(() => import('./pages/admin/AdminDonations'));
+const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -115,10 +118,12 @@ const AppContent: React.FC = () => {
                   <Route path="projects" element={<AdminProjectsList />} />
                   <Route path="projects/new" element={<AdminProjectForm />} />
                   <Route path="projects/:id" element={<AdminProjectForm />} />
+                  <Route path="donations" element={<AdminDonations />} />
+                  <Route path="settings" element={<AdminSettings />} />
                 </Route>
               </Route>
 
-              <Route path="*" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </MaintenanceGuard>
