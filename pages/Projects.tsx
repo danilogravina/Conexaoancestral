@@ -194,7 +194,7 @@ const Projects: React.FC = () => {
                 <Link
                   to={`/projetos/${project.id}`}
                   key={project.id}
-                  className={`group flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 ${project.status === 'Concluído' ? 'opacity-90 hover:opacity-100' : ''}`}
+                  className={`group flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 min-h-0 ${project.status === 'Concluído' ? 'opacity-90 hover:opacity-100' : ''}`}
                 >
                   <div className={`relative h-60 overflow-hidden ${project.status === 'Concluído' ? 'grayscale group-hover:grayscale-0' : ''} transition-all duration-500`}>
                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500" style={{ backgroundImage: `url("${project.image}")` }}></div>
@@ -215,7 +215,7 @@ const Projects: React.FC = () => {
                       <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{project.category}</h4>
                       <h3 className="mt-2 text-xl md:text-2xl font-bold text-text-main-light dark:text-white group-hover:text-primary transition-colors">{project.title}</h3>
                     </div>
-                    <p className="mb-6 flex-1 text-sm leading-relaxed text-text-secondary-light dark:text-text-secondary-dark line-clamp-2">
+                    <p className="mb-6 flex-1 text-sm leading-relaxed text-text-secondary-light dark:text-text-secondary-dark line-clamp-3 md:line-clamp-2">
                       {project.description}
                     </p>
 
