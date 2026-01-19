@@ -36,7 +36,7 @@ const AdminTopBar: React.FC = () => {
                         </button>
 
                         {isAddOpen && (
-                            <div className="absolute left-0 mt-2 w-48 rounded-md bg-white text-text-main-light shadow-lg border border-gray-200 dark:bg-surface-dark dark:text-white dark:border-white/10">
+                            <div className="absolute left-0 mt-2 w-48 rounded-md bg-white text-text-main-light shadow-lg border border-gray-200 dark:bg-surface-dark dark:text-white dark:border-white/10 z-70">
                                 <Link
                                     to="/admin/projects/new"
                                     onClick={() => setIsAddOpen(false)}
