@@ -82,7 +82,7 @@ const AppContent: React.FC = () => {
     <div className="flex flex-col min-h-screen font-display">
       <ScrollToTop />
       {user?.role === 'admin' && <AdminTopBar />}
-      {showHeaderFooter && <Header toggleTheme={toggleTheme} />}
+      {showHeaderFooter && <Header toggleTheme={toggleTheme} offsetTop={user?.role === 'admin'} />}
       <main className="flex-grow flex flex-col">
         <MaintenanceGuard>
           <Suspense fallback={

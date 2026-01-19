@@ -5,9 +5,10 @@ import { useUser } from '../contexts/UserContext';
 
 interface HeaderProps {
     toggleTheme: () => void;
+    offsetTop?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({ toggleTheme, offsetTop = false }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { session } = useUser();
     const [searchQuery, setSearchQuery] = useState('');
@@ -42,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
     const headerTextClass = isHomePage && !isScrolled ? 'text-white' : 'text-text-secondary-light dark:text-text-secondary-dark';
 
     return (
-        <header className={`${isHomePage ? 'fixed' : 'sticky'} top-0 z-50 w-full transition-all duration-300 ease-in-out ${isHomePage && !isScrolled ? 'pt-4 px-4' : ''} ${headerBgClass}`}>
+        <header className={`${isHomePage ? 'fixed' : 'sticky'} ${offsetTop ? 'top-12' : 'top-0'} z-50 w-full transition-all duration-300 ease-in-out ${isHomePage && !isScrolled ? 'pt-4 px-4' : ''} ${headerBgClass}`}>
             <div className={`mx-auto flex h-24 md:h-28 max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12 transition-all duration-300 ease-in-out ${isHomePage && !isScrolled ? 'bg-primary/25 backdrop-blur-md rounded-[32px] border border-white/15 shadow-2xl' : ''}`}>
                 {/* 1. Logo Section */}
                 <div className="flex-1 flex justify-start">
