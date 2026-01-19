@@ -18,6 +18,7 @@ const ProjectDetails: React.FC = () => {
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
   const [paypalError, setPaypalError] = useState<string | null>(null);
   const [paypalSuccess, setPaypalSuccess] = useState<string | null>(null);
+  const [progress, setProgress] = useState<{ confirmed_total: number; confirmed_count: number } | null>(null);
 
   // Gallery Logic
   const [activeImage, setActiveImage] = useState<string>('');
@@ -164,6 +165,25 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           mappedProject.fullDescription = `Este projeto visa fortalecer a cultura Huni Kuin, o "gente verdadeira", preservando saberes ancestrais, língua, espiritualidade e expressões culturais frente a pressões externas. O foco é a construção de um Centro Cerimonial de Cultura, um espaço vivo para a língua Hãtxa Kuin, medicinas tradicionais, cerimônias, cantos sagrados e artes Huni Kuin (kenê, tecelagem, cerâmica). Mais que uma estrutura, o Centro representa autodeterminação, gestão comunitária do patrimônio cultural, promovendo sustentabilidade, renda e a continuidade do legado Huni Kuin para futuras gerções.`;
           mappedProject.image = '/assets/img/project-huni-kuin.png';
           mappedProject.gallery = ['/assets/img/project-huni-kuin.png'];
+        }
+
+        // Enrich with live campaign progress from server API (service role)
+        try {
+          const progressRes = await fetch('/api/public/campaigns');
+          const progressJson = await progressRes.json();
+          if (Array.isArray(progressJson)) {
+            const campaign = progressJson.find((c: any) => c.slug === mappedProject.id);
+            if (campaign) {
+              setProgress({
+                confirmed_total: Number(campaign.confirmed_total || 0),
+                confirmed_count: Number(campaign.confirmed_count || 0),
+              });
+              mappedProject.raised = Number(campaign.confirmed_total || mappedProject.raised || 0);
+              mappedProject.goal = Number(campaign.goal_amount || mappedProject.goal || 0);
+            }
+          }
+        } catch (err) {
+          console.warn('Não foi possível carregar o progresso da campanha. Exibindo dados locais.', err);
         }
 
         setProject(mappedProject);
@@ -328,7 +348,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             if (!captureRes.ok) {
               throw new Error(captureJson.error || 'Falha ao confirmar o pagamento.');
             }
-            setPaypalSuccess('Pagamento confirmado! O painel pode levar alguns segundos para atualizar.');
+            setPaypalSuccess('Pagamento confirmado! Obrigado pela sua doação. O painel pode levar alguns segundos para atualizar.');
             setPaypalError(null);
           } catch (err: any) {
             setPaypalError(err?.message || 'Erro ao confirmar pagamento.');
