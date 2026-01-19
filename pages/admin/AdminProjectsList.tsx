@@ -60,6 +60,24 @@ const AdminProjectsList: React.FC = () => {
         }
     };
 
+    const handleMarkComplete = async (id: string | number) => {
+        if (!window.confirm('Marcar este projeto como concluído?')) return;
+
+        try {
+            const { error } = await supabase
+                .from('projects')
+                .update({ status: 'Concluído' })
+                .eq('id', id);
+
+            if (error) throw error;
+
+            setProjects(prev => prev.map(p => p.id === id ? { ...p, status: 'Concluído' } : p));
+        } catch (error) {
+            console.error('Error marking project complete:', error);
+            alert('Erro ao marcar projeto como concluído.');
+        }
+    };
+
     if (isLoading) {
         return <div className="p-8">Carregando...</div>;
     }
@@ -128,6 +146,15 @@ const AdminProjectsList: React.FC = () => {
                                         >
                                             <span className="material-symbols-outlined text-[20px]">edit</span>
                                         </Link>
+                                        {project.status !== 'Concluído' && (
+                                            <button
+                                                onClick={() => handleMarkComplete(project.id)}
+                                                className="p-2 text-green-700 hover:bg-green-50 rounded-lg transition-colors dark:text-green-400 dark:hover:bg-green-900/20"
+                                                title="Marcar como concluído"
+                                            >
+                                                <span className="material-symbols-outlined text-[20px]">task_alt</span>
+                                            </button>
+                                        )}
                                         <button
                                             onClick={() => handleDelete(project.id)}
                                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors dark:text-red-400 dark:hover:bg-red-900/20"

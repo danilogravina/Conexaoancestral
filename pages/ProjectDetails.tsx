@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useUser } from '../contexts/UserContext';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Project, ProjectCategory } from '../types';
 import { supabase } from '../lib/supabase';
@@ -16,7 +17,7 @@ const ProjectDetails: React.FC = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-
+  const { user } = useUser();
   useEffect(() => {
     if (id) {
       fetchProject(id);
@@ -346,6 +347,28 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
               <span className="bg-white/20 backdrop-blur-md text-white border border-white/30 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                 <span className="material-icons-round text-sm">schedule</span> {project.status}
               </span>
+              {/* Admin-only: Conclude project button (child must be pointer-events-auto because parent is pointer-events-none) */}
+              {user?.role === 'admin' && project.status !== 'Concluído' && (
+                <button
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    if (!window.confirm('Marcar este projeto como concluído?')) return;
+                    try {
+                      const { error } = await supabase.from('projects').update({ status: 'Concluído' }).eq('id', project.id);
+                      if (error) throw error;
+                      setProject(prev => prev ? { ...prev, status: 'Concluído' } : prev);
+                      alert('Projeto marcado como concluído.');
+                    } catch (err) {
+                      console.error('Erro ao atualizar projeto:', err);
+                      alert('Erro ao marcar projeto como concluído.');
+                    }
+                  }}
+                  className="ml-3 inline-flex items-center gap-2 rounded-md bg-green-700 text-white px-3 py-1.5 shadow hover:bg-green-800 transition-colors pointer-events-auto"
+                >
+                  <span className="material-symbols-outlined">task_alt</span>
+                  Concluir Projeto
+                </button>
+              )}
             </div>
             <h1 className="text-white h1-standard mb-4">{project.title}</h1>
             <p className="text-gray-200 text-lg md:text-xl md:w-3/4 max-w-3xl font-light">{project.description}</p>
