@@ -210,7 +210,7 @@ const Projects: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-6">
+                  <div className="flex flex-1 flex-col p-6 min-h-0">
                     <div className="mb-4">
                       <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{project.category}</h4>
                       <h3 className="mt-2 text-xl md:text-2xl font-bold text-text-main-light dark:text-white group-hover:text-primary transition-colors">{project.title}</h3>
