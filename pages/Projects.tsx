@@ -192,7 +192,7 @@ const Projects: React.FC = () => {
                       <option value="Concluídos">Finalizados</option>
                       <option value="Todos">Todos</option>
                     </select>
-                    <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400">expand_more</span>
+                    <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">expand_more</span>
                   </div>
                 </div>
 
