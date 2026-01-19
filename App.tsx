@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
+import { useUser } from './contexts/UserContext';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -30,6 +31,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AdminRoute from './components/AdminRoute';
 import MaintenanceGuard from './components/MaintenanceGuard';
+import AdminTopBar from './components/AdminTopBar';
 
 const ScrollToTop = () => {
   const { pathname, hash, search } = useLocation();
@@ -52,6 +54,7 @@ const ScrollToTop = () => {
 
 const AppContent: React.FC = () => {
   const location = useLocation();
+  const { user } = useUser();
 
   useEffect(() => {
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -78,6 +81,7 @@ const AppContent: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen font-display">
       <ScrollToTop />
+      {user?.role === 'admin' && <AdminTopBar />}
       {showHeaderFooter && <Header toggleTheme={toggleTheme} />}
       <main className="flex-grow flex flex-col">
         <MaintenanceGuard>
