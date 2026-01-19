@@ -1,5 +1,5 @@
 import { PAYPAL_WEBHOOK_ID, paypalFetch } from '../_lib/paypal';
-import { supabaseAdmin } from '../_lib/supabase-admin';
+import { getSupabaseAdmin } from '../_lib/supabase-admin';
 
 function send(res: any, status: number, payload: any) {
   res.statusCode = status;
@@ -17,7 +17,11 @@ async function readRawBody(req: any): Promise<{ raw: string; json: any }> {
   return { raw, json };
 }
 
-async function updateDonationStatus(filters: any, updates: Record<string, any>) {
+async function updateDonationStatus(
+  supabaseAdmin: ReturnType<typeof getSupabaseAdmin>,
+  filters: any,
+  updates: Record<string, any>
+) {
   await supabaseAdmin.from('donations').update(updates).match(filters as any);
 }
 
@@ -32,6 +36,7 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const { json: event } = await readRawBody(req);
 
     const headers = req.headers || {};
@@ -71,7 +76,7 @@ export default async function handler(req: any, res: any) {
     if (eventType === 'CHECKOUT.ORDER.APPROVED') {
       const orderId = resource?.id || resource?.supplementary_data?.related_ids?.order_id;
       if (orderId) {
-        await updateDonationStatus({ provider_order_id: orderId }, { status: 'approved' });
+        await updateDonationStatus(supabaseAdmin, { provider_order_id: orderId }, { status: 'approved' });
       }
     }
 
@@ -111,7 +116,7 @@ export default async function handler(req: any, res: any) {
               : {};
 
       if (Object.keys(matchFilter).length > 0) {
-        await updateDonationStatus(matchFilter, {
+        await updateDonationStatus(supabaseAdmin, matchFilter, {
           status: 'confirmed',
           provider_capture_id: captureId ?? donation?.provider_capture_id,
           confirmed_at: new Date().toISOString(),
@@ -124,14 +129,14 @@ export default async function handler(req: any, res: any) {
     if (eventType === 'PAYMENT.CAPTURE.REFUNDED') {
       const captureId = resource?.id;
       if (captureId) {
-        await updateDonationStatus({ provider_capture_id: captureId }, { status: 'refunded' });
+        await updateDonationStatus(supabaseAdmin, { provider_capture_id: captureId }, { status: 'refunded' });
       }
     }
 
     if (eventType === 'PAYMENT.CAPTURE.DENIED' || eventType === 'PAYMENT.CAPTURE.FAILED') {
       const captureId = resource?.id;
       if (captureId) {
-        await updateDonationStatus({ provider_capture_id: captureId }, { status: 'failed' });
+        await updateDonationStatus(supabaseAdmin, { provider_capture_id: captureId }, { status: 'failed' });
       }
     }
 

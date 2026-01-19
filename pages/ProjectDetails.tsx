@@ -223,7 +223,14 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
         }),
       });
 
-      const data = await response.json();
+      const raw = await response.text();
+      let data: any = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch (parseError) {
+        data = { error: raw };
+      }
+
       if (!response.ok) {
         throw new Error(data.error || 'Não foi possível criar o pedido no PayPal.');
       }

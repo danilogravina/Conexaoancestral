@@ -3,13 +3,12 @@ const baseUrl = paypalEnv === 'live' ? 'https://api-m.paypal.com' : 'https://api
 const clientId = process.env.PAYPAL_CLIENT_ID;
 const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
 
-if (!clientId || !clientSecret) {
-  throw new Error('PayPal credentials are missing. Set PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET.');
-}
-
 let cachedToken: { token: string; expiresAt: number } | null = null;
 
 async function fetchAccessToken(): Promise<{ access_token: string; expires_in: number }> {
+  if (!clientId || !clientSecret) {
+    throw new Error('PayPal credentials are missing. Set PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET.');
+  }
   const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
   const res = await fetch(`${baseUrl}/v1/oauth2/token`, {
     method: 'POST',

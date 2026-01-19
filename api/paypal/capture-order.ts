@@ -1,5 +1,5 @@
 import { paypalFetch } from '../_lib/paypal';
-import { supabaseAdmin } from '../_lib/supabase-admin';
+import { getSupabaseAdmin } from '../_lib/supabase-admin';
 
 function send(res: any, status: number, payload: any) {
   res.statusCode = status;
@@ -24,6 +24,7 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const body = await readJson(req);
     const orderID = body?.orderID as string;
 

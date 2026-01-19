@@ -1,5 +1,5 @@
 import { paypalFetch } from '../_lib/paypal';
-import { supabaseAdmin } from '../_lib/supabase-admin';
+import { getSupabaseAdmin } from '../_lib/supabase-admin';
 
 interface CreateOrderBody {
   campaignSlug?: string;
@@ -34,7 +34,7 @@ async function readJson(req: any): Promise<any> {
   }
 }
 
-async function getOrCreateCampaign(slug: string, currencyCode: string) {
+async function getOrCreateCampaign(supabaseAdmin: ReturnType<typeof getSupabaseAdmin>, slug: string, currencyCode: string) {
   const { data: existing, error: existingError } = await supabaseAdmin
     .from('campaigns')
     .select('*')
@@ -76,6 +76,7 @@ export default async function handler(req: any, res: any) {
   }
 
   let pendingDonationId: string | null = null;
+  let supabaseAdmin: ReturnType<typeof getSupabaseAdmin> | null = null;
 
   try {
     const body = (await readJson(req)) as CreateOrderBody;
@@ -87,8 +88,9 @@ export default async function handler(req: any, res: any) {
     }
 
     const currencyCode = String(currency || 'USD').toUpperCase();
+    supabaseAdmin = getSupabaseAdmin();
 
-    const campaign = await getOrCreateCampaign(campaignSlug, currencyCode);
+    const campaign = await getOrCreateCampaign(supabaseAdmin, campaignSlug, currencyCode);
     if (!campaign) {
       return send(res, 404, { error: 'Campaign not found or inactive' });
     }
@@ -152,7 +154,7 @@ export default async function handler(req: any, res: any) {
     return send(res, 200, { orderID, donationId: donation.id });
   } catch (error: any) {
     console.error('Error creating PayPal order:', error);
-    if (pendingDonationId) {
+    if (pendingDonationId && supabaseAdmin) {
       await supabaseAdmin
         .from('donations')
         .update({ status: 'failed' })
