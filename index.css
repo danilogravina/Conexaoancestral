@@ -44,3 +44,13 @@
 [class*="bg-primary"] *, [class*="bg-green"] *, [class*="bg-emerald"] *, [class*="bg-success"] * {
     color: #ffffff !important;
 }
+
+/* Exceptions: when using light tints (Tailwind style like bg-primary/10 or bg-green-100),
+   restore inherited text color for better contrast on light backgrounds. */
+[class*="bg-primary/"] , [class*="bg-emerald/"] , [class*="bg-green-50"], [class*="bg-green-100"], [class*="bg-green-200"], [class*="bg-emerald-50"], [class*="bg-emerald-100"], [class*="bg-emerald-200"] {
+    color: inherit !important;
+}
+
+[class*="bg-primary/"] *, [class*="bg-emerald/"] *, [class*="bg-green-50"] *, [class*="bg-green-100"] *, [class*="bg-green-200"] *, [class*="bg-emerald-50"] *, [class*="bg-emerald-100"] *, [class*="bg-emerald-200"] * {
+    color: inherit !important;
+}
