@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Logo } from './Logo';
+import { useUser } from '../contexts/UserContext';
 
 interface HeaderProps {
     toggleTheme: () => void;
@@ -8,6 +9,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { session } = useUser();
     const [searchQuery, setSearchQuery] = useState('');
     const [isScrolled, setIsScrolled] = useState(false);
     const location = useLocation();
@@ -101,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
 
                     {/* Login Link */}
                     <Link
-                        to="/login"
+                        to={session ? "/minha-conta" : "/login"}
                         className={`p-2.5 rounded-full hover:bg-stone-50 dark:hover:bg-white/10 transition-colors ${isHomePage && !isScrolled ? 'text-white hover:bg-white/10' : 'text-text-main-light dark:text-text-main-dark'}`}
                         aria-label="Minha Conta"
                     >
@@ -146,8 +148,8 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
 
 
                         <div className="border-t border-gray-100 dark:border-white/10 my-2"></div>
-                        <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold p-3 hover:bg-primary/10 rounded-lg text-text-main-light dark:text-white transition-colors flex items-center gap-2">
-                            <span className="material-symbols-outlined">login</span> Entrar / Minha Conta
+                        <Link to={session ? "/minha-conta" : "/login"} onClick={() => setIsMenuOpen(false)} className="text-lg font-bold p-3 hover:bg-primary/10 rounded-lg text-text-main-light dark:text-white transition-colors flex items-center gap-2">
+                               <span className="material-symbols-outlined">login</span> Entrar / Minha Conta
                         </Link>
                     </div>
                     <Link to="/projetos" onClick={() => setIsMenuOpen(false)} className="w-full h-12 flex items-center justify-center rounded-xl bg-donate-red text-white font-extrabold shadow-lg hover:bg-red-600 transition-colors">Doar Agora</Link>

@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '../components/Logo';
 import { supabase } from '../lib/supabase';
+import { useUser } from '../contexts/UserContext';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const { session, isLoading: isAuthLoading } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isAuthLoading && session) {
+      navigate('/minha-conta');
+    }
+  }, [session, isAuthLoading, navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
