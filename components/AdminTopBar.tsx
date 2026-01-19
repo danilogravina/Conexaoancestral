@@ -16,7 +16,7 @@ const AdminTopBar: React.FC = () => {
     }
 
     return (
-        <div className="sticky top-0 z-40 w-full bg-[#111827] text-white border-b border-black/30">
+        <div className="sticky top-0 z-50 w-full bg-[#111827] text-white border-b border-black/30">
             <div className="h-12 px-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <Link to="/admin" className="flex items-center gap-2 text-sm font-semibold hover:text-primary transition-colors">
