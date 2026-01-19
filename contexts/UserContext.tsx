@@ -69,7 +69,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const fetchProfile = async (userId: string, email: string) => {
         try {
-            const { data: profile } = await supabase
+            const { data: profile, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
                 .eq('id', userId)
@@ -111,9 +111,17 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     }
                 };
                 setUser(userData);
+            } else {
+                // Se perfil não encontrado, mantém usuário autenticado, mas user será null
+                setUser(null);
+                if (profileError) {
+                    console.error('Erro ao buscar perfil:', profileError);
+                }
             }
         } catch (error) {
-            console.error('Erro ao buscar perfil:', error);
+            // Em caso de erro inesperado, mantém usuário autenticado
+            setUser(null);
+            console.error('Erro inesperado ao buscar perfil:', error);
         } finally {
             setIsLoading(false);
         }
