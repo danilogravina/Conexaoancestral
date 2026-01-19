@@ -79,9 +79,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 // Fetch real donation stats
                 const { data: donations } = await supabase
                     .from('donations')
-                    .select('amount, project_id')
+                    .select('amount, project_id, status')
                     .eq('user_id', userId)
-                    .eq('status', 'confirmado');
+                    .in('status', ['confirmed', 'confirmado']);
 
                 const totalDonated = donations?.reduce((sum, d) => sum + Number(d.amount), 0) || 0;
                 const uniqueProjects = new Set(donations?.map(d => d.project_id)).size;

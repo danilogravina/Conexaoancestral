@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useUser } from '../contexts/UserContext';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Project, ProjectCategory } from '../types';
@@ -11,6 +11,13 @@ const ProjectDetails: React.FC = () => {
   const [project, setProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [donationAmount, setDonationAmount] = useState<string>('');
+  const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
+  const paypalButtonRef = useRef<HTMLDivElement | null>(null);
+  const [paypalReady, setPaypalReady] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
+  const [isCreatingOrder, setIsCreatingOrder] = useState(false);
+  const [paypalError, setPaypalError] = useState<string | null>(null);
+  const [paypalSuccess, setPaypalSuccess] = useState<string | null>(null);
 
   // Gallery Logic
   const [activeImage, setActiveImage] = useState<string>('');
@@ -23,6 +30,28 @@ const ProjectDetails: React.FC = () => {
       fetchProject(id);
     }
   }, [id]);
+
+  useEffect(() => {
+    if (!paypalClientId || typeof document === 'undefined') return;
+    const existing = document.querySelector('script[src^="https://www.paypal.com/sdk/js"]') as HTMLScriptElement | null;
+    if (existing) {
+      existing.onload = () => setPaypalReady(true);
+      if ((existing as any).dataset?.loaded || existing.getAttribute('data-loaded') === 'true') {
+        setPaypalReady(true);
+      }
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=${paypalClientId}&currency=BRL&intent=capture`;
+    script.async = true;
+    script.onload = () => {
+      script.dataset.loaded = 'true';
+      setPaypalReady(true);
+    };
+    script.onerror = () => setPaypalError('Não foi possível carregar o SDK do PayPal. Verifique o VITE_PAYPAL_CLIENT_ID.');
+    document.body.appendChild(script);
+  }, [paypalClientId]);
 
   const fetchProject = async (projectId: string) => {
     try {
@@ -155,13 +184,57 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
     setDonationAmount(amount);
   };
 
-  const handleDonate = () => {
-    if (!donationAmount) {
+  const handleDonate = async () => {
+    if (!donationAmount || Number(donationAmount) <= 0) {
       alert("Por favor, selecione ou digite um valor para doar.");
       return;
     }
-    alert(`Obrigado! Sua doação simulada de R$ ${donationAmount} para o projeto "${project?.title}" foi processada com sucesso. Juntos somos mais fortes!`);
-    setDonationAmount('');
+
+    if (!paypalClientId) {
+      setPaypalError('PayPal não configurado. Defina VITE_PAYPAL_CLIENT_ID.');
+      return;
+    }
+
+    if (!project) {
+      setPaypalError('Projeto não carregado.');
+      return;
+    }
+
+    try {
+      setIsCreatingOrder(true);
+      setPaypalError(null);
+      setPaypalSuccess(null);
+
+      const response = await fetch('/api/paypal/create-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          campaignSlug: String(project.id),
+          amount: Number(donationAmount),
+          currency: 'BRL',
+          donor: {
+            name: user?.fullName,
+            email: user?.email,
+            isAnonymous: false,
+          },
+          userId: user?.id,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Não foi possível criar o pedido no PayPal.');
+      }
+
+      setOrderId(data.orderID);
+      setPaypalSuccess('Pedido criado. Clique no botão do PayPal para finalizar.');
+    } catch (error: any) {
+      setPaypalError(error?.message || 'Erro ao iniciar a doação.');
+    } finally {
+      setIsCreatingOrder(false);
+    }
   };
 
   const handleShare = (platform: string) => {
@@ -227,6 +300,39 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen, nextPhoto, prevPhoto]);
+
+  useEffect(() => {
+    if (!paypalReady || !orderId || typeof window === 'undefined' || !paypalButtonRef.current) return;
+    const paypal = (window as any).paypal;
+    if (!paypal?.Buttons) return;
+
+    paypalButtonRef.current.innerHTML = '';
+    paypal
+      .Buttons({
+        createOrder: () => orderId,
+        onApprove: async () => {
+          try {
+            const captureRes = await fetch('/api/paypal/capture-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ orderID: orderId }),
+            });
+            const captureJson = await captureRes.json();
+            if (!captureRes.ok) {
+              throw new Error(captureJson.error || 'Falha ao confirmar o pagamento.');
+            }
+            setPaypalSuccess('Pagamento confirmado! O painel pode levar alguns segundos para atualizar.');
+            setPaypalError(null);
+          } catch (err: any) {
+            setPaypalError(err?.message || 'Erro ao confirmar pagamento.');
+          }
+        },
+        onError: (err: any) => {
+          setPaypalError(err?.message || 'Erro no PayPal.');
+        },
+      })
+      .render(paypalButtonRef.current);
+  }, [orderId, paypalReady]);
 
   if (!project) {
     return (
@@ -565,9 +671,27 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                       </div>
                     </div>
                     <div className="space-y-3 relative z-10">
-                      <button onClick={handleDonate} className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
-                        <span className="material-icons-round">favorite</span> Doar para este Projeto
+                      <button
+                        onClick={handleDonate}
+                        disabled={isCreatingOrder}
+                        className="w-full bg-primary hover:bg-primary-dark disabled:bg-primary/60 disabled:cursor-not-allowed text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg"
+                      >
+                        <span className="material-icons-round">favorite</span>
+                        {isCreatingOrder ? 'Preparando pagamento...' : 'Doar para este Projeto'}
                       </button>
+                      {!paypalClientId && (
+                        <p className="text-xs text-red-600">Configure VITE_PAYPAL_CLIENT_ID para habilitar o pagamento via PayPal.</p>
+                      )}
+                      {paypalError && (
+                        <p className="text-sm text-red-600 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-lg p-3">{paypalError}</p>
+                      )}
+                      {paypalSuccess && (
+                        <p className="text-sm text-green-700 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 rounded-lg p-3">{paypalSuccess}</p>
+                      )}
+                      <div className="pt-2" ref={paypalButtonRef}></div>
+                      {!paypalReady && paypalClientId && (
+                        <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">O botão do PayPal aparece assim que o SDK terminar de carregar.</p>
+                      )}
                     </div>
                   </>
                 ) : (

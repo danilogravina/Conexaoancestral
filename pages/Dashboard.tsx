@@ -283,9 +283,36 @@ const Dashboard: React.FC = () => {
                                                         <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">R$ {Number(activity.amount).toLocaleString('pt-BR', { minimumFractionDigits: 2 })} • {new Date(activity.created_at).toLocaleDateString('pt-BR')}</p>
                                                     </div>
                                                 </div>
-                                                <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${activity.status === 'confirmado' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'}`}>
-                                                    {activity.status}
-                                                </span>
+                                                {(() => {
+                                                    const normalized = (activity.status || 'pending').toLowerCase();
+                                                    const isConfirmed = normalized === 'confirmed' || normalized === 'confirmado';
+                                                    const isApproved = normalized === 'approved';
+                                                    const isRefunded = normalized === 'refunded';
+                                                    const isFailed = normalized === 'failed' || normalized === 'canceled';
+                                                    const badgeClasses = isConfirmed
+                                                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                                                        : isApproved
+                                                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                                                            : isRefunded
+                                                                ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
+                                                                : isFailed
+                                                                    ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                                                                    : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400';
+                                                    const labelMap: Record<string, string> = {
+                                                        confirmed: 'Confirmado',
+                                                        confirmado: 'Confirmado',
+                                                        approved: 'Aprovado',
+                                                        pending: 'Pendente',
+                                                        refunded: 'Reembolsado',
+                                                        failed: 'Falhou',
+                                                        canceled: 'Cancelado',
+                                                    };
+                                                    return (
+                                                        <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${badgeClasses}`}>
+                                                            {labelMap[normalized] || 'Pendente'}
+                                                        </span>
+                                                    );
+                                                })()}
                                             </div>
                                         ))}
                                     </div>

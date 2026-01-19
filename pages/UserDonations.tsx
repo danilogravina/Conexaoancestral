@@ -27,6 +27,7 @@ const UserDonations: React.FC = () => {
             id,
             amount,
             status,
+                    currency,
             created_at,
             payment_method,
             projects (
@@ -105,6 +106,16 @@ const UserDonations: React.FC = () => {
 
     const handleReceipt = (title: string) => {
         alert(`Baixando recibo referente à doação: ${title}`);
+    };
+
+    const statusMeta: Record<string, { label: string; tone: string; bg: string }> = {
+        confirmed: { label: 'Confirmado', tone: 'text-green-700 dark:text-green-400', bg: 'bg-green-100 dark:bg-green-900/30' },
+        confirmado: { label: 'Confirmado', tone: 'text-green-700 dark:text-green-400', bg: 'bg-green-100 dark:bg-green-900/30' },
+        approved: { label: 'Aprovado', tone: 'text-blue-700 dark:text-blue-400', bg: 'bg-blue-100 dark:bg-blue-900/30' },
+        pending: { label: 'Pendente', tone: 'text-yellow-700 dark:text-yellow-400', bg: 'bg-yellow-100 dark:bg-yellow-900/30' },
+        refunded: { label: 'Reembolsado', tone: 'text-amber-700 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-900/30' },
+        failed: { label: 'Falhou', tone: 'text-red-700 dark:text-red-400', bg: 'bg-red-100 dark:bg-red-900/30' },
+        canceled: { label: 'Cancelado', tone: 'text-gray-700 dark:text-gray-400', bg: 'bg-gray-200 dark:bg-gray-800/50' },
     };
 
     return (
@@ -196,24 +207,26 @@ const UserDonations: React.FC = () => {
                                         <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4 md:gap-1 pl-0 md:pl-4 border-l-0 md:border-l border-stone-100 dark:border-white/10">
                                             <div className="flex flex-col items-start md:items-end">
                                                 <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium">Valor</span>
-                                                <span className="text-xl font-bold text-text-main-light dark:text-white">R$ {Number(donation.amount).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                                                <span className="text-xl font-bold text-text-main-light dark:text-white">
+                                                    {(donation.currency || 'BRL')} {Number(donation.amount).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                                                </span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                {donation.status === 'confirmado' ? (
-                                                    <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold">
-                                                        <span className="material-symbols-outlined text-[14px]">check_circle</span>
-                                                        Confirmado
-                                                    </div>
-                                                ) : (
-                                                    <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-xs font-bold">
-                                                        <span className="material-symbols-outlined text-[14px]">hourglass_top</span>
-                                                        Pendente
-                                                    </div>
-                                                )}
+                                                {(() => {
+                                                    const normalized = (donation.status || 'pending').toLowerCase();
+                                                    const meta = statusMeta[normalized] || statusMeta.pending;
+                                                    const icon = normalized === 'confirmed' || normalized === 'confirmado' ? 'check_circle' : normalized === 'approved' ? 'thumb_up' : normalized === 'refunded' ? 'reply' : normalized === 'failed' || normalized === 'canceled' ? 'error' : 'hourglass_top';
+                                                    return (
+                                                        <div className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-bold ${meta.bg} ${meta.tone}`}>
+                                                            <span className="material-symbols-outlined text-[14px]">{icon}</span>
+                                                            {meta.label}
+                                                        </div>
+                                                    );
+                                                })()}
                                             </div>
                                         </div>
                                         <div className="hidden md:flex">
-                                            {donation.status === 'confirmado' && (
+                                            {(['confirmed', 'confirmado'].includes((donation.status || '').toLowerCase())) && (
                                                 <button
                                                     onClick={() => handleReceipt(donation.projects?.title || 'Doação')}
                                                     className="size-10 rounded-full hover:bg-stone-100 dark:hover:bg-white/5 flex items-center justify-center text-text-secondary-light transition-colors"
