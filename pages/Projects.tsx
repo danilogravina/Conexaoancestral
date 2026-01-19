@@ -178,22 +178,33 @@ const Projects: React.FC = () => {
           <div className="sticky top-24 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur px-4 mb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-100 dark:border-gray-800 py-6">
               <h2 id="lista-projetos" className="text-text-main-light dark:text-white h2-standard scroll-mt-32">Explorar Projetos</h2>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <button onClick={() => { setSelectedStatus('Ativos'); setVisibleCount(6); setSelectedCategory('Todos'); }} className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${selectedStatus === 'Ativos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset'}`}>Ativos</button>
-                  <button onClick={() => { setSelectedStatus('Concluídos'); setVisibleCount(6); setSelectedCategory('Todos'); }} className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${selectedStatus === 'Concluídos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset'}`}>Finalizados</button>
-                  <button onClick={() => { setSelectedStatus('Todos'); setVisibleCount(6); setSelectedCategory('Todos'); }} className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${selectedStatus === 'Todos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset'}`}>Todos</button>
+              <div className="flex w-full items-center justify-between flex-wrap gap-4">
+                <div className="flex items-center gap-3">
+                  <label htmlFor="statusFilter" className="sr-only">Filtrar por status</label>
+                  <div className="relative inline-flex">
+                    <select
+                      id="statusFilter"
+                      value={selectedStatus}
+                      onChange={(e) => { setSelectedStatus(e.target.value as any); setVisibleCount(6); setSelectedCategory('Todos'); }}
+                      className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-surface-dark px-3 py-2 text-sm font-medium text-text-main-light dark:text-white shadow-sm transition-colors"
+                    >
+                      <option value="Ativos">Ativos</option>
+                      <option value="Concluídos">Finalizados</option>
+                      <option value="Todos">Todos</option>
+                    </select>
+                    <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400">expand_more</span>
+                  </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
-                  <button key="Todos" onClick={() => handleCategoryChange('Todos')} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === 'Todos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-text-main-light ring-1 ring-inset'}`}>Todos</button>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <button onClick={() => handleCategoryChange('Todos')} className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === 'Todos' ? 'bg-[#0d1b12] text-white shadow-sm' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 ring-1 ring-inset'}`}>Todos</button>
                   {availableCategories.map((category) => (
                     <button
                       key={category}
                       onClick={() => handleCategoryChange(category as ProjectCategory)}
-                      className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === category
-                        ? 'bg-[#0d1b12] text-white'
-                        : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-text-main-light ring-1 ring-inset'
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === category
+                        ? 'bg-[#0d1b12] text-white shadow-sm'
+                        : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 ring-1 ring-inset'
                         }`}
                     >
                       {category}
