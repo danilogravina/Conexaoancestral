@@ -47,7 +47,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
             if (session) {
-                fetchProfile(session.user.id, session.user.email || '');
+                fetchProfile(session.user.id, session.user.email || '', session.user);
             } else {
                 setIsLoading(false);
             }
@@ -57,7 +57,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
             if (session) {
-                fetchProfile(session.user.id, session.user.email || '');
+                fetchProfile(session.user.id, session.user.email || '', session.user);
             } else {
                 setUser(null);
                 setIsLoading(false);
@@ -67,7 +67,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return () => subscription.unsubscribe();
     }, []);
 
-    const fetchProfile = async (userId: string, email: string) => {
+    const fetchProfile = async (userId: string, email: string, sessionUser?: User) => {
         try {
             const { data: profile, error: profileError } = await supabase
                 .from('profiles')
@@ -112,15 +112,67 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 };
                 setUser(userData);
             } else {
-                // Se perfil não encontrado, mantém usuário autenticado, mas user será null
-                setUser(null);
+                // Se perfil não encontrado, mantém usuário autenticado com dados mínimos
+                const fallbackRole = (sessionUser as any)?.app_metadata?.role || (sessionUser as any)?.user_metadata?.role || 'user';
+                const fallbackName = (sessionUser as any)?.user_metadata?.full_name || email || 'Usuário';
+
+                const userData: UserData = {
+                    id: userId,
+                    fullName: fallbackName,
+                    email: email,
+                    avatar: '/assets/img/user-avatar-default.jpg',
+                    role: fallbackRole,
+                    since: new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long' }),
+                    cpf: '',
+                    phone: '',
+                    address: {
+                        zip: '',
+                        street: '',
+                        number: '',
+                        complement: '',
+                        district: '',
+                        city: '',
+                        state: ''
+                    },
+                    stats: {
+                        totalDonated: 0,
+                        projectsSupported: 0,
+                        nextDonationDate: '--'
+                    }
+                };
+                setUser(userData);
                 if (profileError) {
                     console.error('Erro ao buscar perfil:', profileError);
                 }
             }
         } catch (error) {
             // Em caso de erro inesperado, mantém usuário autenticado
-            setUser(null);
+            const fallbackRole = (sessionUser as any)?.app_metadata?.role || (sessionUser as any)?.user_metadata?.role || 'user';
+            const fallbackName = (sessionUser as any)?.user_metadata?.full_name || email || 'Usuário';
+            setUser({
+                id: userId,
+                fullName: fallbackName,
+                email: email,
+                avatar: '/assets/img/user-avatar-default.jpg',
+                role: fallbackRole,
+                since: new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long' }),
+                cpf: '',
+                phone: '',
+                address: {
+                    zip: '',
+                    street: '',
+                    number: '',
+                    complement: '',
+                    district: '',
+                    city: '',
+                    state: ''
+                },
+                stats: {
+                    totalDonated: 0,
+                    projectsSupported: 0,
+                    nextDonationDate: '--'
+                }
+            });
             console.error('Erro inesperado ao buscar perfil:', error);
         } finally {
             setIsLoading(false);
@@ -135,7 +187,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const refreshProfile = async () => {
         if (session) {
-            await fetchProfile(session.user.id, session.user.email || '');
+            await fetchProfile(session.user.id, session.user.email || '', session.user);
         }
     };
 
