@@ -1,5 +1,5 @@
-import { paypalFetch } from '../_lib/paypal';
-import { getSupabaseAdmin } from '../_lib/supabase-admin';
+import { paypalFetch } from '../_lib/paypal.js';
+import { getSupabaseAdmin } from '../_lib/supabase-admin.js';
 
 function send(res: any, status: number, payload: any) {
   res.statusCode = status;
