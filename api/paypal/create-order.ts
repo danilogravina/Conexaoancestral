@@ -115,7 +115,10 @@ export default async function handler(req: any, res: any) {
       .single();
 
     if (donationError || !donation) {
-      return send(res, 500, { error: 'Failed to create donation record' });
+      return send(res, 500, {
+        error: 'Failed to create donation record',
+        details: donationError?.message || donationError || null,
+      });
     }
 
     pendingDonationId = donation.id;
