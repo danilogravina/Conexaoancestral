@@ -20,6 +20,7 @@ const Transparency = lazy(() => import('./pages/Transparency'));
 const About = lazy(() => import('./pages/About'));
 const SearchResults = lazy(() => import('./pages/SearchResults'));
 const Maintenance = lazy(() => import('./pages/Maintenance'));
+const ThankYou = lazy(() => import('./pages/ThankYou'));
 
 // Admin Pages
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
@@ -110,6 +111,7 @@ const AppContent: React.FC = () => {
               <Route path="/minha-conta/doacoes" element={<UserDonations />} />
               <Route path="/minha-conta/configuracoes" element={<Settings />} />
               <Route path="/busca" element={<SearchResults />} />
+              <Route path="/doacao/obrigado" element={<ThankYou />} />
 
               {/* Admin Routes */}
               <Route element={<AdminRoute />}>

@@ -350,6 +350,14 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
             }
             setPaypalSuccess('Pagamento confirmado! Obrigado pela sua doação. O painel pode levar alguns segundos para atualizar.');
             setPaypalError(null);
+
+            // Redireciona para página de agradecimento
+            navigate('/doacao/obrigado', {
+              state: {
+                amount: Number(donationAmount),
+                projectTitle: project.title,
+              },
+            });
           } catch (err: any) {
             setPaypalError(err?.message || 'Erro ao confirmar pagamento.');
           }
