@@ -9,7 +9,7 @@ const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'Todos'>('Todos');
-  const [selectedStatus, setSelectedStatus] = useState<'Todos' | 'Ativos' | 'Concluídos'>('Todos');
+  const [selectedStatus, setSelectedStatus] = useState<'Todos' | 'Ativos' | 'Concluídos'>('Ativos');
   const [visibleCount, setVisibleCount] = useState(6);
 
 
@@ -75,6 +75,16 @@ const Projects: React.FC = () => {
     setSelectedCategory(category);
     setVisibleCount(6);
   };
+
+  // Helper to determine if a project matches the selected status filter
+  const matchesStatusFilter = (p: Project, statusFilter: typeof selectedStatus) => {
+    if (statusFilter === 'Todos') return true;
+    if (statusFilter === 'Ativos') return p.status !== 'Concluído';
+    return statusFilter === 'Concluídos' ? p.status === 'Concluído' : true;
+  };
+
+  // Compute available categories based on current status filter so we only show filters with results
+  const availableCategories = Array.from(new Set(projects.filter(p => matchesStatusFilter(p, selectedStatus)).map(p => p.category)));
 
   const handleStatusChange = (status: 'Todos' | 'Ativos' | 'Concluídos') => {
     setSelectedStatus(status);
@@ -168,22 +178,28 @@ const Projects: React.FC = () => {
           <div className="sticky top-24 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur px-4 mb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-100 dark:border-gray-800 py-6">
               <h2 id="lista-projetos" className="text-text-main-light dark:text-white h2-standard scroll-mt-32">Explorar Projetos</h2>
-              <div className="flex flex-wrap gap-2">
-                {['Todos', ...Object.values(ProjectCategory)].map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      handleCategoryChange(category as ProjectCategory | 'Todos');
-                      setSelectedStatus('Todos'); // Reset status when picking a category for simplicity
-                    }}
-                    className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ring-1 ring-inset ${selectedCategory === category
-                      ? 'bg-[#0d1b12] text-white ring-gray-300 dark:ring-0'
-                      : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-text-main-light ring-gray-200 dark:ring-gray-700'
-                      }`}
-                  >
-                    {category}
-                  </button>
-                ))}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <button onClick={() => { setSelectedStatus('Ativos'); setVisibleCount(6); setSelectedCategory('Todos'); }} className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${selectedStatus === 'Ativos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset'}`}>Ativos</button>
+                  <button onClick={() => { setSelectedStatus('Concluídos'); setVisibleCount(6); setSelectedCategory('Todos'); }} className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${selectedStatus === 'Concluídos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset'}`}>Finalizados</button>
+                  <button onClick={() => { setSelectedStatus('Todos'); setVisibleCount(6); setSelectedCategory('Todos'); }} className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${selectedStatus === 'Todos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark ring-1 ring-inset'}`}>Todos</button>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <button key="Todos" onClick={() => handleCategoryChange('Todos')} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === 'Todos' ? 'bg-[#0d1b12] text-white' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-text-main-light ring-1 ring-inset'}`}>Todos</button>
+                  {availableCategories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => handleCategoryChange(category as ProjectCategory)}
+                      className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === category
+                        ? 'bg-[#0d1b12] text-white'
+                        : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-text-main-light ring-1 ring-inset'
+                        }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
