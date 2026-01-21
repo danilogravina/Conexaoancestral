@@ -205,7 +205,7 @@ const About: React.FC = () => {
                     {[
                         { name: 'Frans Pagnier', role: 'Presidente', img: '/assets/img/team-ana.jpg' },
                         { name: 'Cyntia Lopes', role: 'Vice Presidente', img: '/assets/img/team-carlos.jpg' },
-                        { name: 'Rudisson Bezerra', role: 'Secretário', img: '/assets/img/team-joao.jpg' },
+                        { name: 'Tete pawã', role: 'Secretário', img: '/assets/img/team-joao.jpg' },
                         { name: 'Júlia Lopes', role: 'Tesoureira', img: '/assets/img/team-mariana.jpg' },
                     ].map((member, idx) => (
                         <div key={idx} className="group flex flex-col gap-4">
@@ -228,7 +228,18 @@ const About: React.FC = () => {
 
             {/* Final CTA Section */}
             <section className="py-12 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-7xl mx-auto rounded-[2.5rem] bg-primary dark:bg-primary/20 p-12 lg:p-20 relative overflow-hidden text-center shadow-2xl">
+                <style>{`
+                    .about-cta-heart,
+                    .about-cta-title,
+                    .about-cta-text,
+                    .about-cta-btn {
+                        color: #ffffff !important;
+                    }
+                    .about-cta-btn {
+                        border-color: #ffffff !important;
+                    }
+                `}</style>
+                <div className="max-w-7xl mx-auto rounded-[2.5rem] bg-primary dark:bg-primary/20 p-12 lg:p-20 relative overflow-hidden text-center shadow-2xl about-cta">
                     {/* Background Image Layer */}
                     <div className="absolute inset-0 z-0">
                         <img
@@ -243,13 +254,13 @@ const About: React.FC = () => {
                     <div className="absolute bottom-0 left-0 -ml-20 -mb-20 size-80 bg-white/10 rounded-full blur-3xl z-0"></div>
 
                     <div className="relative z-10 flex flex-col items-center text-center">
-                        <span className="material-symbols-outlined mb-6 text-6xl text-white opacity-90 inline-block">favorite</span>
-                        <h2 className="text-white h2-standard mb-4 max-w-2xl">Junte-se ao movimento</h2>
-                        <p className="text-white/80 text-lg md:text-xl font-light max-w-xl mb-10 leading-relaxed">
+                        <span className="material-symbols-outlined mb-6 text-6xl text-white opacity-90 inline-block about-cta-heart">favorite</span>
+                        <h2 className="text-white h2-standard mb-4 max-w-2xl about-cta-title">Junte-se ao movimento</h2>
+                        <p className="text-white text-lg md:text-xl font-light max-w-xl mb-10 leading-relaxed about-cta-text">
                             Sua contribuição planta árvores, empodera comunidades e protege o nosso futuro.
                         </p>
                         <div className="flex flex-col items-center justify-center">
-                            <Link to="/projetos" className="h-14 px-12 rounded-full bg-white hover:bg-gray-100 text-primary font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center">
+                            <Link to="/projetos" className="h-14 px-12 rounded-full bg-white/10 hover:bg-white/20 text-white font-black transition-all shadow-xl shadow-black/10 flex items-center justify-center border border-white about-cta-btn">
                                 Doar Agora
                             </Link>
                         </div>
