@@ -386,6 +386,12 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
 
   const gallery = project.gallery && project.gallery.length > 0 ? project.gallery : [project.image];
   const videoThumbnail = "/assets/img/projects-hero-bg.jpg"; // Using a valid fallback image
+  const raisedAmount = Number(project.raised || 0);
+  const goalAmount = Number(project.goal || 0);
+  const progressPercent = goalAmount > 0 ? Math.min((raisedAmount / goalAmount) * 100, 100) : 0;
+  const roundedPercent = goalAmount > 0 ? Math.round((raisedAmount / goalAmount) * 100) : 0;
+  const donorCount = progress?.confirmed_count;
+  const confirmedTotal = progress?.confirmed_total;
 
   return (
     <div className="flex flex-col flex-grow">
@@ -477,7 +483,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
         {/* Main Hero Image */}
         <div
           className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-lg group bg-gray-100 dark:bg-gray-800 cursor-zoom-in mb-10"
-          onClick={() => openLightbox(gallery.indexOf(activeImage))}
+          onClick={() => openLightbox(Math.max(0, gallery.indexOf(activeImage)))}
         >
           <img
             alt="Imagem principal do projeto"
@@ -522,6 +528,62 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           </div>
         </div>
 
+        <div className="mb-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold">Arrecadação</p>
+              <span className="text-xs font-bold text-primary">{roundedPercent}%</span>
+            </div>
+            <p className="text-3xl font-extrabold text-gray-900 dark:text-white">
+              R$ {raisedAmount.toLocaleString('pt-BR')}
+            </p>
+            <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
+              Meta de R$ {goalAmount.toLocaleString('pt-BR')}
+            </p>
+            <div className="mt-4 w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+              <div className="bg-primary h-3 rounded-full" style={{ width: `${progressPercent}%` }}></div>
+            </div>
+          </div>
+
+          <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+            <p className="text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold">Impacto direto</p>
+            <p className="text-3xl font-extrabold text-gray-900 dark:text-white mt-2">
+              {project.power || `${project.beneficiaries}+`}
+            </p>
+            <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+              {project.power ? 'Resultados gerados' : 'Pessoas beneficiadas'}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 text-primary">Transparência</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-text-secondary-light dark:text-text-secondary-dark">Comunidade ativa</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-text-secondary-light dark:text-text-secondary-dark">Apoio recorrente</span>
+            </div>
+          </div>
+
+          <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm flex flex-col justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold">Movimento</p>
+              <p className="text-3xl font-extrabold text-gray-900 dark:text-white mt-2">
+                {typeof donorCount === 'number' ? donorCount : '—'}
+              </p>
+              <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                Doadores confirmados
+              </p>
+              {typeof confirmedTotal === 'number' && (
+                <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-2">
+                  R$ {confirmedTotal.toLocaleString('pt-BR')} confirmados
+                </p>
+              )}
+            </div>
+            <div className="mt-4 flex items-center gap-3">
+              <a href="#doar" className="bg-primary text-white font-bold px-5 py-2.5 rounded-full shadow-lg shadow-primary/30 hover:bg-primary-dark transition-colors">
+                Doar agora
+              </a>
+              <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">Leva menos de 2 minutos</span>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-8 shadow-sm border border-gray-100 dark:border-gray-700">
@@ -546,6 +608,50 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                     </ul>
                   </>
                 )}
+              </div>
+            </div>
+
+            <div className="bg-surface-light dark:bg-surface-dark rounded-3xl p-8 shadow-sm border border-gray-100 dark:border-gray-700">
+              <h2 className="text-gray-900 dark:text-white h2-standard mb-8 flex items-center gap-3">
+                <span className="material-icons-round text-primary text-3xl md:text-5xl">handshake</span> Como sua doação gera impacto
+              </h2>
+              <div className="grid gap-6 md:grid-cols-3">
+                {[
+                  {
+                    title: 'Infraestrutura vital',
+                    text: 'Financia materiais, logística e a construção que mantém a comunidade segura e estruturada.',
+                    icon: 'foundation',
+                  },
+                  {
+                    title: 'Cultura viva',
+                    text: 'Apoia práticas ancestrais e formações para preservar conhecimento e fortalecer a identidade.',
+                    icon: 'auto_stories',
+                  },
+                  {
+                    title: 'Transparência contínua',
+                    text: 'Prestação de contas constante e atualizações para quem apoia acompanhar cada etapa.',
+                    icon: 'verified',
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-2xl border border-gray-100 dark:border-gray-700 p-5 bg-gray-50/60 dark:bg-gray-800/40">
+                    <div className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+                      <span className="material-icons-round">{item.icon}</span>
+                    </div>
+                    <h3 className="font-bold text-gray-900 dark:text-white text-lg mb-2">{item.title}</h3>
+                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-text-secondary-light dark:text-text-secondary-dark">
+                <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
+                  <span className="material-icons-round text-base text-primary">lock</span> Pagamento seguro via PayPal
+                </span>
+                <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
+                  <span className="material-icons-round text-base text-primary">update</span> Atualizações frequentes
+                </span>
+                <span className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
+                  <span className="material-icons-round text-base text-primary">groups</span> Comunidade envolvida
+                </span>
               </div>
             </div>
 
@@ -579,7 +685,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                     className="relative rounded-2xl h-32 w-full overflow-hidden md:col-span-2 group cursor-pointer border-2 border-transparent hover:border-primary/50"
                     onClick={() => setIsVideoOpen(true)}
                   >
-                    <img alt="Vídeo Thumbnail" className="w-full h-full object-cover transition-transform duration-500" src={activeImage} />
+                    <img alt="Vídeo Thumbnail" className="w-full h-full object-cover transition-transform duration-500" src={videoThumbnail} />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
                       <span className="text-white font-medium flex items-center gap-2 transform group-hover:scale-110 transition-transform bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
                         <span className="material-icons-round text-2xl">play_circle</span>
@@ -652,17 +758,17 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                   ) : (
                     <>
                       <div className="flex flex-col items-start mb-2">
-                        <span className="text-4xl font-extrabold text-primary tracking-tight">R$ {project.raised.toLocaleString('pt-BR')}</span>
-                        <span className="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">arrecadados da meta de <span className="text-gray-900 dark:text-white font-bold">R$ {project.goal.toLocaleString('pt-BR')}</span></span>
+                        <span className="text-4xl font-extrabold text-primary tracking-tight">R$ {raisedAmount.toLocaleString('pt-BR')}</span>
+                        <span className="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">arrecadados da meta de <span className="text-gray-900 dark:text-white font-bold">R$ {goalAmount.toLocaleString('pt-BR')}</span></span>
                       </div>
                       <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-4 mb-4 overflow-hidden shadow-inner">
-                        <div className="bg-primary h-4 rounded-full relative shadow-sm" style={{ width: `${Math.min((project.raised / project.goal) * 100, 100)}%` }}>
+                        <div className="bg-primary h-4 rounded-full relative shadow-sm" style={{ width: `${progressPercent}%` }}>
                           <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-3 mb-2">
                         <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-xl p-3 text-center">
-                          <span className="block text-xl font-bold text-gray-900 dark:text-white">{Math.round((project.raised / project.goal) * 100)}%</span>
+                          <span className="block text-xl font-bold text-gray-900 dark:text-white">{roundedPercent}%</span>
                           <span className="text-[10px] uppercase font-semibold tracking-wider text-text-secondary-light dark:text-text-secondary-dark">Alcançado</span>
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-xl p-3 text-center">
