@@ -134,12 +134,12 @@ const Projects: React.FC = () => {
     return (
       <div className="flex flex-col w-full bg-background-light dark:bg-background-dark min-h-screen">
         <div className="w-full flex-1 flex justify-center py-12 md:py-20">
-          <div className="flex flex-col max-w-[960px] flex-1 px-4 lg:px-0">
+          <div className="flex flex-col max-w-6xl flex-1 px-4 lg:px-0">
             <div className="flex animate-pulse flex-col gap-8">
-              <div className="h-64 w-full rounded-2xl bg-gray-200 dark:bg-gray-800"></div>
+              <div className="h-64 w-full rounded-3xl bg-gray-200 dark:bg-gray-800"></div>
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="h-96 rounded-2xl bg-gray-200 dark:bg-gray-800"></div>
+                  <div key={i} className="h-96 rounded-3xl bg-gray-200 dark:bg-gray-800"></div>
                 ))}
               </div>
             </div>
@@ -177,16 +177,23 @@ const Projects: React.FC = () => {
         </div>
       </section>
 
-      <div className="w-full flex-1 flex justify-center py-12 md:py-20">
-        <div className="flex flex-col max-w-[960px] flex-1 px-4 lg:px-0">
+      <div className="w-full flex-1 flex justify-center py-12 md:py-20 relative">
+        <div className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+        <div className="pointer-events-none absolute bottom-0 left-[-120px] h-96 w-96 rounded-full bg-primary/5 blur-3xl"></div>
+        <div className="relative flex flex-col max-w-6xl flex-1 px-4 lg:px-0">
 
 
 
 
-          <div className="sticky top-24 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur px-4 mb-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-100 dark:border-gray-800 py-6">
-              <h2 id="lista-projetos" className="text-text-main-light dark:text-white h2-standard scroll-mt-32">Explorar Projetos</h2>
-              <div className="flex w-full items-center justify-between flex-wrap gap-4">
+          <div className="sticky top-20 z-40 mb-10 rounded-2xl border border-gray-100/80 dark:border-gray-800/80 bg-white/90 dark:bg-surface-dark/90 shadow-sm backdrop-blur px-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border-b border-gray-100/70 dark:border-gray-800/70 py-6">
+              <div className="flex flex-col">
+                <h2 id="lista-projetos" className="text-text-main-light dark:text-white h2-standard scroll-mt-32">Explorar Projetos</h2>
+                <p className="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                  Mostrando {visibleProjects.length} de {filteredProjects.length} projetos
+                </p>
+              </div>
+              <div className="flex w-full items-center justify-between flex-wrap gap-5">
                 <div className="flex items-center gap-3">
                   <label htmlFor="statusFilter" className="sr-only">Filtrar por status</label>
                   <div className="relative inline-flex">
@@ -194,7 +201,7 @@ const Projects: React.FC = () => {
                       id="statusFilter"
                       value={selectedStatus}
                       onChange={(e) => { setSelectedStatus(e.target.value as any); setVisibleCount(6); setSelectedCategory('Todos'); }}
-                      className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-surface-dark px-3 py-2 text-sm font-medium text-text-main-light dark:text-white shadow-sm transition-colors"
+                      className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-surface-dark/90 px-3 py-2 pr-8 text-sm font-medium text-text-main-light dark:text-white shadow-sm shadow-black/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40"
                     >
                       <option value="Ativos">Ativos</option>
                       <option value="Concluídos">Finalizados</option>
@@ -204,15 +211,15 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 items-center">
-                  <button onClick={() => handleCategoryChange('Todos')} className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === 'Todos' ? 'bg-[#0d1b12] text-white shadow-sm' : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 ring-1 ring-inset'}`}>Todos</button>
+                <div className="flex flex-wrap gap-2.5 items-center">
+                  <button onClick={() => handleCategoryChange('Todos')} className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedCategory === 'Todos' ? 'bg-primary text-white shadow-sm shadow-primary/20 ring-1 ring-primary/20' : 'bg-white/80 dark:bg-surface-dark/80 text-text-secondary-light dark:text-text-secondary-dark hover:bg-white dark:hover:bg-gray-800 ring-1 ring-inset ring-black/5 dark:ring-white/10'}`}>Todos</button>
                   {availableCategories.map((category) => (
                     <button
                       key={category}
                       onClick={() => handleCategoryChange(category as ProjectCategory)}
-                      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === category
-                        ? 'bg-[#0d1b12] text-white shadow-sm'
-                        : 'bg-white dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-50 dark:hover:bg-gray-800 ring-1 ring-inset'
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${selectedCategory === category
+                        ? 'bg-primary text-white shadow-sm shadow-primary/20 ring-1 ring-primary/20'
+                        : 'bg-white/80 dark:bg-surface-dark/80 text-text-secondary-light dark:text-text-secondary-dark hover:bg-white dark:hover:bg-gray-800 ring-1 ring-inset ring-black/5 dark:ring-white/10'
                         }`}
                     >
                       {category}
@@ -229,16 +236,17 @@ const Projects: React.FC = () => {
                 <Link
                   to={`/projetos/${project.id}`}
                   key={project.id}
-                  className={`group flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-surface-dark shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 min-h-0 ${project.status === 'Concluído' ? 'opacity-90 hover:opacity-100' : ''}`}
+                  className={`group flex h-full flex-col overflow-hidden rounded-3xl bg-white/90 dark:bg-surface-dark/90 shadow-sm ring-1 ring-black/5 dark:ring-white/10 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 min-h-0 ${project.status === 'Concluído' ? 'opacity-90 hover:opacity-100' : ''}`}
                 >
-                  <div className={`relative h-60 overflow-hidden ${project.status === 'Concluído' ? 'grayscale group-hover:grayscale-0' : ''} transition-all duration-500`}>
-                    <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500" style={{ backgroundImage: `url("${project.image}")` }}></div>
+                  <div className={`relative h-64 overflow-hidden ${project.status === 'Concluído' ? 'grayscale group-hover:grayscale-0' : ''} transition-all duration-500`}>
+                    <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url("${project.image}")` }}></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                     <div className="absolute top-4 right-4 text-center">
-                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold ring-1 ring-inset ${project.status === 'Em Planejamento' ? 'bg-indigo-100 text-indigo-800 ring-indigo-600/20 dark:bg-indigo-900/30 dark:text-indigo-300' :
-                        project.status === 'Em Andamento' ? 'bg-green-100 text-green-800 ring-green-600/20' :
-                          project.status === 'Quase Lá' ? 'bg-blue-100 text-blue-800 ring-blue-600/20' :
-                            project.status === 'Novo' ? 'bg-green-100 text-green-800 ring-green-600/20' :
-                              'bg-gray-100 text-gray-800 ring-gray-600/20 dark:bg-gray-700 dark:text-gray-300'
+                      <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold ring-1 ring-inset shadow-sm backdrop-blur ${project.status === 'Em Planejamento' ? 'bg-indigo-100/90 text-indigo-800 ring-indigo-600/20 dark:bg-indigo-900/40 dark:text-indigo-300' :
+                        project.status === 'Em Andamento' ? 'bg-green-100/90 text-green-800 ring-green-600/20' :
+                          project.status === 'Quase Lá' ? 'bg-blue-100/90 text-blue-800 ring-blue-600/20' :
+                            project.status === 'Novo' ? 'bg-green-100/90 text-green-800 ring-green-600/20' :
+                              'bg-gray-100/90 text-gray-800 ring-gray-600/20 dark:bg-gray-700/70 dark:text-gray-300'
                         }`}>
                         {project.status}
                       </span>
@@ -286,7 +294,7 @@ const Projects: React.FC = () => {
                       </div>
                     )}
 
-                    <div className={`inline-flex items-center justify-between rounded-lg px-4 py-3 text-sm font-bold transition-colors group/btn ${project.status === 'Concluído' ? 'bg-gray-50 dark:bg-gray-800 text-text-main-light dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' : 'bg-background-light dark:bg-background-dark text-text-main-light dark:text-white hover:bg-emerald-50 dark:hover:bg-emerald-900/20'}`}>
+                    <div className={`inline-flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-colors group/btn ring-1 ring-inset ring-black/5 dark:ring-white/10 ${project.status === 'Concluído' ? 'bg-gray-50 dark:bg-gray-800 text-text-main-light dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' : 'bg-background-light dark:bg-background-dark text-text-main-light dark:text-white hover:bg-emerald-50 dark:hover:bg-emerald-900/20'}`}>
                       {project.status === 'Concluído' ? 'Ver Relatório' : 'Saiba Mais'}
                       <span className={`material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1 ${project.status === 'Concluído' ? 'icon-description' : 'icon-arrow_forward'}`}>
                         {project.status === 'Concluído' ? 'description' : 'arrow_forward'}

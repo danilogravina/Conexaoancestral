@@ -37,11 +37,11 @@
 /* Accessibility: force white text on green / primary backgrounds */
 /* Targets Tailwind-like utility classes by substring to avoid needing to
    edit many JSX class strings. The !important overrides inline text-* classes. */
-[class*="bg-primary"], [class*="bg-green"], [class*="bg-emerald"], [class*="bg-success"] {
+[class*="bg-primary"]:not(.allow-text-color), [class*="bg-green"]:not(.allow-text-color), [class*="bg-emerald"]:not(.allow-text-color), [class*="bg-success"]:not(.allow-text-color) {
     color: #ffffff !important;
 }
 
-[class*="bg-primary"] *, [class*="bg-green"] *, [class*="bg-emerald"] *, [class*="bg-success"] * {
+[class*="bg-primary"]:not(.allow-text-color) *, [class*="bg-green"]:not(.allow-text-color) *, [class*="bg-emerald"]:not(.allow-text-color) *, [class*="bg-success"]:not(.allow-text-color) * {
     color: #ffffff !important;
 }
 

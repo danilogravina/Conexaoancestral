@@ -698,29 +698,6 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
               </div>
             </div>
 
-            <div className="bg-primary/5 dark:bg-primary/10 rounded-3xl p-8 border border-primary/10">
-              <h2 className="text-gray-900 dark:text-white h2-standard mb-10">Vozes da Comunidade</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {(project.testimonials || [
-                  { name: "Maria Yawanawa", role: "Mãe e Artesã", quote: "A escola trouxe vida para nossa aldeia. É um sonho ver nossos filhos aprendendo nossos valores.", avatar: "/assets/img/team-mariana.jpg" },
-                  { name: "João Tukano", role: "Líder Comunitário", quote: "O projeto nos deu ferramentas para defender nossa terra e garantir nosso futuro.", avatar: "/assets/img/team-joao.jpg" }
-                ]).map((testimonial, i) => (
-                  <div key={i} className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl shadow-sm relative">
-                    <span className="material-icons-round text-primary/20 text-6xl absolute top-4 right-4 rotate-12">format_quote</span>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark italic mb-4 relative z-10">"{testimonial.quote}"</p>
-                    <div className="flex items-center gap-3 mt-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold overflow-hidden">
-                        <img src={testimonial.avatar} alt={testimonial.name} className="w-full h-full object-cover" />
-                      </div>
-                      <div>
-                        <p className="font-bold text-gray-900 dark:text-white text-sm">{testimonial.name}</p>
-                        <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="lg:col-span-1">
