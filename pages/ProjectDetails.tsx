@@ -205,6 +205,7 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
   };
 
   const handleDonate = async () => {
+
     if (!donationAmount || Number(donationAmount) <= 0) {
       alert("Por favor, selecione ou digite um valor para doar.");
       return;
@@ -220,11 +221,8 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
       return;
     }
 
-    if (!user) {
-      setPaypalError('Para doar, entre ou cadastre seu e-mail (você receberá o link para criar sua senha).');
-      navigate('/login', { state: { redirectTo: `/projetos/${project.id}` } });
-      return;
-    }
+    // Permitir doação anônima: se não houver usuário, prosseguir como anônimo
+    const isAnonymous = !user;
 
     try {
       setIsCreatingOrder(true);
@@ -241,9 +239,9 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
           amount: Number(donationAmount),
           currency: 'BRL',
           donor: {
-            name: user?.fullName,
-            email: user?.email,
-            isAnonymous: false,
+            name: isAnonymous ? 'Anônimo' : user?.fullName,
+            email: isAnonymous ? undefined : user?.email,
+            isAnonymous,
           },
           userId: user?.id,
         }),
