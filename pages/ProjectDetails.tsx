@@ -258,6 +258,9 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
       }
 
       if (!response.ok) {
+        if (response.status === 404 || data?.code === 'PRODUCT_NOT_FOUND') {
+          throw new Error('Produto não cadastrado para este pedido. Confira o projeto selecionado.');
+        }
         throw new Error(data.error || 'Não foi possível criar o pedido no PayPal.');
       }
 
@@ -818,10 +821,16 @@ Mais do que uma estrutura física, o Centro Cerimonial representa um espaço de 
                       </div>
                     </div>
                     <div className="space-y-3 relative z-10">
+                      <style>{`
+                        .donation-primary-btn,
+                        .donation-primary-btn * {
+                          color: #ffffff !important;
+                        }
+                      `}</style>
                       <button
                         onClick={handleDonate}
                         disabled={isCreatingOrder}
-                        className="w-full bg-primary hover:bg-primary-dark disabled:bg-primary/60 disabled:cursor-not-allowed text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg"
+                        className="w-full bg-primary hover:bg-primary-dark disabled:bg-primary/60 disabled:cursor-not-allowed text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg donation-primary-btn"
                       >
                         <span className="material-icons-round">favorite</span>
                         {isCreatingOrder ? 'Preparando pagamento...' : 'Doar para este Projeto'}

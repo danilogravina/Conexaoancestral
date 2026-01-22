@@ -92,7 +92,10 @@ export default async function handler(req: any, res: any) {
 
     const campaign = await getOrCreateCampaign(supabaseAdmin, campaignSlug, currencyCode);
     if (!campaign) {
-      return send(res, 404, { error: 'Campaign not found or inactive' });
+      return send(res, 404, {
+        error: 'Produto não cadastrado para este pedido. Confira o projeto selecionado.',
+        code: 'PRODUCT_NOT_FOUND',
+      });
     }
 
     const { data: donation, error: donationError } = await supabaseAdmin
