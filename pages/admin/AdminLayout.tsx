@@ -21,28 +21,17 @@ const AdminLayout: React.FC = () => {
     ];
 
     return (
-        <div className="flex h-screen bg-gray-100 dark:bg-[#0d1b12]">
-            {/* Sidebar */}
-            <aside className="w-64 bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-white/10 hidden md:flex flex-col">
-                <div className="p-6 border-b border-gray-100 dark:border-white/10">
-                    <Link to="/" className="flex items-center gap-2">
-                        <img src="/assets/img/logo.png" alt="Conexão Ancestral" className="h-8 w-auto" />
-                        <span className="font-bold text-lg text-primary">Admin</span>
-                    </Link>
-                </div>
+		<div className="flex h-screen bg-gray-100 dark:bg-[#0d1b12]">
+			{/* Sidebar */}
+			<aside className="w-64 bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-white/10 hidden md:flex flex-col">
+				<div className="p-6 border-b border-gray-100 dark:border-white/10 flex flex-col items-center">
+					<Link to="/" className="flex flex-col items-center gap-2 w-full">
+						<img src="/assets/img/LogoHorizontal.svg" alt="Conexão Ancestral" className="h-12 w-auto mb-2" />
+						<span className="font-bold text-lg text-primary">Admin</span>
+					</Link>
+				</div>
 
-                <div className="p-4">
-                    <div className="flex items-center gap-3 p-3 mb-6 bg-gray-50 dark:bg-white/5 rounded-lg">
-                        <img
-                            src={user?.avatar}
-                            alt={user?.fullName}
-                            className="w-10 h-10 rounded-full object-cover border border-gray-200"
-                        />
-                        <div className="overflow-hidden">
-                            <p className="text-sm font-bold text-text-main-light dark:text-white truncate">{user?.fullName}</p>
-                            <p className="text-xs text-text-secondary-light dark:text-gray-400 truncate">Administrador</p>
-                        </div>
-                    </div>
+				<div className="p-4">
 
                     <nav className="space-y-1">
                         {navItems.map((item) => {
